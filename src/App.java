@@ -7,7 +7,7 @@
 public class App {
 	public static void main(String[] args) {
 		System.out.println();
-		System.out.println("Who is Chun Keet?");
+		System.out.println("Who is Chun Keet ah?");
         return;
 	}
 }
