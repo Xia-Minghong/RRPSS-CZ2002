@@ -1,7 +1,10 @@
+import java.io.Serializable;
+
 /**
  * Created by Xia-Minghong on 14-10-25.
  */
-public class Table {
+
+public class Table implements Serializable{
     private final int TABLE_ID;
     private final int CAPACITY;
     private boolean presence = false;
