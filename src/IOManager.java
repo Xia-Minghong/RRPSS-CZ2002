@@ -1,7 +1,10 @@
 import java.io.*;
 
 /**
- * Created by root on 14-10-25.
+ * Created by Xia-Minghong on 14-10-25.
+ *
+ * A IOManager handles the file read/write in the RRPSS system
+ * to achieve data persistence.
  */
 public class IOManager {
     /**
@@ -47,6 +50,7 @@ public class IOManager {
      * @param object
      * @return
      */
+
     public boolean write(Table object) {
         return write(object, FILE_PATH);
     }
