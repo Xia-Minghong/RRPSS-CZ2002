@@ -17,8 +17,8 @@ public class Member {
 
     /**
      * Constructor of the Member class
-     * @param name
-     * @param contact
+     * @param name the name to be used in constructor
+     * @param contact the contact number to be used in constructor
      */
     public Member(String name, String contact) {
         this.name = name;
@@ -27,7 +27,7 @@ public class Member {
 
     /**
      * Getter method for the member name
-     * @return
+     * @return the name of the member
      */
     public String getName() {
         return name;
@@ -35,7 +35,7 @@ public class Member {
 
     /**
      * Setter method for the member name
-     * @param name
+     * @param name the name to set
      */
     public void setName(String name) {
         this.name = name;
@@ -43,7 +43,7 @@ public class Member {
 
     /**
      * Getter method for the member contact
-     * @return
+     * @return the contact number of the member
      */
     public String getContact() {
         return contact;
@@ -51,7 +51,7 @@ public class Member {
 
     /**
      * Getter method for the member contact
-     * @param contact
+     * @param contact contact number to set
      */
     public void setContact(String contact) {
         this.contact = contact;

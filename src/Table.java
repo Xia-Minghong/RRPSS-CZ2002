@@ -28,8 +28,8 @@ public class Table implements Serializable{
      * Constructor for the table
      * The presence attribute is always set to false when a table is constructed,
      * and true value is always set manually
-     * @param TABLE_ID
-     * @param CAPACITY
+     * @param TABLE_ID the table ID to be used in constructor
+     * @param CAPACITY the capacity to be used in constructor
      */
     public Table(int TABLE_ID, int CAPACITY) {
         this.TABLE_ID = TABLE_ID;
@@ -38,7 +38,7 @@ public class Table implements Serializable{
 
     /**
      * Getter method for the table ID
-     * @return
+     * @return the ID of the table
      */
     public int getTABLE_ID() {
         return TABLE_ID;
@@ -46,15 +46,15 @@ public class Table implements Serializable{
 
     /**
      * Getter method for the table capacity
-     * @return
+     * @return the capacity of the table
      */
     public int getCAPACITY() {
         return CAPACITY;
     }
 
     /**
-     * Getter method for the occupation state of the table
-     * @return
+     * Getter method for presence
+     * @return the occupation state of the table
      */
     public boolean isPresence() {
         return presence;
@@ -62,7 +62,7 @@ public class Table implements Serializable{
 
     /**
      * Setter method for the occupation state of the table
-     * @param presence
+     * @param presence the state of presence to set
      */
     public void setPresence(boolean presence) {
         this.presence = presence;

@@ -14,7 +14,7 @@ public class IOManager {
 
     /**
      * No-arg read method to use the default path for reading
-     * @return
+     * @return the deserialized object of class Object or null if the method fails
      */
     public Object read() {
         return read(FILE_PATH);
@@ -22,8 +22,8 @@ public class IOManager {
 
     /**
      * Read method with a given path
-     * @param filePath
-     * @return
+     * @param filePath the file path to the file from which the data will be read
+     * @return the deserialized object of class Object or null if the method fails
      */
     public Object read(String filePath) {
         try {
@@ -46,20 +46,19 @@ public class IOManager {
     }
 
     /**
-     * No-arg read method to use the default path for writing
-     * @param object
-     * @return
+     * Write method to use the default path for writing
+     * @param object the object to be written
+     * @return true if the write method is successful or false if otherwise
      */
-
     public boolean write(Table object) {
         return write(object, FILE_PATH);
     }
 
     /**
      * Write method with a given path and a object
-     * @param object
-     * @param filePath
-     * @return
+     * @param object the object to be written
+     * @param filePath the file path to write to
+     * @return true if the write method is successful or false if otherwise
      */
     public boolean write(Table object, String filePath) {
         try {
