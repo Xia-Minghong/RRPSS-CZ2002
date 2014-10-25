@@ -2,9 +2,14 @@
  * Created by Xia-Minghong on 14-10-25.
  */
 public class Table {
-    int TABLE_ID;
-    int CAPACITY;
-    boolean presence;
+    private final int TABLE_ID;
+    private final int CAPACITY;
+    private boolean presence = false;
+
+    public Table(int TABLE_ID, int CAPACITY) {
+        this.TABLE_ID = TABLE_ID;
+        this.CAPACITY = CAPACITY;
+    }
 
     public int getTABLE_ID() {
         return TABLE_ID;
