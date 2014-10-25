@@ -7,7 +7,6 @@ public class Table {
     boolean presence;
 
     public int getTABLE_ID() {
-
         return TABLE_ID;
     }
 
