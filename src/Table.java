@@ -1,8 +1,6 @@
 import java.io.Serializable;
 
 /**
- * Created by Xia-Minghong on 14-10-25.
- *
  * Table is a model class which holds the relevant attributes
  * of a table and provides the mutators and accessors accordingly.
  */

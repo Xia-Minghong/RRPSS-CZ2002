@@ -1,8 +1,6 @@
 import java.io.*;
 
 /**
- * Created by Xia-Minghong on 14-10-25.
- *
  * A IOManager handles the file read/write in the RRPSS system
  * to achieve data persistence.
  */

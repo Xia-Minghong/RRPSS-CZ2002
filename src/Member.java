@@ -1,6 +1,4 @@
 /**
- * Created by Xia-Minghong on 14-10-25.
- *
  * Member is a model class which holds the relevant attributes
  * of a member and provides the mutators/setters and accessors/getters accordingly.
  */
