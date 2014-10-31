@@ -25,20 +25,23 @@ public class IOManager {
      */
     public Object read(String filePath) {
         try {
+            //Create Stream Objects
             FileInputStream fileInputStream = new FileInputStream(filePath);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            Object obj = objectInputStream.readObject();    //reading
+            //read
+            Object obj = objectInputStream.readObject();
 
+            //Close the streams
             objectInputStream.close();
             fileInputStream.close();
+
             return obj;
         } catch(IOException i) {    //handle IO exceptions
-            i.printStackTrace();
+            System.out.println("File I/O Error.");
             return null;
         } catch(ClassNotFoundException c) {     //handle ClassNotFound exception from the readObject()
-            System.out.println("Employee class not found");
-            c.printStackTrace();
+            System.out.println("Employee class not found.");
             return null;
         }
     }
@@ -60,11 +63,14 @@ public class IOManager {
      */
     public boolean write(Table object, String filePath) {
         try {
+            //Create Stream Objects
             FileOutputStream fileOutputStream = new FileOutputStream(filePath);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
+            //Write
             objectOutputStream.writeObject(object); //writing
 
+            //Close the streams
             objectOutputStream.close();
             fileOutputStream.close();
 
