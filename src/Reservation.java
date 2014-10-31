@@ -1,5 +1,3 @@
-package project;
-
 public class Reservation {
 	private String date;
 	private String time;
