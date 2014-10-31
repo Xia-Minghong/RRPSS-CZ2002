@@ -10,7 +10,7 @@ public class Menu {
 		menu.add(menuitem);
 		
 	}
-	public void deleteMenuItem(){
+	public void deleteMenuItem(){1
 		
 	}
 	public void updateMenuItem(){
