@@ -2,29 +2,35 @@
 import java.util.*;
 
 public class Menu {
+	//Change Menu to static
+	private static ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
 	
-	private ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
-	
-	public void addMenuItem(String name,String description, String category, double price){
+	public static void addMenuItem(String name,String description, String category, double price){
 		MenuItem menuitem = new AlaCarte(name, description,category,price);
 		menu.add(menuitem);
 		
 	}
-	public void deleteMenuItem(){1
+	public static void deleteMenuItem(){
 		
 	}
-	public void updateMenuItem(){
+	public static void updateMenuItem(){
 		
 		
 	}
-	public void showAllItem(){
+	public static void showAllItem(){
+		//by ZJY 要显示个id啊 不然怎么选是哪个，然后下标要从0开始
+		for (int i = 0; i < menu.size(); i++) {
+			System.out.println((i+1)+menu.get(i).getName() + menu.get(i).getCategory() + menu.get(i).getDescription() + menu.get(i).getPrice());
+		}
+		/*
 		for (MenuItem item : menu){
 		System.out.println(item.getName() + item.getCategory() + item.getDescription() + item.getPrice());
-		}
-	}
-	public MenuItem getMenuItemByld(int item){
+		}*/
 		
-		return menu.get(item);
+	}
+	public static MenuItem getMenuItemByld(int item){
+		//下标从0开始
+		return menu.get(item-1);
 	}
 
 }
