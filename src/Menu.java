@@ -4,13 +4,14 @@ import java.util.*;
 public class Menu {
 	
 	private ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
-	
+
+    //Add a Menu constructor with initialization
 	public void addMenuItem(String name,String description, String category, double price){
 		MenuItem menuitem = new AlaCarte(name, description,category,price);
 		menu.add(menuitem);
 		
 	}
-	public void deleteMenuItem(){1
+	public void deleteMenuItem(){
 		
 	}
 	public void updateMenuItem(){

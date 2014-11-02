@@ -1,6 +1,6 @@
 
 public abstract class MenuItem {
-	
+	//Abstract class, no constructor. Some methods should be abstract
 	private String Name;
 	
 	private String Description;
