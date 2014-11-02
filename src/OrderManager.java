@@ -6,20 +6,23 @@ import java.util.Scanner;
 public class OrderManager implements Serializable{
 	private static final double TAXRATE = 0.4;
 	private static ArrayList<Order> orderCollection = new ArrayList<Order>();
-	
+	private Menu menu;
+	public OrderManager(Menu menu) {
+		// TODO Auto-generated constructor stub
+		this.menu = menu;
+	}
 	public static ArrayList<Order> getOrderCollection() {
 		return orderCollection;
 	}
 	
 	public void run() {
-		int choice;
 		Scanner sc = new Scanner(System.in);
 		while (true)
 		{
 			System.out.println("choose what you want \n 1. Create Order \n 2.get total price of a order ");
 			System.out.println(" 3. remove a order \n 4. view all orders \n 5. edit a order 6. exit");
-			choice = sc.nextInt();
-			switch (choice) {
+			
+			switch (sc.nextInt()) {
 			case 1:	
 				createOrder();
 				break;
@@ -40,14 +43,40 @@ public class OrderManager implements Serializable{
 			case 5:
 				showAllOrderWithID();
 				System.out.println("choose a order you want to edit");
-				
+				editOrder(sc.nextInt());
 				break;
 			default:
 				return;
 			}
 		}
 	}
-
+	private void editOrder(int orderID) {
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			System.out.println("choose what you want to do with the order");
+			System.out.println("1. add item\n2.removed item3.exit");
+			switch (sc.nextInt()) {
+			case 1:	
+				menu.showAllItem();
+				System.out.println("choose a item by inputting item ID");
+				int item = sc.nextInt();
+				System.out.println("How many "+ menu.getMenuItemByld(item).getName() + " do you want?");
+				int quantity = sc.nextInt();
+				orderCollection.get(orderID).addOrderItem(new
+						OrderItem(quantity, menu.getMenuItemByld(item)));
+				System.out.println("successfully ordered!");
+				break;
+			case 2:
+				orderCollection.get(orderID).showAllOrderItems();
+				System.out.println("Choose a item you want to removed");
+				orderCollection.get(orderID).removeOrderItem(sc.nextInt());
+				System.out.println("Removed!");
+				break;
+			default:
+				return;
+			}
+		}
+	}
 	public void showAllOrderWithID() {
 		for (Order order : orderCollection) {
 			System.out.format("ID = %d \t staff No = %d \t table No = \t",order.getOrderID(),order.getStaffID(),order.getTableID());

@@ -55,29 +55,14 @@ public class Order {
 		return orderItems;
 	}
 	
-	private void showAllOrderItems() {
+	public void showAllOrderItems() {
 		for (OrderItem orderItem : orderItems) {
 			System.out.println(orderItem.getItem().getName());
 			System.out.println(orderItem.getItem().getPrice()+"  x  " + orderItem.getQuantity());
 		}
 	}
 
-	public void editOrder() {
-		int choice;
-		Scanner sc = new Scanner(System.in);
-		while (true) {
-			System.out.println("choose what you want to do with the order");
-			System.out.println("1. add item\n2.removed item3.exit");
-			switch (choice=sc.nextInt()) {
-			case 1:	
 
-				break;
-
-			default:
-				break;
-			}
-		}
-	}
 	
 	public void addOrderItem(OrderItem item) {
 		orderItems.add(item);
