@@ -6,7 +6,9 @@ public class Set extends MenuItem{
 	private ArrayList<AlaCarte> set =  new ArrayList<AlaCarte>();
 	
 	private double discountRate;
-	
+
+    //abstract super class has no constructor. Also when price and discountrate are input together, how
+    //does the program know which to use?
 	public Set(String name,String description,String category, double price, double discountrate){
 		super(name,description,category, price);
 		this.setDiscountRate(discountRate);
