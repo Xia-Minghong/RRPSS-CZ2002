@@ -2,9 +2,8 @@ import java.util.ArrayList;
 
 /**
  * A manager which takes the responsibilities of:
- *  1. getting members data from file
- *  2. Writing members data to file
- *  3. Handle the creation/deletion of a member
+ *  1. getting/Writing members data from/to file
+ *  2. Handle the creation/deletion of a member
  * @author Xia Minghong
  * @version 1.0
  * @since 2014-11-4.
@@ -39,6 +38,39 @@ public class MemberManager {
     public void createMember(String name, String contact) {
         Member newMember = new Member(name, contact);
         members.add(newMember);
+    }
+
+    /**
+     * Get the member with the name given
+     * @param name the name of the member
+     * @return the member with the name given
+     */
+    public Member getMember(String name) {
+        for (Member member : members) {
+            if (member.getName().equals(name)) {
+                return member;  //if found
+            }
+        }
+        return null; //if not fount
+    }
+
+    /**
+     * Delete the member with the given name
+     * @param name the name of the member to be deleted
+     */
+    public void deleteMember(String name) {
+        int index=-1;
+
+        for (Member member : members) {
+            if (member.getName().equals(name)) {
+                index = members.indexOf(member);
+                break;
+            }
+        }
+
+        if (index != -1) {  //if the name exists in the members list
+            members.remove(index);  //remove the record
+        }
     }
 
     /**
