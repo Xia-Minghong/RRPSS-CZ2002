@@ -3,12 +3,15 @@ import java.io.*;
 /**
  * A IOManager handles the file read/write in the RRPSS system
  * to achieve data persistence.
+ * The methods of this class are static so that other classes can call the them
+ * conveniently without instantiation
  */
 public class IOManager {
     /**
-     * the default file path & name for the Read/Write
+     * the default file path for the Read/Write
+     * when no file path is given
      */
-    private static final String FILE_PATH = "Invoice.dat";
+    private static final String FILE_PATH = "RRPSS.dat";
 
     /**
      * No-arg read method to use the default path for reading
