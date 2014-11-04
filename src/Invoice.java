@@ -3,8 +3,8 @@ import java.util.Arrays;
 public class Invoice{
 
 	private final int INVOICE_ID;
-	
-	private final Date TIMESTAMP;
+
+    private final Date TIMESTAMP;
 	
 	private final double GROSS_PRICE;
 	
@@ -15,6 +15,15 @@ public class Invoice{
 	private final double NET_PRICE;
 	
 	public static int count=0;
+
+    public Invoice(int INVOICE_ID, Date TIMESTAMP, double GROSS_PRICE, double GST, double SERVICE_CHARGE, double NET_PRICE) {
+        this.INVOICE_ID = INVOICE_ID;
+        this.TIMESTAMP = TIMESTAMP;
+        this.GROSS_PRICE = GROSS_PRICE;
+        this.GST = GST;
+        this.SERVICE_CHARGE = SERVICE_CHARGE;
+        this.NET_PRICE = NET_PRICE;
+    }
 	
 	public void printInvoice(){
 		System.out.println("Invoice ID: %d", INVOICE_ID);
