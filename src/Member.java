@@ -3,6 +3,9 @@ import java.io.Serializable;
 /**
  * Member is a model class which holds the relevant attributes
  * of a member and provides the mutators/setters and accessors/getters accordingly.
+ * @author Xia Minghong
+ * @version 1.0
+ * @since 2014-10-24.
  */
 public class Member implements Serializable{
     /**

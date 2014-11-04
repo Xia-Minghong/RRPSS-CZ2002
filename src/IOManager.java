@@ -5,6 +5,9 @@ import java.io.*;
  * to achieve data persistence.
  * The methods of this class are static so that other classes can call the them
  * conveniently without instantiation
+ * @author Xia Minghong
+ * @version 1.0
+ * @since 2014-10-24.
  */
 public class IOManager {
     /**
