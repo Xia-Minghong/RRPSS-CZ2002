@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Date;
 
 public class Invoice{
 
@@ -14,10 +15,10 @@ public class Invoice{
 	
 	private final double NET_PRICE;
 	
-	public static int count=0;
+	
 
     public Invoice(int INVOICE_ID, Date TIMESTAMP, double GROSS_PRICE, double GST, double SERVICE_CHARGE, double NET_PRICE) {
-        this.INVOICE_ID = INVOICE_ID;
+        this.INVOICE_ID = INVOICE_ID;        
         this.TIMESTAMP = TIMESTAMP;
         this.GROSS_PRICE = GROSS_PRICE;
         this.GST = GST;
@@ -27,7 +28,7 @@ public class Invoice{
 	
 	public void printInvoice(){
 		System.out.println("Invoice ID: %d", INVOICE_ID);
-		System.out.println("Time:"TIMESTAMP);
+		System.out.println("Time: "+ TIMESTAMP);
 /** not sure how to handle timestamp  */
 		System.out.println(Arrays.toString(array));
 		System.out.println("Gross Price: %f", GROSS_PRICE);

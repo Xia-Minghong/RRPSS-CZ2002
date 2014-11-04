@@ -1,20 +1,39 @@
 public class InvoiceManager{
 
+private int index;
+
+private final double GST_RATE;
+
+private final double SERVICE_CHARGE_RATE;
+
+public InvoiceManager(int index, double GST_RATE, double SERVICE_CHARGE_RATE) {
+           
+    this.index = index;
+  
+    this.GST_RATE = GST_RATE;
+    
+    this.SERVICE_CHARGE_RATE = SERVICE_CHARGE_RATE;
+
+}
+
 public void createInvoice (int orderID){
-	this.INVOICE_ID = Invoice.count; 
 	
-	java.util.Date date= new java.util.Date();
-	this.TIMESTAMP= date;
+	INVOICE_ID=index;
 	
-	this.GROSS_PRICE= Order.getTotal(orderID);
+	order = OrderManager.getOrder(orderID);
 	
-	this.GST= GROSS_PRICE*0.07;
+	TIMESTAMP=order.getDate();
 	
-	this.SERVICE_CHARGE=GROSS_PRICE*0.1;
+	GROSS_PRICE= order.getTotal();
 	
-	this.NET_PRICE=GROSS_PRICE+GST+SERVICE_CHARGE;	
-		
-	count ++;
+	GST=GROSS_PRICE*0.07;
+	
+	SERVICE_CHARGE=GROSS_PRICE*0.1;
+	
+	NET_PRICE=GROSS_PRICE + GST + SERVICE_CHARGE;
+	
+	index++;
+	return new Invoice(INVOICE_ID, TIMESTAMP, GROSS_PRICE, GST, SERVICE_CHARGE, NET_PRICE);
 }
 
 

@@ -6,18 +6,18 @@ public class Staff{
 	
 	private final int EMPLOYEE_ID;
 	
-	private final Boolean GENDER;
+	private  Boolean gender;
 	
 	private String jobTitle;
 	
-	public static int count;
+
 
 	public createStaff (int EMPLOYEE_ID, String name, Boolean GENDER, String jobTitle){
-		this.EMPLOYEE_ID = count;
+		this.EMPLOYEE_ID = EMPLOYEE_ID;
 		this.name = name;
-		this.GENDER = GENDER;
+		this.gender = gender;
 		this.jobTitle = jobTitle;
-		count++;
+		
 		}
 	
 	public String getStaffName(int EMPLOYEE_ID){
