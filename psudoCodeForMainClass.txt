@@ -1,0 +1,16 @@
+RRPSS rrpss = new RRPSS()
+rrpss.run()
+
+
+RRPSS:
+ArrayList reservations
+orderManager instantiate
+invoiceManager = new InvoiceManager(invoices.size())
+reservationMgr instantiatae
+staff >> orderID
+order = orderManager.getOrder(orderID)
+invoice = invoiceMAnager.createInvoice(order)
+
+staff > name pho, time
+reservation.add(reservationMgr.createReservatoin(fdsafsa))
+
