@@ -54,7 +54,7 @@ public class IOManager {
      * @param object the object to be written
      * @return true if the write method is successful or false if otherwise
      */
-    public static boolean write(Table object) {
+    public static boolean write(Serializable object) {
         return write(object, FILE_PATH);
     }
 
@@ -64,7 +64,7 @@ public class IOManager {
      * @param filePath the file path to write to
      * @return true if the write method is successful or false if otherwise
      */
-    public static boolean write(Table object, String filePath) {
+    public static boolean write(Serializable object, String filePath) {
         try {
             //Create Stream Objects
             FileOutputStream fileOutputStream = new FileOutputStream(filePath);
