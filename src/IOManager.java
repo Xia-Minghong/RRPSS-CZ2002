@@ -8,13 +8,13 @@ public class IOManager {
     /**
      * the default file path & name for the Read/Write
      */
-    private static final String FILE_PATH = "RRPSS.dat";
+    private static final String FILE_PATH = "Invoice.dat";
 
     /**
      * No-arg read method to use the default path for reading
      * @return the deserialized object of class Object or null if the method fails
      */
-    public Object read() {
+    public static Object read() {
         return read(FILE_PATH);
     }
 
@@ -23,7 +23,7 @@ public class IOManager {
      * @param filePath the file path to the file from which the data will be read
      * @return the deserialized object of class Object or null if the method fails
      */
-    public Object read(String filePath) {
+    public static Object read(String filePath) {
         try {
             //Create Stream Objects
             FileInputStream fileInputStream = new FileInputStream(filePath);
@@ -51,7 +51,7 @@ public class IOManager {
      * @param object the object to be written
      * @return true if the write method is successful or false if otherwise
      */
-    public boolean write(Table object) {
+    public static boolean write(Table object) {
         return write(object, FILE_PATH);
     }
 
@@ -61,7 +61,7 @@ public class IOManager {
      * @param filePath the file path to write to
      * @return true if the write method is successful or false if otherwise
      */
-    public boolean write(Table object, String filePath) {
+    public static boolean write(Table object, String filePath) {
         try {
             //Create Stream Objects
             FileOutputStream fileOutputStream = new FileOutputStream(filePath);

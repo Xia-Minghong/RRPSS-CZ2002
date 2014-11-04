@@ -14,9 +14,17 @@ public class Invoice{
 	private final double SERVICE_CHARGE;
 	
 	private final double NET_PRICE;
-	
-	
 
+
+    /**
+     *
+     * @param INVOICE_ID
+     * @param TIMESTAMP
+     * @param GROSS_PRICE
+     * @param GST
+     * @param SERVICE_CHARGE
+     * @param NET_PRICE
+     */
     public Invoice(int INVOICE_ID, Date TIMESTAMP, double GROSS_PRICE, double GST, double SERVICE_CHARGE, double NET_PRICE) {
         this.INVOICE_ID = INVOICE_ID;        
         this.TIMESTAMP = TIMESTAMP;
