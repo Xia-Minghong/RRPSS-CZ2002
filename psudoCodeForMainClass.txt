@@ -1,3 +1,7 @@
+MVC Example:
+http://stackoverflow.com/questions/13873847/create-example-simple-with-mvc-java
+
+
 RRPSS Class:
 
 // All data stored in static main methods, no composition relationship exists, clean UML

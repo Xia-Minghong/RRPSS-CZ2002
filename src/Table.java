@@ -19,11 +19,11 @@ public class Table implements Serializable{
      */
     private final int CAPACITY;
 
-    /**
-     * A indicator of whether the table is currently used by someone (physical presence)
-     * The default value is false (when constructed)
-     */
-    private boolean presence = false;
+//    /**
+//     * A indicator of whether the table is currently used by someone (physical presence)
+//     * The default value is false (when constructed)
+//     */
+//    private boolean presence = false;
 
     /**
      * Constructor for the table
@@ -53,19 +53,19 @@ public class Table implements Serializable{
         return CAPACITY;
     }
 
-    /**
-     * Getter method for presence
-     * @return the occupation state of the table
-     */
-    public boolean isPresence() {
-        return presence;
-    }
-
-    /**
-     * Setter method for the occupation state of the table
-     * @param presence the state of presence to set
-     */
-    public void setPresence(boolean presence) {
-        this.presence = presence;
-    }
+//    /**
+//     * Getter method for presence
+//     * @return the occupation state of the table
+//     */
+//    public boolean isPresence() {
+//        return presence;
+//    }
+//
+//    /**
+//     * Setter method for the occupation state of the table
+//     * @param presence the state of presence to set
+//     */
+//    public void setPresence(boolean presence) {
+//        this.presence = presence;
+//    }
 }
