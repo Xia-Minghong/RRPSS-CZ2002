@@ -7,28 +7,32 @@ public class Set extends MenuItem{
 	
 	private double discountRate;
 
-    //abstract super class has no constructor. Also when price and discountrate are input together, how
-    //does the program know which to use?
-	public Set(String name,String description,String category, double price, double discountrate){
-		super(name,description,category, price);
-		this.setDiscountRate(discountRate);
+	public Set(Set set, double discountrate){
+		this.set = set;
+		this.discountRate = discountrate;
 	}
+	
 	public double getDiscountRate(){
 		return this.discountRate;
 	}
 	
+	/**
+	 * 
+	 */
 	public void setDiscountRate(double discountrate){
 		this.discountRate = discountrate;
+		this.Price = 
 	}
 	
 	public ArrayList<AlaCarte> getSet(){
 		return this.set;
 	}
-	public void addtoSet(AlaCarte alacarte){
-		set.add(alacarte);
+	public void addtoSet(int  menuitemID){
+		
+		set.add(getMenuItemById(menuitemID));
 	}
-	public void delFromSet(AlaCarte alacarte){
-		set.remove(alacarte);
+	public void delFromSet(int menuitemID){
+		set.remove(getMenuItemById(menuitemID));
 	}
 	
 	public double getPrice(){
