@@ -21,7 +21,7 @@ public class Set extends MenuItem{
 	 */
 	public void setDiscountRate(double discountrate){
 		this.discountRate = discountrate;
-		this.Price = 
+		this.Price = this.getPrice() * discoutrate;
 	}
 	
 	public ArrayList<AlaCarte> getSet(){
@@ -41,6 +41,11 @@ public class Set extends MenuItem{
 			sumPrice += alacarte.getPrice();
 		}
 		return (this.discountRate * sumPrice);
+	}
+	
+	public void setPrice(double price){
+		this.Price = price;
+		this.discountate = price/this.getPrice();
 	}
 		
 }

@@ -85,12 +85,9 @@ public abstract class MenuItem {
 	public abstract double getPrice();
 	
 	/**
-	 * setter method for menuItem's price
-	 * @param price, the  price to set to menuItem
+	 * abstract setter method for menuItem's price
 	 */
-	public void setPrice(double price){
-		this.Price = price;
-	}
+	public void setPrice();
 	
 
 }
