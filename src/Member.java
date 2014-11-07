@@ -59,4 +59,9 @@ public class Member implements Serializable{
     public void setContact(String contact) {
         this.contact = contact;
     }
+
+    @Override
+    public String toString() {
+        return name+"\t\t"+contact;
+    }
 }

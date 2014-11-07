@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * A manager which takes the responsibilities of:
@@ -32,7 +33,8 @@ public class MemberManager {
 
     /**
      * Create a new member and add into the member list
-     * @param name the name of the new member
+     *
+     * @param name    the name of the new member
      * @param contact the contact of the new member
      */
     public void createMember(String name, String contact) {
@@ -42,6 +44,7 @@ public class MemberManager {
 
     /**
      * Get the member with the name given
+     *
      * @param name the name of the member
      * @return the member with the name given
      */
@@ -55,11 +58,23 @@ public class MemberManager {
     }
 
     /**
+     * Print a list of Members
+     */
+    private void printMembers() {
+        System.out.println("Membership List:");
+        System.out.println("Name\t\tContact");
+        for (Member member : members) {
+            System.out.println(member);
+        }
+    }
+
+    /**
      * Delete the member with the given name
+     *
      * @param name the name of the member to be deleted
      */
     public void deleteMember(String name) {
-        int index=-1;
+        int index = -1;
 
         for (Member member : members) {
             if (member.getName().equals(name)) {
@@ -75,6 +90,7 @@ public class MemberManager {
 
     /**
      * Load members data from file by interacting with IOManager
+     *
      * @return a list of members if success null if failure
      */
     private ArrayList<Member> loadMembers() {
@@ -96,4 +112,42 @@ public class MemberManager {
             System.out.println("Error saving members to file");
         }
     }
+
+    public void run() {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("choose what you want \n 1. Check Membership \n 2. List Members \n 3. Add Member \n 4.Delete Member ");
+
+            switch (sc.nextInt()) {
+                case 1:
+                    System.out.println("The name to check for membership");
+                    Member member = getMember(sc.next());
+                    if (member != null) {
+                        System.out.println("Member detail:");
+                        System.out.println(member);
+                    } else {
+                        System.out.println("Not a member");
+                    }
+                    break;
+                case 2:
+                    printMembers();
+                    break;
+                case 3:
+                    System.out.println("The name of the member to add");
+                    String name = sc.next();
+                    System.out.println("The contact of the member to add");
+                    String contact = sc.next();
+                    createMember(name, contact);
+                    break;
+                case 4:
+                    System.out.println("The name of the member to delete");
+                    deleteMember(sc.next());
+                    break;
+                default:
+                    return;
+            }
+        }
+    }
 }
+
+
