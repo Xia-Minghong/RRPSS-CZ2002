@@ -21,7 +21,7 @@ public class MemberManager {
      * Constructor of the MemberManager
      * During the construction, the path of the member data file is passed in.
      */
-    public MemberManager(String FILE_PATH) {
+    public MemberManager(ArrayList<Member> members, String FILE_PATH) {
         this.FILE_PATH = FILE_PATH;
     }
 
@@ -58,7 +58,7 @@ public class MemberManager {
      * Print a list of Members
      * @param members ArrayList of members
      */
-    private void printMembers(ArrayList<Member> members) {
+    public void printMembers(ArrayList<Member> members) {
         System.out.println("Membership List:");
         System.out.println("Name\t\tContact");
         for (Member member : members) {
