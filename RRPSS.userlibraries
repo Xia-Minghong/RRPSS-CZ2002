@@ -1,3 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eclipse-userlibraries />
+<eclipse-userlibraries>
+  <library name="Python 2.7.3 (/usr/bin/python) interpreter library">
+    <archive path="/usr/local/lib/python2.7/dist-packages/pam-0.1.3-py2.7.egg" />
+    <archive path="/usr/local/lib/python2.7/dist-packages/nupic-0.1.0-py2.7.egg" />
+    <archive path="/usr/local/lib/python2.7/dist-packages/PyBrain-0.3.1-py2.7.egg" />
+    <archive path="/usr/lib/python2.7/dist-packages/pybloomfiltermmap-0.3.11-py2.7-linux-x86_64.egg" />
+    <archive path="/usr/lib/python2.7" />
+    <archive path="/usr/lib/python2.7/plat-linux2" />
+    <archive path="/usr/lib/python2.7/lib-tk" />
+    <archive path="/usr/lib/python2.7/lib-dynload" />
+    <archive path="/usr/local/lib/python2.7/dist-packages" />
+    <archive path="/usr/lib/python2.7/dist-packages" />
+    <archive path="/usr/lib/python2.7/dist-packages/PIL" />
+    <archive path="/usr/lib/python2.7/dist-packages/gtk-2.0" />
+    <archive path="/usr/lib/pymodules/python2.7" />
+    <archive path="/usr/lib/python2.7/dist-packages/wx-2.8-gtk2-unicode" />
+    <archive path="/root/.IdeaIC13/system/python_stubs/348993582" />
+  </library>
+</eclipse-userlibraries>
 
