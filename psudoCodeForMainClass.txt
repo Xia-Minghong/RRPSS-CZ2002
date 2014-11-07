@@ -1,16 +1,27 @@
-RRPSS rrpss = new RRPSS()
-rrpss.run()
+RRPSS Class:
+
+// All data stored in static main methods, no composition relationship exists, clean UML
+
+public static void main{
+ArrayList<Reservation> reservations = new ArrayList<Reservation>()
+ReservationManager reservationManager = new ReservationManager(...)
+reservationManager.loadReservations(reservations)	//Reference
+
+}
 
 
-RRPSS:
-ArrayList reservations
-orderManager instantiate
-invoiceManager = new InvoiceManager(invoices.size())
-reservationMgr instantiatae
-staff >> orderID
-order = orderManager.getOrder(orderID)
-invoice = invoiceMAnager.createInvoice(order)
+ReservationManager Class:
+public void loadReservations(ArrayList<Reservation> reservations){
+	...call IOManager
+	...assign to the arraylist
+}
 
-staff > name pho, time
-reservation.add(reservationMgr.createReservatoin(fdsafsa))
+public static void run(ArrayList<Reservation> reservations){
+	get input: name
+	getReservationByName(name)
+}
 
+public getReservationByName(ArrayList<Reservation> reservations, String name){
+	...search
+	return reservation
+}
