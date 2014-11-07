@@ -1,5 +1,5 @@
 
-import java.awt.MenuItem;
+
 import java.util.*;
 /**
  * A manager which takes the responsibilities of :
@@ -40,7 +40,7 @@ public class Menu {
 	   * @param price, the price of the new menuItem
 	   */
 	public void addMenuItem(String name,String description, String category, double price){
-		MenuItem menuitem = new AlaCarte(name, description,category,price);
+		MenuItem menuitem = new MenuItem(name, description,category,price);
 		menu.add(menuitem);
 	}
 	/**
@@ -70,17 +70,17 @@ public class Menu {
 	 * @param category
 	 */
 	
-	public void updateMenuItem(int menuItemID;String name,String description, String catrgory,double price){
-		menu[menuItemID-1].setName(name);
-		menu[menuItemID-1].setDescription(description);
-		menu[menuItemID-1].setCategory(category);
-		menu[menuItemID-1].setPrice(price);
+	public void updateMenuItem(int menuItemID,String name,String description, String category,double price){
+		menu.get(menuItemID-1).setName(name);
+	    menu.get(menuItemID-1).setDescription(description);
+		menu.get(menuItemID-1).setCategory(category);
+		menu.get(menuItemID-1).setPrice(price);
 	} 
 	
 	/**
 	 * Get the menuItemId with the given name
 	 * @param name, the name of the menuItem
-	 * @return the menuIten id which is an interger
+	 * @return the menuIten id which is an integer
 	 */
 
 	public int getMenuItemId(String name){
@@ -89,7 +89,7 @@ public class Menu {
 				return (menu.indexOf(menuitem)+1);
 			}
 		}
-		return null;
+		return -1;
 	}
 	
 	/**
@@ -98,8 +98,8 @@ public class Menu {
 	 * @return the menuItem with the id given
 	 */
 	public MenuItem getMenuItemByld(int itemid){
-		if(menu[itemid-1] != null){
-			return menu[itemid-1];
+		if(menu.get(itemid-1) != null){
+			return menu.get(itemid-1);
 		}
 		else {
 			return null;
@@ -113,7 +113,7 @@ public class Menu {
 	public void showAllItem(){
 		for (MenuItem menuitem : menu){
 		    System.out.println((menu.indexOf(menuitem)+1) + "   " +menuitem.getName() +"     "+ menuitem.getCategory() +"      "+ menuitem.getDescription() +
-		    		            "      "+ emnuitem.getPrice());
+		    		            "      "+ menuitem.getPrice());
 		}
 	}
 	
@@ -123,8 +123,8 @@ public class Menu {
 	 */
 	
 	private ArrayList<MenuItem> loadMenuItems(){
-		Object object = IOManager.readf(FILE_PATH);
-		if(object instanceof ArrayList<?> && (ArrayList<?>) ((ArrayList) object).get(0) instanceof MenuItem){
+		Object object = IOManager.read(FILE_PATH);
+		if(object instanceof ArrayList<?> && ((ArrayList<?>) object).get(0) instanceof MenuItem){
 			return (ArrayList<MenuItem>) object;
 			
 		}
@@ -139,6 +139,27 @@ public class Menu {
 	public void saveMenuItems(){
 		if( !IOManager.write(menu, FILE_PATH)){
 			System.out.println("Error saving menuItems to file!");
+		}
+	}
+	
+	public void run(){
+		Scanner sc = new Scanner(System.in);
+		while(true){
+			System.out.println("Choose which you want: \n 1.Add New Alacarte to Menu \n"
+					+ "2. Add New Set to Menu\n 3. Delete MenuItem from the Menu\n 4.Update the Alacarte\n"
+					+"5. Update the Set on the Menu\n 6. Show all MenuItems \n" );
+			switch (sc.nextInt()){
+			case 1 :
+				System.out.println("The name of the new Alacarte:");
+				String name = sc.next();
+				System.out.println("The description of the new Alacarte:");
+				String description = sc.next();
+				System.out.println("The category of the new Alacarte: ");
+				String category = sc.next();
+				System.out.println("The price of the new Alacarte:");
+				double price = sc.nextDouble();
+			 
+			}
 		}
 	}
 }

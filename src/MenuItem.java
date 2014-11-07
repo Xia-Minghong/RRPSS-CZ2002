@@ -29,8 +29,14 @@ public abstract class MenuItem {
 	 * the price of the menuItem
 	 */
 		
-	private double Price;
+	protected double Price;
 	
+	public MenuItem(String name, String description, String category) {
+		this.Name = name;
+		this.Description = description;
+		this.Category = category;
+		
+	}
 	/**
 	 * getter method for menuItem's name
 	 * @return the name of the menuItem
@@ -40,7 +46,7 @@ public abstract class MenuItem {
 	}
 	/**
 	 * setter method for the menuItem's name
-	 * @param Name teh name to set to menuItem
+	 * @param Name the name to set to menuItem
 	 */
 	public void setName(String Name){
 		this.Name = Name;
@@ -87,7 +93,7 @@ public abstract class MenuItem {
 	/**
 	 * abstract setter method for menuItem's price
 	 */
-	public void setPrice();
+	public abstract void setPrice(double price);
 	
 
 }

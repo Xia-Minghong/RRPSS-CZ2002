@@ -6,10 +6,12 @@ public class Set extends MenuItem{
 	private ArrayList<AlaCarte> set =  new ArrayList<AlaCarte>();
 	
 	private double discountRate;
-
-	public Set(Set set, double discountrate){
-		this.set = set;
+	
+	public Set(String name, String description, String category, double discountrate){
+		super(name,description, category);
 		this.discountRate = discountrate;
+	}
+
 	}
 	
 	public double getDiscountRate(){
@@ -21,18 +23,18 @@ public class Set extends MenuItem{
 	 */
 	public void setDiscountRate(double discountrate){
 		this.discountRate = discountrate;
-		this.Price = this.getPrice() * discoutrate;
+		this.Price = this.getPrice() * discountrate;
 	}
 	
 	public ArrayList<AlaCarte> getSet(){
 		return this.set;
 	}
-	public void addtoSet(int  menuitemID){
+	public void addtoSet(Menu menu,int  menuitemID){
 		
-		set.add(getMenuItemById(menuitemID));
+		set.add(menu.getMenuItemById(menuitemID));
 	}
 	public void delFromSet(int menuitemID){
-		set.remove(getMenuItemById(menuitemID));
+		set.remove(menu.getMenuItemByld(menuitemID));
 	}
 	
 	public double getPrice(){
@@ -43,9 +45,11 @@ public class Set extends MenuItem{
 		return (this.discountRate * sumPrice);
 	}
 	
-	public void setPrice(double price){
+
+	@Override
+	public void setPrice(double price) {
 		this.Price = price;
-		this.discountate = price/this.getPrice();
+		this.discountRate = price/this.getPrice();		
 	}
 		
 }
