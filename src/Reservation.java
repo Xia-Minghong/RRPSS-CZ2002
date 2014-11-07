@@ -1,38 +1,67 @@
+import java.util.Calendar;
+
 public class Reservation {
-	private String date;
-	private String time;
+	private Calendar time;
 	private int pax;
-	private Member customer;
-	
-	public Reservation(String date, String time, int pax, Member customer){
-		this.setDate(date);
+	private String cstName;
+	private Table table;
+	private boolean isCheckIn;
+
+	public Reservation(Calendar time, int pax, String cstName) {
 		this.setTime(time);
 		this.setPax(pax);
-		this.setCustomer(customer);
-	}
-	public String getDate(){
-		return this.date;
-	}
-	public void setDate(String date){
-		this.date = date;
-	}
-	public String getTime(){
-		return this.time;
-	}
-	public void setTime(String time){
-		this.time = time;
-	}
-	public int getPax(){
-		return pax;
-	}
-	public void setPax(int pax){
-		this.pax = pax;
-	}
-	public Member getCustomer(){
-		return this.customer;
-	}
-	public void setCustomer(Member customer){
-		this.customer = customer;
+		this.setCstName(cstName);
+		this.setTable(null);
+		this.setIsCheckIn(false);
 	}
 
+	public Calendar getTime() {
+		return this.time;
+	}
+
+	public void setTime(Calendar time) {
+		this.time = time;
+	}
+
+	public int getPax() {
+		return pax;
+	}
+
+	public void setPax(int pax) {
+		this.pax = pax;
+	}
+
+	public String getCstName() {
+		return this.cstName;
+	}
+
+	public void setCstName(String cstName) {
+		this.cstName = cstName;
+	}
+
+	public Table getTable() {
+		return this.table;
+	}
+
+	public void setTable(Table table) {
+		this.table = table;
+	}
+
+	public boolean getIsCheckIn() {
+		return this.isCheckIn;
+	}
+
+	public void setIsCheckIn(boolean checkIn) {
+		this.isCheckIn = checkIn;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer Name:" + this.cstName + "\nTime:"
+				+ this.time.get(Calendar.YEAR) + " "
+				+ (time.get(Calendar.MONTH) + 1) + " "
+				+ time.get(Calendar.DATE) + " "
+				+ time.get(Calendar.HOUR_OF_DAY) + " "
+				+ time.get(Calendar.MINUTE);
+	}
 }
