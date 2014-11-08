@@ -1,10 +1,10 @@
 package control;
 
+import entity.AlaCarte;
 import entity.MenuItem;
 import entity.Set;
-import entity.AlaCarte;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * A manager which takes the responsibilities of :

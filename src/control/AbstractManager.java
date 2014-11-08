@@ -1,7 +1,5 @@
 package control;
 
-import entity.Table;
-
 import java.io.*;
 
 /**
