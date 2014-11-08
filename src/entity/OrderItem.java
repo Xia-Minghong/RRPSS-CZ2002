@@ -21,8 +21,21 @@ public class OrderItem {
 		this.quantity = quantity;
 		this.item = item;
 	}
+	
+	/*
+	 * obtain price 
+	 */
 	public double getTotalPrice() {
 		return item.getPrice()*quantity;
 	}
 	
+	
+	/*
+	 * 5 \t name 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format("%d \t %s \t %f", quantity,item.getName(),getTotalPrice());		
+	}
 }

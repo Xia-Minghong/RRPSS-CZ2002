@@ -63,7 +63,6 @@ public class Order {
 		}
 	}
 
-
 	
 	public void addOrderItem(OrderItem item) {
 		orderItems.add(item);
@@ -77,5 +76,14 @@ public class Order {
 			ans += orderItem.getTotalPrice();
 		}
 		return ans;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuffer ans = new StringBuffer();
+		for (OrderItem orderItem : orderItems) {
+			ans.append(orderItem.toString()+'\n');
+		}
+		return ans.toString();
 	}
 }
