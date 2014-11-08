@@ -15,6 +15,15 @@ public class MemberBoundary {
     }
 
     public void run() {
+        init();
+        showMenu();
+    }
+
+    private void init() {
+        memberManager.load();
+    }
+
+    private void showMenu() {
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("choose what you want \n 1. Check Membership \n 2. List Members \n 3. Add Member \n 4.Delete Member ");
@@ -24,7 +33,7 @@ public class MemberBoundary {
                     checkMembership();
                     break;
                 case 2:
-                    memberManager.printMembers(members);
+                    memberManager.printMembers();
                     break;
                 case 3:
                     addMember();

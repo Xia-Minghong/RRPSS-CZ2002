@@ -19,16 +19,28 @@ public class RRPSS {
         //print main menu
 
         //while true
-        //let's say now we choose to perform action about member
+        //If the user chooses to perform action about member
         ArrayList<Member> members = new ArrayList<Member>();
         MemberManager memberManager = new MemberManager(members, "path");
         MemberBoundary memberBoundary = new MemberBoundary(members, memberManager);
         memberBoundary.run();
+
+        //If the user chooses to perform action about menu
+        ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
+        Menu menu = new Menu(menuItems, "path");
+        MenuBoundary menuBoundary = new MenuBoundary(menuItems, memberManager);
+        memberBoundary.run();
+
+
+        //quit
+        memberManager.save(members);
+        //save other lists
     }
 
 
     public void init() {
         restaurantManager.load();
+        //If restaurant does not have table or staffs
         if (restaurant.getTables().size() == 0 || restaurant.getStaffs().size() == 0) {
             ArrayList<Table> tables = new ArrayList<Table>();
             //Prompt for input and add tables
