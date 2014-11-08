@@ -2,6 +2,8 @@ package boundary;
 
 import control.TableManager;
 
+import java.util.Scanner;
+
 /**
  * Created by root on 14-11-8.
  */
@@ -22,7 +24,13 @@ public class TableBoundary implements Runnable {
      * Create tables if not
      */
     private void init() {
-        System.out.println("");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Initializing Tables for the restaurant");
+        do {
+
+
+            System.out.println("Add more tables?");
+        } while (scanner.next()=="y");
     }
 
     @Override

@@ -1,6 +1,7 @@
 package control;
 
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * A control.IOManager handles the file read/write in the boundary.RRPSS system
@@ -52,7 +53,7 @@ public abstract class AbstractManager {
             System.out.println("File I/O Error.");
             return null;
         } catch(ClassNotFoundException c) {     //handle ClassNotFound exception from the readObject()
-            System.out.println("Employee class not found.");
+            System.out.println("Class not be found.");
             return null;
         }
     }
@@ -69,7 +70,6 @@ public abstract class AbstractManager {
     /**
      * Write method with a given path and a object
      * @param object the object to be written
-     * @param filePath the file path to write to
      * @return true if the write method is successful or false if otherwise
      */
     public boolean write(Serializable object) {
@@ -92,6 +92,8 @@ public abstract class AbstractManager {
             return false;
         }
     }
+
+    public abstract ArrayList load();
 
     public abstract void save();
 

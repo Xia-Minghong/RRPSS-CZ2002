@@ -13,7 +13,16 @@ public class TableManager extends AbstractManager {
 
     public TableManager(String FILE_PATH) {
         super(FILE_PATH);
-        this.tables = (ArrayList<Table>) read();
+        this.tables = load();
+    }
+
+    @Override
+    public ArrayList<Table> load() {
+        ArrayList<Table> tables = (ArrayList<Table>) read();
+        if (tables == null) {
+            tables = new ArrayList<Table>();
+        }
+        return tables;
     }
 
     public ArrayList<Table> getTables() {
