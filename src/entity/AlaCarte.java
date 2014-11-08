@@ -1,5 +1,6 @@
 package entity;
 
+
 public class AlaCarte extends MenuItem {
 	
 	/**
@@ -36,5 +37,5 @@ public class AlaCarte extends MenuItem {
 		
 	}
 	
-
 }
+

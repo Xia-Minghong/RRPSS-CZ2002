@@ -1,5 +1,3 @@
-package entity;
-
 import java.util.*;
 
 public class Set extends MenuItem{
@@ -13,8 +11,6 @@ public class Set extends MenuItem{
 		this.discountRate = discountrate;
 	}
 
-	}
-	
 	public double getDiscountRate(){
 		return this.discountRate;
 	}
@@ -32,9 +28,9 @@ public class Set extends MenuItem{
 	}
 	public void addtoSet(Menu menu,int  menuitemID){
 		
-		set.add(menu.getMenuItemById(menuitemID));
+		set.add((AlaCarte)menu.getMenuItemByld(menuitemID));
 	}
-	public void delFromSet(int menuitemID){
+	public void delFromSet(Menu menu,int menuitemID){
 		set.remove(menu.getMenuItemByld(menuitemID));
 	}
 	
