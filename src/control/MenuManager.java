@@ -46,7 +46,7 @@ public class MenuManager {
 	   * @param price, the price of the new menuItem
 	   */
 	public void addAlaCartetoMenu(String name,String description, String category, double price){
-		AlaCarte menuitem = new AlaCarte(name, description,category, price);
+		MenuItem menuitem = new AlaCarte(name, description,category, price);
 		menu.add(menuitem);
 	}
 	
@@ -58,7 +58,7 @@ public class MenuManager {
 	 * @param discountrate
 	 */
 	public void addSet(String name, String description, String category, double discountrate){
-		Set menuitem = new Set(name, description, category, discountrate);
+		MenuItem menuitem = new Set(name, description, category, discountrate);
 		menu.add(menuitem);
 	}
 	

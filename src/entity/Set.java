@@ -1,3 +1,6 @@
+package entity;
+
+import control.MenuManager;
 import java.util.*;
 
 public class Set extends MenuItem{
@@ -26,11 +29,11 @@ public class Set extends MenuItem{
 	public ArrayList<AlaCarte> getSet(){
 		return this.set;
 	}
-	public void addtoSet(Menu menu,int  menuitemID){
+	public void addtoSet(MenuManager menu,int  menuitemID){
 		
 		set.add((AlaCarte)menu.getMenuItemByld(menuitemID));
 	}
-	public void delFromSet(Menu menu,int menuitemID){
+	public void delFromSet(MenuManager menu,int menuitemID){
 		set.remove(menu.getMenuItemByld(menuitemID));
 	}
 	
