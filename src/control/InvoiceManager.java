@@ -42,6 +42,10 @@ public class InvoiceManager {
         return (ArrayList<Invoice>) IOManager.read(FILE_PATH);
     }
 
+    private void save() {
+        IOManager.write(invoices, FILE_PATH);
+    }
+
     public void createInvoice(int orderID) {
         Order order = orderManager.getOrderbyID(orderID);
         Staff staff = staffManager.getStaffbyID(order.getStaffID());
