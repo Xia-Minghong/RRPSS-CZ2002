@@ -18,12 +18,9 @@ public class RRPSS {
     }
 
     public void showMainMenu() {
-
-        ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
-        MenuManager menuManager = new MenuManager(menuItems);
+        MenuManager menuManager = new MenuManager();
         MenuBoundary menuBoundary = new MenuBoundary(menuManager);
 
-        ArrayList<Member> members = new ArrayList<Member>();
         MemberManager memberManager = new MemberManager(members, "members.dat");
         MemberBoundary memberBoundary = new MemberBoundary(members, memberManager);
 

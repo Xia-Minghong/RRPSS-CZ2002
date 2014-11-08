@@ -27,9 +27,9 @@ public class MemberManager {
      * Constructor of the control.MemberManager
      * During the construction, the path of the member data file is passed in.
      */
-    public MemberManager(ArrayList<Member> members, String FILE_PATH) {
+    public MemberManager(String FILE_PATH) {
         this.FILE_PATH = FILE_PATH;
-        this.members = members;
+        this.members = loadMembers();
     }
 
     /**
@@ -103,11 +103,6 @@ public class MemberManager {
         }
         System.out.println("Error loading members from file");
         return null;
-    }
-
-    public void load() {
-        //load from file
-        //members =
     }
 
     /**
