@@ -16,6 +16,10 @@ public class ReservationBoundary {
 
     private ReservationManager reservationManager;
 
+    public ReservationBoundary(ReservationManager reservationManager) {
+        this.reservationManager = reservationManager;
+    }
+
     public void run() {
         Scanner sc = new Scanner(System.in);
         int choice;
@@ -28,25 +32,10 @@ public class ReservationBoundary {
 
                     break;
                 case 2:
-                    System.out.print("Please enter the customer name:");
-                    String cstName = sc.next();
-                    boolean isRemoved = reservationManager.removeReservation(cstName, reservations);
-                    if (isRemoved) {
-                        System.out.println("entity.Reservation is successfully removed!");
-                    } else {
-                        System.out
-                                .println("entity.Reservation is not removed. Please check!");
-                    }
+                    removeReservation();
                     break;
                 case 3:
-                    System.out.println("Please enter the customer name:");
-                    String name = sc.next();
-                    int index = reservationManager.searchByName(name, reservations);
-                    if (index != -1) {
-                        System.out.println(reservations.get(index).toString());
-                    } else {
-                        System.out.println("No reservation for this customer!");
-                    }
+                    checkReservation();
                     break;
                 default:
                     break;
@@ -54,7 +43,7 @@ public class ReservationBoundary {
         } while (choice != 4);
     }
 
-    private Reservation createReservation() {
+    private void createReservation() {
         Scanner sc = new Scanner(System.in);
         Calendar calTime = Calendar.getInstance();
         int pax;
@@ -78,14 +67,37 @@ public class ReservationBoundary {
 
         reservationManager.clearReservation();
         Reservation reservation = new Reservation(calTime, pax, cstName);
-        boolean isAssigned = reservationManager.assignTable(reservation, tables, reservations);
+        boolean isAssigned = reservationManager.assignTable(reservation);
         if (isAssigned) {
             System.out.println("entity.Reservation has been successfully created!");
-            reservations.add(reservation);
+            reservationManager.getReservations().add(reservation);
         } else {
             System.out.println("entity.Reservation is not created. No table is available!");
         }
+    }
 
+    private void removeReservation() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Please enter the customer name:");
+        String cstName = sc.next();
+        boolean isRemoved = reservationManager.removeReservation(cstName);
+        if (isRemoved) {
+            System.out.println("entity.Reservation is successfully removed!");
+        } else {
+            System.out.println("entity.Reservation is not removed. Please check!");
+        }
+    }
+
+    private void checkReservation() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter the customer name:");
+        String name = sc.next();
+        int index = reservationManager.searchByName(name);
+        if (index != -1) {
+            System.out.println(reservationManager.getReservations().get(index).toString());
+        } else {
+            System.out.println("No reservation for this customer!");
+        }
     }
 
     private void printMenu() {

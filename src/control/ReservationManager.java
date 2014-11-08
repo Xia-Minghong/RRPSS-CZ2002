@@ -10,9 +10,17 @@ import java.util.Date;
 
 public class ReservationManager extends PersistentManager{
 	private final int HOURS_ALLOWED = 1;
-    ArrayList<Reservation> reservations;
 
-	private boolean isTableAvailable(Table table,
+    ArrayList<Reservation> reservations;
+    TableManager tableManager;
+
+    public ReservationManager(TableManager tableManager, String FILE_PATH) {
+        super(FILE_PATH);
+        this.tableManager = tableManager;
+
+    }
+
+    private boolean isTableAvailable(Table table,
 			ArrayList<Reservation> reservations) {
 		int index;
 		for (index = 0; index < reservations.size(); ++index) {
@@ -40,13 +48,12 @@ public class ReservationManager extends PersistentManager{
 		return false;
 	}
 
-	private boolean assignTable(Reservation reservation,
-			ArrayList<Table> tables, ArrayList<Reservation> reservations) {
+	public boolean assignTable(Reservation reservation) {
 		int index;
 		int minCap = Integer.MAX_VALUE;
 		Table minCapTable = null;
-
-		for (index = 0; index < tables.size(); ++index) {
+        ArrayList<Table> tables = tableManager.getTables();
+        for (index = 0; index < tables.size(); ++index) {
 			Table curTable = tables.get(index);
 			int capacity = curTable.getCAPACITY();
 			if (capacity >= reservation.getPax()
@@ -63,9 +70,8 @@ public class ReservationManager extends PersistentManager{
 		return true;
 	}
 
-	private boolean removeReservation(String cstName,
-			ArrayList<Reservation> reservations) {
-		int index = searchByName(cstName, reservations);
+	public boolean removeReservation(String cstName) {
+		int index = searchByName(cstName);
 		if (index != -1) {
 			reservations.remove(index);
 			return true;
@@ -73,8 +79,7 @@ public class ReservationManager extends PersistentManager{
 		return false;
 	}
 
-	private int searchByName(String cstName,
-			ArrayList<Reservation> reservations) {
+	public int searchByName(String cstName) {
 		int index;
 		for (index = 0; index < reservations.size(); ++index) {
 			String curName = reservations.get(index).getCstName();
@@ -93,11 +98,19 @@ public class ReservationManager extends PersistentManager{
 				Calendar curTime = Calendar.getInstance();
 				Calendar resTime = curReservation.getTime();
 				if (curTime.after(resTime)) {
-					removeReservation(curReservation.getCstName(), reservations);
+					removeReservation(curReservation.getCstName());
 				}
 			}
 		}
 	}
+
+    public ArrayList<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(ArrayList<Reservation> reservations) {
+        this.reservations = reservations;
+    }
 
     @Override
     public void save() {

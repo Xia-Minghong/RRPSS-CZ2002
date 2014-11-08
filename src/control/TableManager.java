@@ -16,6 +16,14 @@ public class TableManager extends PersistentManager{
         this.tables = (ArrayList<Table>) read();
     }
 
+    public ArrayList<Table> getTables() {
+        return tables;
+    }
+
+    public void setTables(ArrayList<Table> tables) {
+        this.tables = tables;
+    }
+
     @Override
     public void save() {
         write(tables);
