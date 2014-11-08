@@ -10,7 +10,7 @@ import java.util.Scanner;
 /**
  * Created by root on 14-11-8.
  */
-public class MenuBoundary {
+public class MenuBoundary implements Runnable{
 
     private MenuManager menuManager;
 
@@ -18,6 +18,7 @@ public class MenuBoundary {
         this.menuManager = menuManager;
     }
 
+    @Override
     public void run(){
         Scanner sc = new Scanner(System.in);
         ArrayList<MenuItem> menu = menuManager.getMenu();

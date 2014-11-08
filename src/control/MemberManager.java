@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @version 1.0
  * @since 2014-11-4.
  */
-public class MemberManager {
+public class MemberManager implements Manager{
 
 
     /**
@@ -94,7 +94,7 @@ public class MemberManager {
      *
      * @return a list of members if success null if failure
      */
-    private ArrayList<Member> load() {
+    public ArrayList<Member> load() {
         Object object = IOManager.read(FILE_PATH);
         if (object instanceof ArrayList<?> && ((ArrayList<?>) object).get(0) instanceof Member) {
             return (ArrayList<Member>) object;

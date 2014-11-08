@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by root on 14-11-7.
  */
-public class RRPSS {
+public class RRPSS implements Runnable{
     Restaurant restaurant;
     RestaurantManager restaurantManager;
 
