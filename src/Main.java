@@ -7,9 +7,7 @@ import entity.Restaurant;
  */
 public class Main {
     public static void main(String[] args) {
-        Restaurant restaurant = new Restaurant();
-        RestaurantManager restaurantManager = new RestaurantManager(restaurant);
-        RRPSS RRPSS = new RRPSS(restaurant, restaurantManager);
+        RRPSS RRPSS = new RRPSS();
         RRPSS.run();
     }
 }

@@ -1,8 +1,7 @@
 package control;
 
-import entity.Table;
-
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * A control.IOManager handles the file read/write in the boundary.RRPSS system
@@ -13,30 +12,33 @@ import java.io.*;
  * @version 1.0
  * @since 2014-10-24.
  */
-public class IOManager {
+public abstract class AbstractManager {
     /**
      * the default file path for the Read/Write
      * when no file path is given
      */
-    private static final String FILE_PATH = "boundary.RRPSS.dat";
+    private final String FILE_PATH;
 
-    /**
-     * No-arg read method to use the default path for reading
-     * @return the deserialized object of class Object or null if the method fails
-     */
-    public static Object read() {
-        return read(FILE_PATH);
+    public AbstractManager(String FILE_PATH) {
+        this.FILE_PATH = FILE_PATH;
     }
+
+//    /**
+//     * No-arg read method to use the default path for reading
+//     * @return the deserialized object of class Object or null if the method fails
+//     */
+//    public Object read() {
+//        return read(FILE_PATH);
+//    }
 
     /**
      * Read method with a given path
-     * @param filePath the file path to the file from which the data will be read
      * @return the deserialized object of class Object or null if the method fails
      */
-    public static Object read(String filePath) {
+    public Object read() {
         try {
             //Create Stream Objects
-            FileInputStream fileInputStream = new FileInputStream(filePath);
+            FileInputStream fileInputStream = new FileInputStream(FILE_PATH);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
             //read
@@ -51,30 +53,29 @@ public class IOManager {
             System.out.println("File I/O Error.");
             return null;
         } catch(ClassNotFoundException c) {     //handle ClassNotFound exception from the readObject()
-            System.out.println("Employee class not found.");
+            System.out.println("Class not be found.");
             return null;
         }
     }
 
-    /**
-     * Write method to use the default path for writing
-     * @param object the object to be written
-     * @return true if the write method is successful or false if otherwise
-     */
-    public static boolean write(Serializable object) {
-        return write(object, FILE_PATH);
-    }
+//    /**
+//     * Write method to use the default path for writing
+//     * @param object the object to be written
+//     * @return true if the write method is successful or false if otherwise
+//     */
+//    public static boolean write(Serializable object) {
+//        return write(object, FILE_PATH);
+//    }
 
     /**
      * Write method with a given path and a object
      * @param object the object to be written
-     * @param filePath the file path to write to
      * @return true if the write method is successful or false if otherwise
      */
-    public static boolean write(Serializable object, String filePath) {
+    public boolean write(Serializable object) {
         try {
             //Create Stream Objects
-            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+            FileOutputStream fileOutputStream = new FileOutputStream(FILE_PATH);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
             //Write
@@ -84,13 +85,19 @@ public class IOManager {
             objectOutputStream.close();
             fileOutputStream.close();
 
-            System.out.println("Serialized data is stored in \""+filePath+"\"");
+            System.out.println("Serialized data is stored in \""+FILE_PATH+"\"");
             return true;
         }catch(IOException i) { //handle the IO exception
             i.printStackTrace();
             return false;
         }
     }
+
+    public abstract ArrayList load();
+
+    public abstract void save();
+
+
 
     //test
 //    public static void main(String[] args) {

@@ -5,31 +5,22 @@ import entity.Restaurant;
 /**
  * Created by root on 14-11-7.
  */
-public class RestaurantManager {
+public class RestaurantManager extends AbstractManager {
 
     Restaurant restaurant;
 
-//    RRPSSBoundary rrpssBoundary;
+    public RestaurantManager(String FILE_PATH) {
+        super(FILE_PATH);
 
-    public RestaurantManager(Restaurant restaurant) {
-        this.restaurant = restaurant;
-//        this.rrpssBoundary = rrpssBoundary;
-//
-//        init();
-//        this.rrpssBoundary.showMainMenu();
-//        save();
+        this.restaurant = (Restaurant) read();
     }
 
-    public void init() {
-        load();
-
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void load() {
-        //load rrpss from file
-    }
-
+    @Override
     public void save() {
-        //save rrpss to file
+        write(restaurant);
     }
 }

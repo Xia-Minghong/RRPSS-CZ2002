@@ -1,10 +1,10 @@
 package boundary;
 
-import java.util.Scanner;
-
 import control.OrderManager;
 import entity.Order;
 import entity.OrderItem;
+
+import java.util.Scanner;
 
 public class OrderBoundary implements Runnable{
 	

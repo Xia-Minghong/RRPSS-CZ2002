@@ -1,11 +1,11 @@
 package control;
 
+import entity.AlaCarte;
 import entity.MenuItem;
 import entity.Set;
-import entity.AlaCarte;
 
-import java.util.*;
-import java.util.*;
+import java.util.ArrayList;
+
 /**
  * A manager which takes the responsibilities of :
  * 1. getting/writing menuItems data from/to file
@@ -16,7 +16,7 @@ import java.util.*;
  * 
  */
 
-public class MenuManager {
+public class MenuManager extends AbstractManager {
 
     /**
 	 * The list of MenuItems
@@ -24,11 +24,11 @@ public class MenuManager {
 	private ArrayList<MenuItem> menu;
 	
 	
-	/**
-	 * the file path from which the menuItem list is read and 
-	 * to which the menuItems list is written
-	 */
-	private final String FILE_PATH;
+//	/**
+//	 * the file path from which the menuItem list is read and
+//	 * to which the menuItems list is written
+//	 */
+//	private final String FILE_PATH;
 	
 	/**
 	 * constructor of Menu
@@ -37,8 +37,8 @@ public class MenuManager {
 	 */
 	
 	public MenuManager(String FILE_PATH){
-		menu = loadMenuItems();
-        this.FILE_PATH = FILE_PATH;
+        super(FILE_PATH);
+		menu = load();
 	}
 	  /**
 	   * Create a new menuItem and add it into the menuItem list
@@ -150,12 +150,12 @@ public class MenuManager {
 	 * Load menuItems data from file by interacting with IOManager
 	 * @return a list of menuItems if success, null if fail
 	 */
-	
-	private ArrayList<MenuItem> loadMenuItems(){
-		Object object = IOManager.read(FILE_PATH);
+
+    @Override
+	public ArrayList<MenuItem> load(){
+		Object object = read();
 		if(object instanceof ArrayList<?> && ((ArrayList<?>) object).get(0) instanceof MenuItem){
 			return (ArrayList<MenuItem>) object;
-			
 		}
 		System.out.println("Error loading menuItems from file");
 		return null;
@@ -165,8 +165,8 @@ public class MenuManager {
 	/**
 	 * Save the munuItem list into file
 	 */
-	public void saveMenuItems(){
-		if( !IOManager.write(menu, FILE_PATH)){
+	public void save(){
+		if( !write(menu)){
 			System.out.println("Error saving menuItems to file!");
 		}
 	}

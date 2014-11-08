@@ -1,36 +1,33 @@
 package boundary;
 
 import control.*;
-import entity.*;
 
-import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
+ * Boundary class for Restaurant
  * Created by root on 14-11-7.
  */
-public class RRPSS {
-    Restaurant restaurant;
+public class RRPSS implements Runnable{
     RestaurantManager restaurantManager;
 
-    public RRPSS(Restaurant restaurant, RestaurantManager restaurantManager) {
-        this.restaurant = restaurant;
-        this.restaurantManager = restaurantManager;
-    }
+    private void showMainMenu() {
 
-    public void showMainMenu() {
         MenuManager menuManager = new MenuManager("menu.dat");
         MenuBoundary menuBoundary = new MenuBoundary(menuManager);
 
         MemberManager memberManager = new MemberManager("members.dat");
         MemberBoundary memberBoundary = new MemberBoundary(memberManager);
 
-        OrderManager orderManager = new OrderManager(menuManager, "members.dat");
+        ReservationManager reservationManager = new ReservationManager(null, "reservations.dat");
+        ReservationBoundary reservationBoundary = new ReservationBoundary(reservationManager);
+
+        OrderManager orderManager = new OrderManager(menuManager, "orders.dat");
         OrderBoundary orderBoundary = new OrderBoundary(orderManager);
 
-        InvoiceManager invoiceManager = new InvoiceManager(restaurant.getGST_RATE(), restaurant.getSERVICE_CHARGE_RATE());
+        InvoiceManager invoiceManager = new InvoiceManager(orderManager, null, restaurantManager.getRestaurant().getGST_RATE(), restaurantManager.getRestaurant().getSERVICE_CHARGE_RATE(), "invoices.dat");
         InvoiceBoundary invoiceBoundary = new InvoiceBoundary(invoiceManager);
 
-        //rest of managers
 
         //print main menu
 
@@ -49,28 +46,45 @@ public class RRPSS {
 
 
         //quit
-        menuManager.saveMenuItems();
+        menuManager.save();
         //save other lists
     }
 
 
-    public void init() {
-        restaurantManager.load();
-        restaurant.setGST_RATE(0.1);
-        restaurant.setSERVICE_CHARGE_RATE(0.1);
-        //If restaurant does not have table or staffs
-        if (restaurant.getTables().size() == 0 || restaurant.getStaffs().size() == 0) {
-            ArrayList<Table> tables = new ArrayList<Table>();
-            //Prompt for input and add tables
-            System.out.println("entity.Table:");
-           restaurant.setTables(tables);
-            //set staffs
-            //set file paths
+    private void init() {
+        Scanner scanner = new Scanner(System.in);
+        this.restaurantManager = new RestaurantManager("restaurant.dat");
+
+        //If GST Rate is not set
+        if (restaurantManager.getRestaurant().getGST_RATE() < 0) {
+            System.out.print("GST Rate: ");
+            restaurantManager.getRestaurant().setGST_RATE(scanner.nextDouble());
         }
+
+        //If Service Charge Rate is not set
+        if (restaurantManager.getRestaurant().getSERVICE_CHARGE_RATE() < 0) {
+            System.out.print("Service Charge Rate: ");
+            restaurantManager.getRestaurant().setSERVICE_CHARGE_RATE(scanner.nextDouble());
+        }
+
+//        restaurantManager.load();
+//        restaurant.setGST_RATE(0.1);
+//        restaurant.setSERVICE_CHARGE_RATE(0.1);
+//        //If restaurant does not have table or staffs
+//        if (restaurant.getTables().size() == 0 || restaurant.getStaffs().size() == 0) {
+//            ArrayList<Table> tables = new ArrayList<Table>();
+//            //Prompt for input and add tables
+//            System.out.println("entity.Table:");
+//           restaurant.setTables(tables);
+//            //set staffs
+//            //set file paths
+//        }
     }
 
+    @Override
     public void run() {
         init();
         showMainMenu();
+        restaurantManager.save();
     }
 }

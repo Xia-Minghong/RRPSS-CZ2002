@@ -3,13 +3,12 @@ package boundary;
 import control.MemberManager;
 import entity.Member;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * Created by root on 14-11-7.
  */
-public class MemberBoundary {
+public class MemberBoundary implements Runnable{
 
     private MemberManager memberManager;
 
@@ -17,6 +16,7 @@ public class MemberBoundary {
         this.memberManager = memberManager;
     }
 
+    @Override
     public void run() {
         showMenu();
     }

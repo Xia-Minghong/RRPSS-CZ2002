@@ -1,7 +1,8 @@
 package entity;
 
 import control.MenuManager;
-import java.util.*;
+
+import java.util.ArrayList;
 
 public class Set extends MenuItem{
 	

@@ -9,25 +9,19 @@ import java.util.Scanner;
 /**
  * Created by root on 14-11-7.
  */
-public class InvoiceBoundary {
+public class InvoiceBoundary implements Runnable {
 
     private ArrayList<Invoice> invoices;
     private InvoiceManager invoiceManager;
 
     public InvoiceBoundary(InvoiceManager invoiceManager) {
-        this.invoices = invoices;
         this.invoiceManager = invoiceManager;
-
-        init();
     }
 
     public void run() {
         showMenu();
     }
 
-    private void init() {
-        invoiceManager.load();
-    }
 
     private void showMenu() {
         Scanner sc = new Scanner(System.in);
