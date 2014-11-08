@@ -98,13 +98,13 @@ public class MenuManager {
 		//menu.get(menuItemID-1).setPrice(price);
 	//} 
 	
-	public void updateSet(int menuItemID, String name,String description, String category, double discountrate){ 
-		menu.get(menuItemID-1).setName(name);
-		menu.get(menuItemID-1).setDescription(description);
-		menu.get(menuItemID-1).setCategory(category);
-		((Set) menu.get(menuItemID-1)).setDiscountRate(discountrate);
+	//public void updateSet(int menuItemID, String name,String description, String category, double discountrate){ 
+		//menu.get(menuItemID-1).setName(name);
+		//menu.get(menuItemID-1).setDescription(description);
+		//menu.get(menuItemID-1).setCategory(category);
+		//((Set) menu.get(menuItemID-1)).setDiscountRate(discountrate);
 		
-    }
+    //}
 	
 	/**
 	 * Get the menuItemId with the given name

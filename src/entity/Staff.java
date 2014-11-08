@@ -20,8 +20,12 @@ public class Staff{
 		
 		}
 	
-	public String getStaffName(int EMPLOYEE_ID){
-		return name;}
+	public String getStaffName(){
+		return this.name;
+	}
+	public int getStaffID(){
+		return this.EMPLOYEE_ID;
+		}
 	/** obtain employee name using EMPLOYEE_ID for places where print is required */
 	public void setJobTitle(String jobTitle){
 		this.jobTitle = jobTitle;}
