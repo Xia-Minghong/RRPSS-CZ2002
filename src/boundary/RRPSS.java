@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class RRPSS implements Runnable{
     RestaurantManager restaurantManager;
 
-    public void showMainMenu() {
+    private void showMainMenu() {
 
         MenuManager menuManager = new MenuManager("menu.dat");
         MenuBoundary menuBoundary = new MenuBoundary(menuManager);
@@ -50,7 +50,7 @@ public class RRPSS implements Runnable{
     }
 
 
-    public void init() {
+    private void init() {
         Scanner scanner = new Scanner(System.in);
         this.restaurantManager = new RestaurantManager("restaurant.dat");
 

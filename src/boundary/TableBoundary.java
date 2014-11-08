@@ -13,12 +13,21 @@ public class TableBoundary implements Runnable {
         this.tableManager = tableManager;
     }
 
-    @Override
-    public void run() {
-        showMenu();
-    }
 
     private void showMenu() {
         System.out.println();
+    }
+
+    /**
+     * Create tables if not
+     */
+    private void init() {
+        System.out.println("");
+    }
+
+    @Override
+    public void run() {
+        init();
+        showMenu();
     }
 }
