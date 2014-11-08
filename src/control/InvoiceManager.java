@@ -7,7 +7,7 @@ import entity.Staff;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class InvoiceManager {
+public class InvoiceManager extends PersistentManager {
 
 
     private OrderManager orderManager;
@@ -20,30 +20,24 @@ public class InvoiceManager {
 
     private final double SERVICE_CHARGE_RATE;
 
-    private final String FILE_PATH;
-
     public InvoiceManager(OrderManager orderManager, StaffManager staffManager, double GST_RATE, double SERVICE_CHARGE_RATE, String FILE_PATH) {
+
+        super(FILE_PATH);
 
         this.orderManager = orderManager;
 
         this.staffManager = staffManager;
 
-        this.invoices = load();
+        this.invoices = (ArrayList<Invoice>) read();
 
         this.GST_RATE = GST_RATE;
 
         this.SERVICE_CHARGE_RATE = SERVICE_CHARGE_RATE;
-
-        this.FILE_PATH = FILE_PATH;
-
     }
 
-    private ArrayList<Invoice> load() {
-        return (ArrayList<Invoice>) IOManager.read(FILE_PATH);
-    }
-
-    private void save() {
-        IOManager.write(invoices, FILE_PATH);
+    @Override
+    public void save() {
+        write(invoices);
     }
 
     public void createInvoice(int orderID) {

@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @version 1.0
  * @since 2014-11-4.
  */
-public class MemberManager implements Manager{
+public class MemberManager extends PersistentManager {
 
 
     /**
@@ -28,8 +28,9 @@ public class MemberManager implements Manager{
      * During the construction, the path of the member data file is passed in.
      */
     public MemberManager(String FILE_PATH) {
+        super(FILE_PATH);
         this.FILE_PATH = FILE_PATH;
-        this.members = load();
+        this.members = (ArrayList<Member>) read();
     }
 
     /**
@@ -89,27 +90,28 @@ public class MemberManager implements Manager{
         }
     }
 
-    /**
-     * Load members data from file by interacting with control.IOManager
-     *
-     * @return a list of members if success null if failure
-     */
-    public ArrayList<Member> load() {
-        Object object = IOManager.read(FILE_PATH);
-        if (object instanceof ArrayList<?> && ((ArrayList<?>) object).get(0) instanceof Member) {
-            return (ArrayList<Member>) object;
-            //may generate a "uncheck cast" warning
-            //however it is checked inside the above if-statement
-        }
-        System.out.println("Error loading members from file");
-        return null;
-    }
+//    /**
+//     * Load members data from file by interacting with control.IOManager
+//     *
+//     * @return a list of members if success null if failure
+//     */
+//    public ArrayList<Member> load() {
+//        Object object = PersistentManager.read(FILE_PATH);
+//        if (object instanceof ArrayList<?> && ((ArrayList<?>) object).get(0) instanceof Member) {
+//            return (ArrayList<Member>) object;
+//            //may generate a "uncheck cast" warning
+//            //however it is checked inside the above if-statement
+//        }
+//        System.out.println("Error loading members from file");
+//        return null;
+//    }
 
     /**
      * Save the member list into file
      */
+    @Override
     public void save() {
-        if (!IOManager.write(members, FILE_PATH)) {
+        if (!write(members)) {
             System.out.println("Error saving members to file");
         }
     }

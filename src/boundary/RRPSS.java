@@ -48,7 +48,7 @@ public class RRPSS implements Runnable{
 
 
         //quit
-        menuManager.saveMenuItems();
+        menuManager.save();
         //save other lists
     }
 
