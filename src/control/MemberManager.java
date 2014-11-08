@@ -21,7 +21,7 @@ public class MemberManager {
      */
     private final String FILE_PATH;
 
-    ArrayList<Member> members;
+    private ArrayList<Member> members;
 
     /**
      * Constructor of the control.MemberManager
