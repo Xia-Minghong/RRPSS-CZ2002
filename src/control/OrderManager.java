@@ -19,7 +19,9 @@ public class OrderManager implements Serializable{
 	public static ArrayList<Order> getOrderCollection() {
 		return orderCollection;
 	}
-	
+	public Order getOrderbyID(int id) {
+		return orderCollection. get(id);
+	}
 	public void run() {
 		Scanner sc = new Scanner(System.in);
 		while (true)
