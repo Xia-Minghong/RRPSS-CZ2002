@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @version 1.0
  * @since 2014-11-4.
  */
-public class MemberManager extends PersistentManager {
+public class MemberManager extends AbstractManager {
 
 
     /**

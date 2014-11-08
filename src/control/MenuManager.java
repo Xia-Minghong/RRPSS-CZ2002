@@ -16,7 +16,7 @@ import java.util.*;
  * 
  */
 
-public class MenuManager extends PersistentManager{
+public class MenuManager extends AbstractManager {
 
     /**
 	 * The list of MenuItems

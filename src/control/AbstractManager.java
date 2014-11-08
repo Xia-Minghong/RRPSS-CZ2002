@@ -13,14 +13,14 @@ import java.io.*;
  * @version 1.0
  * @since 2014-10-24.
  */
-public abstract class PersistentManager {
+public abstract class AbstractManager {
     /**
      * the default file path for the Read/Write
      * when no file path is given
      */
     private final String FILE_PATH;
 
-    public PersistentManager(String FILE_PATH) {
+    public AbstractManager(String FILE_PATH) {
         this.FILE_PATH = FILE_PATH;
     }
 

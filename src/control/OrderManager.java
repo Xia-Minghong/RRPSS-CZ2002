@@ -2,11 +2,10 @@ package control;
 
 import entity.Order;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class OrderManager extends PersistentManager{
+public class OrderManager extends AbstractManager {
 	private static final double TAXRATE = 0.4;
 	private ArrayList<Order> orderCollection;
 	private MenuManager menuManager;

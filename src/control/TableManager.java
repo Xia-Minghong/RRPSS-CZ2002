@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by root on 14-11-8.
  */
-public class TableManager extends PersistentManager{
+public class TableManager extends AbstractManager {
 
     private ArrayList<Table> tables;
 

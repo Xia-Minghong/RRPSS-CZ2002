@@ -4,11 +4,10 @@ import entity.Reservation;
 import entity.Table;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ReservationManager extends PersistentManager{
+public class ReservationManager extends AbstractManager {
 	private final int HOURS_ALLOWED = 1;
 
     ArrayList<Reservation> reservations;

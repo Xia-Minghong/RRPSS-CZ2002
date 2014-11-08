@@ -7,7 +7,7 @@ import entity.Staff;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class InvoiceManager extends PersistentManager {
+public class InvoiceManager extends AbstractManager {
 
 
     private OrderManager orderManager;
