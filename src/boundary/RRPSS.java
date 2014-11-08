@@ -24,13 +24,12 @@ public class RRPSS {
         MemberManager memberManager = new MemberManager("members.dat");
         MemberBoundary memberBoundary = new MemberBoundary(memberManager);
 
-        OrderManager orderManager = new OrderManager(menuManager, "members.dat");
+        OrderManager orderManager = new OrderManager(menuManager, "orders.dat");
         OrderBoundary orderBoundary = new OrderBoundary(orderManager);
 
-        InvoiceManager invoiceManager = new InvoiceManager(restaurant.getGST_RATE(), restaurant.getSERVICE_CHARGE_RATE());
+        InvoiceManager invoiceManager = new InvoiceManager(orderManager, null,  restaurant.getGST_RATE(), restaurant.getSERVICE_CHARGE_RATE(), "invoices.dat");
         InvoiceBoundary invoiceBoundary = new InvoiceBoundary(invoiceManager);
 
-        //rest of managers
 
         //print main menu
 
