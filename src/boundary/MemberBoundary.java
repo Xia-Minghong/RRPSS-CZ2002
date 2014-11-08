@@ -13,7 +13,7 @@ public class MemberBoundary {
 
     private MemberManager memberManager;
 
-    public MemberBoundary(ArrayList<Member> members, MemberManager memberManager) {
+    public MemberBoundary(MemberManager memberManager) {
         this.memberManager = memberManager;
 
         init();

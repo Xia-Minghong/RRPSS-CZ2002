@@ -21,8 +21,8 @@ public class RRPSS {
         MenuManager menuManager = new MenuManager();
         MenuBoundary menuBoundary = new MenuBoundary(menuManager);
 
-        MemberManager memberManager = new MemberManager(members, "members.dat");
-        MemberBoundary memberBoundary = new MemberBoundary(members, memberManager);
+        MemberManager memberManager = new MemberManager("members.dat");
+        MemberBoundary memberBoundary = new MemberBoundary(memberManager);
 
         ArrayList<Order> orders = new ArrayList<Order>();
         OrderManager orderManager = new OrderManager(menuManager, orders, "members.dat");
