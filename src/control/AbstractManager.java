@@ -97,6 +97,8 @@ public abstract class AbstractManager {
 
     public abstract void save();
 
+
+
     //test
 //    public static void main(String[] args) {
 ////        entity.Table table = new entity.Table(1, 2);

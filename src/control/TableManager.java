@@ -16,13 +16,8 @@ public class TableManager extends AbstractManager {
         this.tables = load();
     }
 
-    @Override
-    public ArrayList<Table> load() {
-        ArrayList<Table> tables = (ArrayList<Table>) read();
-        if (tables == null) {
-            tables = new ArrayList<Table>();
-        }
-        return tables;
+    public void addTable(int capacity) {
+        tables.add(new Table(tables.size(), capacity));
     }
 
     public ArrayList<Table> getTables() {
@@ -31,6 +26,15 @@ public class TableManager extends AbstractManager {
 
     public void setTables(ArrayList<Table> tables) {
         this.tables = tables;
+    }
+
+    @Override
+    public ArrayList<Table> load() {
+        ArrayList<Table> tables = (ArrayList<Table>) read();
+        if (tables == null) {
+            tables = new ArrayList<Table>();
+        }
+        return tables;
     }
 
     @Override
