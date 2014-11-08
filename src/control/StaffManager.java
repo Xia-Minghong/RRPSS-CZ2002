@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import entity.Staff;
 
-public class StaffManager {
+public class StaffManager extends AbstractManager{
 
 	
 	private final String FILE_PATH;
@@ -12,6 +12,7 @@ public class StaffManager {
 	private ArrayList<Staff> staffs;
 	
 	public StaffManager(String FILE_PATH){
+		super(FILE_PATH);
 		this.FILE_PATH = FILE_PATH;
 		this.staffs = load();
 	}
@@ -34,7 +35,11 @@ public class StaffManager {
 		}
 	}
 	
-	public Staff getStaffbuID(int staffID){
+	public ArrayList<Staff> getStaffs(){
+		return this.staffs;
+	}
+	
+	public Staff getStaffbyID(int staffID){
 		for(Staff staff: staffs){
 			if(staff.getStaffID() == staffID){
 				return staff;
@@ -44,7 +49,7 @@ public class StaffManager {
 	}
 	
 	public ArrayList<Staff> load(){
-		Object object = IOManager.read(FILE_PATH);
+		Object object = read();
 		if(object instanceof ArrayList<?> && ((ArrayList<?>) object).get(0) instanceof Staff){
 			return (ArrayList<Staff>) object;
 			
@@ -53,9 +58,9 @@ public class StaffManager {
 		return null;
 	}
 	
-	
+	@Override
 	public void save(){
-		if(!IOManager.write(staffs, FILE_PATH)){
+		if(!write(staffs)){
 			System.out.println("Error saving staffs to file");
 		}
 	}

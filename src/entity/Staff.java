@@ -23,9 +23,26 @@ public class Staff{
 	public String getStaffName(){
 		return this.name;
 	}
+	
+	public void setStaffName(String name){
+		this.name = name;
+	}
 	public int getStaffID(){
 		return this.EMPLOYEE_ID;
 		}
+	
+	
+	public boolean getGender(){
+		return this.gender;
+	}
+	
+	public void setGender(boolean gender){
+		this.gender =gender;
+	}
+	
+	public String getJobTitle(){
+		return this.jobTitle;
+	}
 	/** obtain employee name using EMPLOYEE_ID for places where print is required */
 	public void setJobTitle(String jobTitle){
 		this.jobTitle = jobTitle;}
