@@ -12,10 +12,11 @@ public class MemberBoundary {
     public MemberBoundary(ArrayList<Member> members, MemberManager memberManager) {
         this.members = members;
         this.memberManager = memberManager;
+
+        init();
     }
 
     public void run() {
-        init();
         showMenu();
     }
 
@@ -51,7 +52,7 @@ public class MemberBoundary {
         Scanner sc = new Scanner(System.in);
         System.out.println("The name to check for membership");
         String name = sc.next();
-        Member member = memberManager.getMember(members, name);
+        Member member = memberManager.getMember(name);
         if (member != null) {
             System.out.println("Member detail:");
             System.out.println(member);
@@ -66,13 +67,13 @@ public class MemberBoundary {
         String name = sc.next();
         System.out.println("The contact of the member to add");
         String contact = sc.next();
-        memberManager.createMember(members, name, contact);
+        memberManager.createMember(name, contact);
     }
 
     private void deleteMember() {
         Scanner sc = new Scanner(System.in);
         System.out.println("The name of the member to delete");
-        memberManager.deleteMember(members, sc.next());
+        memberManager.deleteMember(sc.next());
     }
 
 }

@@ -14,26 +14,28 @@ public class RRPSS {
 
     public void showMainMenu() {
 
+        ArrayList<Member> members = new ArrayList<Member>();
+        MemberManager memberManager = new MemberManager(members, "members.dat");
+        MemberBoundary memberBoundary = new MemberBoundary(members, memberManager);
+
         //rest of managers
 
         //print main menu
 
         //while true
         //If the user chooses to perform action about member
-        ArrayList<Member> members = new ArrayList<Member>();
-        MemberManager memberManager = new MemberManager(members, "path");
-        MemberBoundary memberBoundary = new MemberBoundary(members, memberManager);
         memberBoundary.run();
 
         //If the user chooses to perform action about menu
-        ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
-        Menu menu = new Menu(menuItems, "path");
-        MenuBoundary menuBoundary = new MenuBoundary(menuItems, memberManager);
-        memberBoundary.run();
+//        ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
+//        Menu menu = new Menu(menuItems, "path");
+//        MenuBoundary menuBoundary = new MenuBoundary(menuItems, memberManager);
+//        memberBoundary.run();
 
 
         //quit
-        memberManager.save(members);
+        memberManager.save();
+//        menuManager.save();
         //save other lists
     }
 
@@ -44,7 +46,8 @@ public class RRPSS {
         if (restaurant.getTables().size() == 0 || restaurant.getStaffs().size() == 0) {
             ArrayList<Table> tables = new ArrayList<Table>();
             //Prompt for input and add tables
-            restaurant.setTables(tables);
+            System.out.println("Table:");
+           restaurant.setTables(tables);
             //set staffs
             //set file paths
         }

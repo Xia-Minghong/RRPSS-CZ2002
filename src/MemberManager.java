@@ -31,12 +31,10 @@ public class MemberManager {
 
     /**
      * Create a new member and add into the member list
-     *
-     * @param members ArrayList of members
-     * @param name    the name of the new member
+     *  @param name    the name of the new member
      * @param contact the contact of the new member
      */
-    public void createMember(ArrayList<Member> members, String name, String contact) {
+    public void createMember(String name, String contact) {
         Member newMember = new Member(name, contact);
         members.add(newMember);
     }
@@ -45,11 +43,10 @@ public class MemberManager {
      * Get the member with the name given
      *
      *
-     * @param members ArrayList of members
      * @param name the name of the member
      * @return the member with the name given
      */
-    public Member getMember(ArrayList<Member> members, String name) {
+    public Member getMember(String name) {
         for (Member member : members) {
             if (member.getName().equals(name)) {
                 return member;  //if found
@@ -72,10 +69,9 @@ public class MemberManager {
     /**
      * Delete the member with the given name
      *
-     * @param members ArrayList of members
      * @param name the name of the member to be deleted
      */
-    public void deleteMember(ArrayList<Member> members, String name) {
+    public void deleteMember(String name) {
         int index = -1;
 
         for (Member member : members) {
@@ -114,11 +110,12 @@ public class MemberManager {
     /**
      * Save the member list into file
      */
-    public void save(ArrayList<Member> members) {
+    public void save() {
         if (!IOManager.write(members, FILE_PATH)) {
             System.out.println("Error saving members to file");
         }
     }
+
 
 }
 
