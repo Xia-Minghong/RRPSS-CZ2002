@@ -2,6 +2,7 @@ package control;
 
 import entity.Invoice;
 import entity.Order;
+import entity.Staff;
 
 import java.util.ArrayList;
 import java.util.Date;

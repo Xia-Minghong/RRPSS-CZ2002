@@ -1,9 +1,6 @@
 package boundary;
 
-import control.InvoiceManager;
-import control.MemberManager;
-import control.OrderManager;
-import control.RestaurantManager;
+import control.*;
 import entity.*;
 
 import java.util.ArrayList;
@@ -22,16 +19,20 @@ public class RRPSS {
 
     public void showMainMenu() {
 
+        ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
+        MenuManager menuManager = new MenuManager(menuItems);
+        MenuBoundary menuBoundary = new MenuBoundary(menuManager);
+
         ArrayList<Member> members = new ArrayList<Member>();
         MemberManager memberManager = new MemberManager(members, "members.dat");
         MemberBoundary memberBoundary = new MemberBoundary(members, memberManager);
 
         ArrayList<Order> orders = new ArrayList<Order>();
-        OrderManager orderManager = new OrderManager(orders, "members.dat");
-        OrderBoundary orderBoundary = new OrderBoundary(orders, orderManager);
+        OrderManager orderManager = new OrderManager(menuManager, orders, "members.dat");
+        OrderBoundary orderBoundary = new OrderBoundary(orderManager);
 
         ArrayList<Invoice> invoices = new ArrayList<Invoice>();
-        InvoiceManager invoiceManager = new InvoiceManager(invoices, "members.dat");
+        InvoiceManager invoiceManager = new InvoiceManager(invoices, restaurant.getGST_RATE(), restaurant.getSERVICE_CHARGE_RATE());
         InvoiceBoundary invoiceBoundary = new InvoiceBoundary(invoices, invoiceManager);
 
         //rest of managers
@@ -53,14 +54,15 @@ public class RRPSS {
 
 
         //quit
-        memberManager.save();
-//        menuManager.save();
+        menuManager.save();
         //save other lists
     }
 
 
     public void init() {
         restaurantManager.load();
+        restaurant.setGST_RATE(0.1);
+        restaurant.setSERVICE_CHARGE_RATE(0.1);
         //If restaurant does not have table or staffs
         if (restaurant.getTables().size() == 0 || restaurant.getStaffs().size() == 0) {
             ArrayList<Table> tables = new ArrayList<Table>();

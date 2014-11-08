@@ -11,11 +11,9 @@ import java.util.Scanner;
  */
 public class MemberBoundary {
 
-    private ArrayList<Member> members;
     private MemberManager memberManager;
 
     public MemberBoundary(ArrayList<Member> members, MemberManager memberManager) {
-        this.members = members;
         this.memberManager = memberManager;
 
         init();
