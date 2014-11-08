@@ -1,7 +1,6 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Created by Xia-Minghong on 14-11-7.
