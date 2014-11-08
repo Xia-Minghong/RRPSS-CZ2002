@@ -93,13 +93,13 @@ public class IOManager {
     }
 
     //test
-    public static void main(String[] args) {
-//        entity.Table table = new entity.Table(1, 2);
-        IOManager ioManager = new IOManager();
-//        ioManager.write(table);
-        Table anotherTable = (Table)ioManager.read();
-        System.out.println("\ncapacity"+anotherTable.getCAPACITY());
-        System.out.println("ID"+anotherTable.getTABLE_ID());
-        System.out.println("present"+anotherTable.isPresence());
-    }
+//    public static void main(String[] args) {
+////        entity.Table table = new entity.Table(1, 2);
+//        IOManager ioManager = new IOManager();
+////        ioManager.write(table);
+//        Table anotherTable = (Table)ioManager.read();
+//        System.out.println("\ncapacity"+anotherTable.getCAPACITY());
+//        System.out.println("ID"+anotherTable.getTABLE_ID());
+//        System.out.println("present"+anotherTable.isPresence());
+//    }
 }

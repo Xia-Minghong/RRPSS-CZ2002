@@ -18,19 +18,17 @@ public class RRPSS {
     }
 
     public void showMainMenu() {
-        MenuManager menuManager = new MenuManager();
+        MenuManager menuManager = new MenuManager("menu.dat");
         MenuBoundary menuBoundary = new MenuBoundary(menuManager);
 
         MemberManager memberManager = new MemberManager("members.dat");
         MemberBoundary memberBoundary = new MemberBoundary(memberManager);
 
-        ArrayList<Order> orders = new ArrayList<Order>();
-        OrderManager orderManager = new OrderManager(menuManager, orders, "members.dat");
+        OrderManager orderManager = new OrderManager(menuManager, "members.dat");
         OrderBoundary orderBoundary = new OrderBoundary(orderManager);
 
-        ArrayList<Invoice> invoices = new ArrayList<Invoice>();
-        InvoiceManager invoiceManager = new InvoiceManager(invoices, restaurant.getGST_RATE(), restaurant.getSERVICE_CHARGE_RATE());
-        InvoiceBoundary invoiceBoundary = new InvoiceBoundary(invoices, invoiceManager);
+        InvoiceManager invoiceManager = new InvoiceManager(restaurant.getGST_RATE(), restaurant.getSERVICE_CHARGE_RATE());
+        InvoiceBoundary invoiceBoundary = new InvoiceBoundary(invoiceManager);
 
         //rest of managers
 
@@ -51,7 +49,7 @@ public class RRPSS {
 
 
         //quit
-        menuManager.save();
+        menuManager.saveMenuItems();
         //save other lists
     }
 

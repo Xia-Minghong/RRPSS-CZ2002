@@ -1,23 +1,21 @@
 package control;
 
 import entity.Order;
-import entity.OrderItem;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 public class OrderManager implements Serializable{
 	private static final double TAXRATE = 0.4;
 	private ArrayList<Order> orderCollection;
 	private MenuManager menuManager;
-	private String dataPath;
+	private final String FILE_PATH;
 	
-	public OrderManager(ArrayList<Order> orderCollection, MenuManager menuManager, String dataPath) {
-		this.orderCollection = orderCollection;
+	public OrderManager(MenuManager menuManager, String FILE_PATH) {
+		this.orderCollection = load();
 		this.menuManager = menuManager;
-		this.dataPath = dataPath;
+		this.FILE_PATH = FILE_PATH;
 	}
 	
 	public ArrayList<Order> getOrderCollection() {
@@ -33,10 +31,10 @@ public class OrderManager implements Serializable{
 	}
 	
 	public void save() {
-		IOManager.write(orderCollection, dataPath);
+		IOManager.write(orderCollection, FILE_PATH);
 	}
-	public void load()
+	public ArrayList<Order> load()
 	{
-		orderCollection = (ArrayList<Order>) IOManager.read(dataPath);
+		return (ArrayList<Order>) IOManager.read(FILE_PATH);
 	}
 }

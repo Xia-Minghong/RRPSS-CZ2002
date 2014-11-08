@@ -14,7 +14,7 @@ public class InvoiceBoundary {
     private ArrayList<Invoice> invoices;
     private InvoiceManager invoiceManager;
 
-    public InvoiceBoundary(ArrayList<Invoice> invoices, InvoiceManager invoiceManager) {
+    public InvoiceBoundary(InvoiceManager invoiceManager) {
         this.invoices = invoices;
         this.invoiceManager = invoiceManager;
 

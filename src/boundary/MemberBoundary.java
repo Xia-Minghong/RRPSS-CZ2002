@@ -15,16 +15,10 @@ public class MemberBoundary {
 
     public MemberBoundary(MemberManager memberManager) {
         this.memberManager = memberManager;
-
-        init();
     }
 
     public void run() {
         showMenu();
-    }
-
-    private void init() {
-        memberManager.load();
     }
 
     private void showMenu() {
