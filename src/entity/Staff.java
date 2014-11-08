@@ -12,7 +12,7 @@ public class Staff{
 	
 
 
-	public createStaff (int EMPLOYEE_ID, String name, Boolean GENDER, String jobTitle){
+	public Staff(int EMPLOYEE_ID, String name, Boolean gender, String jobTitle){
 		this.EMPLOYEE_ID = EMPLOYEE_ID;
 		this.name = name;
 		this.gender = gender;
