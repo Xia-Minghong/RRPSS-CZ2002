@@ -20,6 +20,7 @@ public class RRPSS implements Runnable{
         MemberBoundary memberBoundary = new MemberBoundary(memberManager);
 
         ReservationManager reservationManager = new ReservationManager(null, "reservations.dat");
+        ReservationBoundary reservationBoundary = new ReservationBoundary(reservationManager);
 
         OrderManager orderManager = new OrderManager(menuManager, "orders.dat");
         OrderBoundary orderBoundary = new OrderBoundary(orderManager);

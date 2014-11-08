@@ -150,8 +150,9 @@ public class MenuManager extends AbstractManager {
 	 * Load menuItems data from file by interacting with IOManager
 	 * @return a list of menuItems if success, null if fail
 	 */
-	
-	private ArrayList<MenuItem> load(){
+
+    @Override
+	public ArrayList<MenuItem> load(){
 		Object object = read();
 		if(object instanceof ArrayList<?> && ((ArrayList<?>) object).get(0) instanceof MenuItem){
 			return (ArrayList<MenuItem>) object;

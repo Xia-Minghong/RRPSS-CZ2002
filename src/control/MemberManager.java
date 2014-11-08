@@ -30,7 +30,7 @@ public class MemberManager extends AbstractManager {
     public MemberManager(String FILE_PATH) {
         super(FILE_PATH);
         this.FILE_PATH = FILE_PATH;
-        this.members = (ArrayList<Member>) read();
+        this.members = load();
     }
 
     /**
@@ -105,6 +105,15 @@ public class MemberManager extends AbstractManager {
 //        System.out.println("Error loading members from file");
 //        return null;
 //    }
+
+    @Override
+    public ArrayList load() {
+        ArrayList<Member> members = (ArrayList<Member>) read();
+        if (members == null) {
+            members = new ArrayList<Member>();
+        }
+        return members;
+    }
 
     /**
      * Save the member list into file
