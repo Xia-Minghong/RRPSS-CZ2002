@@ -1,14 +1,15 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Xia-Minghong on 14-11-7.
  */
-public class Restaurant {
+public class Restaurant implements Serializable{
 
-    private double GST_RATE;
-    private double SERVICE_CHARGE_RATE;
+    private double GST_RATE = -1;
+    private double SERVICE_CHARGE_RATE = -1;
 
     public double getGST_RATE() {
         return GST_RATE;

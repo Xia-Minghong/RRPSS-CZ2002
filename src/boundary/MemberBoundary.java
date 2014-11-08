@@ -3,7 +3,6 @@ package boundary;
 import control.MemberManager;
 import entity.Member;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
