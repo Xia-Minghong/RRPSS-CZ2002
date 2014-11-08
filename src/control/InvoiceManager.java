@@ -1,6 +1,7 @@
 package control;
 
 import entity.Invoice;
+import entity.Order;
 
 import java.util.ArrayList;
 
