@@ -1,6 +1,9 @@
 package control;
 
 import entity.Invoice;
+import entity.Order;
+
+import java.util.ArrayList;
 
 public class InvoiceManager{
 
@@ -10,8 +13,12 @@ private final double GST_RATE;
 
 private final double SERVICE_CHARGE_RATE;
 
-public InvoiceManager(int index, double GST_RATE, double SERVICE_CHARGE_RATE) {
+private ArrayList<Invoice> invoices;
+
+public InvoiceManager(ArrayList<Invoice> invoices, int index, double GST_RATE, double SERVICE_CHARGE_RATE) {
            
+	this.invoices = invoices;
+	
     this.index = index;
   
     this.GST_RATE = GST_RATE;
@@ -20,26 +27,22 @@ public InvoiceManager(int index, double GST_RATE, double SERVICE_CHARGE_RATE) {
 
 }
 
-public void createInvoice (int orderID){
-	
-	INVOICE_ID=index;
-	
-	order = OrderManager.getOrder(orderID);
-	
-	TIMESTAMP=order.getDate();
-	
-	GROSS_PRICE= order.getTotal();
-	
-	GST=GROSS_PRICE*0.07;
-	
-	SERVICE_CHARGE=GROSS_PRICE*0.1;
-	
-	NET_PRICE=GROSS_PRICE + GST + SERVICE_CHARGE;
-	
-	index++;
-	return new Invoice(INVOICE_ID, TIMESTAMP, GROSS_PRICE, GST, SERVICE_CHARGE, NET_PRICE);
+public void createInvoice(int orderID){
+	Order order = OrderManager.getOrderbyID(orderID);
+	double GROSS_PRICE = order.getTotal(orderID);
+	double GST = GROSS_PRICE * GST_RATE;
+	double GST = SERVICE_CHARGE * SERVICE_CHARGE_RATE;
+	double NET_PRICE= GROSS_PRICE+ GST + SERVICE_CHARGE;
+	Invoice invoice = new Invoice();
+	printInvoice(invoice);
 }
 
+public void printInvoice(Invoice invoice){
+	invoice.print();
+	
+	
+	
+}
 
 
 
