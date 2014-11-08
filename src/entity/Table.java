@@ -1,7 +1,9 @@
+package entity;
+
 import java.io.Serializable;
 
 /**
- * Table is a model class which holds the relevant attributes
+ * entity.Table is a model class which holds the relevant attributes
  * of a table and provides the mutators and accessors accordingly.
  * @author Xia Minghong
  * @version 1.0

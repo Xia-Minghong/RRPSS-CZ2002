@@ -1,3 +1,7 @@
+package control;
+
+import entity.Invoice;
+
 public class InvoiceManager{
 
 private int index;

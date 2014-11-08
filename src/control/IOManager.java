@@ -1,7 +1,11 @@
+package control;
+
+import entity.Table;
+
 import java.io.*;
 
 /**
- * A IOManager handles the file read/write in the RRPSS system
+ * A control.IOManager handles the file read/write in the boundary.RRPSS system
  * to achieve data persistence.
  * The methods of this class are static so that other classes can call the them
  * conveniently without instantiation
@@ -14,7 +18,7 @@ public class IOManager {
      * the default file path for the Read/Write
      * when no file path is given
      */
-    private static final String FILE_PATH = "RRPSS.dat";
+    private static final String FILE_PATH = "boundary.RRPSS.dat";
 
     /**
      * No-arg read method to use the default path for reading
@@ -90,7 +94,7 @@ public class IOManager {
 
     //test
     public static void main(String[] args) {
-//        Table table = new Table(1, 2);
+//        entity.Table table = new entity.Table(1, 2);
         IOManager ioManager = new IOManager();
 //        ioManager.write(table);
         Table anotherTable = (Table)ioManager.read();

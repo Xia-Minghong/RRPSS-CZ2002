@@ -1,3 +1,11 @@
+package boundary;
+
+import control.MemberManager;
+import control.RestaurantManager;
+import entity.Member;
+import entity.Restaurant;
+import entity.Table;
+
 import java.util.ArrayList;
 
 /**
@@ -27,8 +35,8 @@ public class RRPSS {
         memberBoundary.run();
 
         //If the user chooses to perform action about menu
-//        ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
-//        Menu menu = new Menu(menuItems, "path");
+//        ArrayList<entity.MenuItem> menuItems = new ArrayList<entity.MenuItem>();
+//        control.Menu menu = new control.Menu(menuItems, "path");
 //        MenuBoundary menuBoundary = new MenuBoundary(menuItems, memberManager);
 //        memberBoundary.run();
 
@@ -46,7 +54,7 @@ public class RRPSS {
         if (restaurant.getTables().size() == 0 || restaurant.getStaffs().size() == 0) {
             ArrayList<Table> tables = new ArrayList<Table>();
             //Prompt for input and add tables
-            System.out.println("Table:");
+            System.out.println("entity.Table:");
            restaurant.setTables(tables);
             //set staffs
             //set file paths

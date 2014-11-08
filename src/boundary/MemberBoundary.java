@@ -1,3 +1,8 @@
+package boundary;
+
+import control.MemberManager;
+import entity.Member;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,7 +32,7 @@ public class MemberBoundary {
     private void showMenu() {
         Scanner sc = new Scanner(System.in);
         while (true) {
-            System.out.println("choose what you want \n 1. Check Membership \n 2. List Members \n 3. Add Member \n 4.Delete Member ");
+            System.out.println("choose what you want \n 1. Check Membership \n 2. List Members \n 3. Add entity.Member \n 4.Delete entity.Member ");
 
             switch (sc.nextInt()) {
                 case 1:
@@ -54,7 +59,7 @@ public class MemberBoundary {
         String name = sc.next();
         Member member = memberManager.getMember(name);
         if (member != null) {
-            System.out.println("Member detail:");
+            System.out.println("entity.Member detail:");
             System.out.println(member);
         } else {
             System.out.println("Not a member");

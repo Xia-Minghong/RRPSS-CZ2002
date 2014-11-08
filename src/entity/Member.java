@@ -1,7 +1,9 @@
+package entity;
+
 import java.io.Serializable;
 
 /**
- * Member is a model class which holds the relevant attributes
+ * entity.Member is a model class which holds the relevant attributes
  * of a member and provides the mutators/setters and accessors/getters accordingly.
  * @author Xia Minghong
  * @version 1.0
@@ -19,7 +21,7 @@ public class Member implements Serializable{
     private String contact;
 
     /**
-     * Constructor of the Member class
+     * Constructor of the entity.Member class
      * @param name the name to be used in constructor
      * @param contact the contact number to be used in constructor
      */

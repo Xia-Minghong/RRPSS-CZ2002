@@ -1,5 +1,8 @@
+package control;
+
+import entity.Member;
+
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * A manager which takes the responsibilities of:
@@ -21,7 +24,7 @@ public class MemberManager {
     ArrayList<Member> members;
 
     /**
-     * Constructor of the MemberManager
+     * Constructor of the control.MemberManager
      * During the construction, the path of the member data file is passed in.
      */
     public MemberManager(ArrayList<Member> members, String FILE_PATH) {
@@ -87,7 +90,7 @@ public class MemberManager {
     }
 
     /**
-     * Load members data from file by interacting with IOManager
+     * Load members data from file by interacting with control.IOManager
      *
      * @return a list of members if success null if failure
      */

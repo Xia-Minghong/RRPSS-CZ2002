@@ -1,3 +1,5 @@
+package entity;
+
 import java.util.Arrays;
 import java.util.Date;
 
@@ -35,7 +37,7 @@ public class Invoice{
     }
 	
 	public void printInvoice(){
-		System.out.println("Invoice ID: %d", INVOICE_ID);
+		System.out.println("entity.Invoice ID: %d", INVOICE_ID);
 		System.out.println("Time: "+ TIMESTAMP);
 /** not sure how to handle timestamp  */
 		System.out.println(Arrays.toString(array));

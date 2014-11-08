@@ -1,3 +1,7 @@
+package control;
+
+import entity.Restaurant;
+
 /**
  * Created by root on 14-11-7.
  */

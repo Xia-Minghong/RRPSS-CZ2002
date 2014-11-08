@@ -1,4 +1,6 @@
+package control;
 
+import entity.MenuItem;
 
 import java.util.*;
 /**
@@ -11,7 +13,7 @@ import java.util.*;
  * 
  */
 
-public class Menu {
+public class MenuManager {
 	/**
 	 * The list of MenuItems
 	 */
@@ -24,12 +26,12 @@ public class Menu {
 	private static final String FILE_PATH = "menuItems.dat";
 	
 	/**
-	 * constructor of Menu
+	 * constructor of control.Menu
 	 * during the construction, menuItems are read from file and 
 	 * the menuItem list in initialized
 	 */
 	
-	public Menu(){
+	public MenuManager(){
 		menu = loadMenuItems();
 	}
 	  /**
@@ -118,7 +120,7 @@ public class Menu {
 	}
 	
 	/**
-	 * Load menuItems data from file by interacting with IOManager
+	 * Load menuItems data from file by interacting with control.IOManager
 	 * @return a list of menuItems if success, null if fail
 	 */
 	
@@ -145,9 +147,9 @@ public class Menu {
 	public void run(){
 		Scanner sc = new Scanner(System.in);
 		while(true){
-			System.out.println("Choose which you want: \n 1.Add New Alacarte to Menu \n"
-					+ "2. Add New Set to Menu\n 3. Delete MenuItem from the Menu\n 4.Update the Alacarte\n"
-					+"5. Update the Set on the Menu\n 6. Show all MenuItems \n" );
+			System.out.println("Choose which you want: \n 1.Add New Alacarte to control.Menu \n"
+					+ "2. Add New entity.Set to control.Menu\n 3. Delete entity.MenuItem from the control.Menu\n 4.Update the Alacarte\n"
+					+"5. Update the entity.Set on the control.Menu\n 6. Show all MenuItems \n" );
 			switch (sc.nextInt()){
 			case 1 :
 				System.out.println("The name of the new Alacarte:");

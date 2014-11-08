@@ -1,3 +1,5 @@
+package entity;
+
 /**
  * Created by root on 14-10-20.
  * mobai quanA by Minghong

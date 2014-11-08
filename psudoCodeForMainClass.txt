@@ -2,30 +2,30 @@ MVC Example:
 http://stackoverflow.com/questions/13873847/create-example-simple-with-mvc-java
 
 
-RRPSS Class:
+boundary.RRPSS Class:
 
 // All data stored in static main methods, no composition relationship exists, clean UML
 
 public static void main{
-ArrayList<Reservation> reservations = new ArrayList<Reservation>()
-ReservationManager reservationManager = new ReservationManager(...)
+ArrayList<entity.Reservation> reservations = new ArrayList<entity.Reservation>()
+control.ReservationManager reservationManager = new control.ReservationManager(...)
 reservationManager.loadReservations(reservations)	//Reference
 
 }
 
 
-ReservationManager Class:
-public void loadReservations(ArrayList<Reservation> reservations){
-	...call IOManager
+control.ReservationManager Class:
+public void loadReservations(ArrayList<entity.Reservation> reservations){
+	...call control.IOManager
 	...assign to the arraylist
 }
 
-public static void run(ArrayList<Reservation> reservations){
+public static void run(ArrayList<entity.Reservation> reservations){
 	get input: name
 	getReservationByName(name)
 }
 
-public getReservationByName(ArrayList<Reservation> reservations, String name){
+public getReservationByName(ArrayList<entity.Reservation> reservations, String name){
 	...search
 	return reservation
 }
