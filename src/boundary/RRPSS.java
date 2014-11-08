@@ -28,7 +28,7 @@ public class RRPSS {
         MemberManager memberManager = new MemberManager(members, "members.dat");
         MemberBoundary memberBoundary = new MemberBoundary(members, memberManager);
 
-        ArrayList<Order> orders = new ArrayList<Order>();
+        ArrayList<Order> orders = new ArrayList<Order>();s
         OrderManager orderManager = new OrderManager(orders, "members.dat");
         OrderBoundary orderBoundary = new OrderBoundary(orders, orderManager);
 
