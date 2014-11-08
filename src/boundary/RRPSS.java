@@ -1,8 +1,10 @@
 package boundary;
 
 import control.MemberManager;
+import control.OrderManager;
 import control.RestaurantManager;
 import entity.Member;
+import entity.Order;
 import entity.Restaurant;
 import entity.Table;
 
@@ -26,6 +28,10 @@ public class RRPSS {
         MemberManager memberManager = new MemberManager(members, "members.dat");
         MemberBoundary memberBoundary = new MemberBoundary(members, memberManager);
 
+        ArrayList<Order> orders = new ArrayList<Order>();s
+        OrderManager orderManager = new OrderManager(orders, "members.dat");
+        OrderBoundary orderBoundary = new OrderBoundary(orders, orderManager);
+
         //rest of managers
 
         //print main menu
@@ -33,6 +39,9 @@ public class RRPSS {
         //while true
         //If the user chooses to perform action about member
         memberBoundary.run();
+
+
+        orderBoundary.run();
 
         //If the user chooses to perform action about menu
 //        ArrayList<entity.MenuItem> menuItems = new ArrayList<entity.MenuItem>();
