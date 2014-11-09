@@ -12,7 +12,6 @@ import java.util.Scanner;
  */
 public class InvoiceBoundary implements Runnable {
 
-    private ArrayList<Invoice> invoices;
     private InvoiceManager invoiceManager;
 
     public InvoiceBoundary(InvoiceManager invoiceManager) {
