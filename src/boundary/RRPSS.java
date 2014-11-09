@@ -25,7 +25,7 @@ public class RRPSS implements Runnable{
         OrderManager orderManager = new OrderManager(menuManager, "orders.dat");
         OrderBoundary orderBoundary = new OrderBoundary(orderManager);
 
-        InvoiceManager invoiceManager = new InvoiceManager(orderManager, null, restaurantManager.getRestaurants().getGST_RATE(), restaurantManager.getRestaurants().getSERVICE_CHARGE_RATE(), "invoices.dat");
+        InvoiceManager invoiceManager = new InvoiceManager(orderManager, null, restaurantManager.getRestaurant().getGST_RATE(), restaurantManager.getRestaurant().getSERVICE_CHARGE_RATE(), "invoices.dat");
         InvoiceBoundary invoiceBoundary = new InvoiceBoundary(invoiceManager);
 
 
@@ -56,15 +56,15 @@ public class RRPSS implements Runnable{
         this.restaurantManager = new RestaurantManager("restaurant.dat");
 
         //If GST Rate is not set
-        if (restaurantManager.getRestaurants().getGST_RATE() < 0) {
+        if (restaurantManager.getRestaurant().getGST_RATE() < 0) {
             System.out.print("GST Rate: ");
-            restaurantManager.getRestaurants().setGST_RATE(scanner.nextDouble());
+            restaurantManager.getRestaurant().setGST_RATE(scanner.nextDouble());
         }
 
         //If Service Charge Rate is not set
-        if (restaurantManager.getRestaurants().getSERVICE_CHARGE_RATE() < 0) {
+        if (restaurantManager.getRestaurant().getSERVICE_CHARGE_RATE() < 0) {
             System.out.print("Service Charge Rate: ");
-            restaurantManager.getRestaurants().setSERVICE_CHARGE_RATE(scanner.nextDouble());
+            restaurantManager.getRestaurant().setSERVICE_CHARGE_RATE(scanner.nextDouble());
         }
 
 //        restaurantManager.load();

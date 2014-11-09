@@ -9,29 +9,29 @@ import java.util.ArrayList;
  */
 public class RestaurantManager extends AbstractManager {
 
-    ArrayList<Restaurant> restaurants;
+    Restaurant restaurant;
 
     public RestaurantManager(String FILE_PATH) {
         super(FILE_PATH);
 
-        this.restaurants = load();
+        this.restaurant = (Restaurant) read();
     }
 
-    public ArrayList<Restaurant> getRestaurants() {
-        return restaurants;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
     @Override
-    public ArrayList load() {
-        ArrayList<Restaurant> restaurants = (ArrayList<Restaurant>) read();
-        if (restaurants == null) {
-            restaurants = new ArrayList<Restaurant>();
+    public Restaurant load() {
+        Restaurant restaurant = (Restaurant) read();
+        if (restaurant == null) {
+            restaurant = new Restaurant();
         }
-        return restaurants;
+        return restaurant;
     }
 
     @Override
     public void save() {
-        write(restaurants);
+        write(restaurant);
     }
 }

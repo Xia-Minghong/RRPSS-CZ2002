@@ -93,7 +93,7 @@ public abstract class AbstractManager {
         }
     }
 
-    public abstract ArrayList load();
+    public abstract Object load();
 
     public abstract void save();
 
