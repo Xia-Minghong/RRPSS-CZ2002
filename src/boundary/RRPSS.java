@@ -76,7 +76,7 @@ public class RRPSS implements Runnable{
         }
 
         //If no staff
-        if (staffManager.getStaffs().size() < 0) {
+        if (staffManager.getStaffs().size() == 0) {
             staffBoundary.init();
         }
 
