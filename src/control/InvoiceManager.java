@@ -36,20 +36,6 @@ public class InvoiceManager extends AbstractManager {
         this.SERVICE_CHARGE_RATE = restaurantManager.getRestaurant().getSERVICE_CHARGE_RATE();
     }
 
-    @Override
-    public ArrayList<Invoice> load() {
-        ArrayList<Invoice> invoices = (ArrayList<Invoice>) read();
-        if (invoices == null) {
-            invoices = new ArrayList<Invoice>();
-        }
-        return invoices;
-    }
-
-    @Override
-    public void save() {
-        write(invoices);
-    }
-
     public void createInvoice(int orderID) {
         Order order = orderManager.getOrderbyID(orderID);
         String staffName = staffManager.getStaffbyID(order.getStaffID()).getStaffName();
@@ -68,6 +54,20 @@ public class InvoiceManager extends AbstractManager {
         invoice.print();
 
 
+    }
+
+    @Override
+    public ArrayList<Invoice> load() {
+        ArrayList<Invoice> invoices = (ArrayList<Invoice>) read();
+        if (invoices == null) {
+            invoices = new ArrayList<Invoice>();
+        }
+        return invoices;
+    }
+
+    @Override
+    public void save() {
+        write(invoices);
     }
 
 
