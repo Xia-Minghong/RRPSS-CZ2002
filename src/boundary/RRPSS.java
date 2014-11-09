@@ -1,6 +1,7 @@
 package boundary;
 
 import control.*;
+import entity.Staff;
 
 import java.util.Scanner;
 
@@ -10,6 +11,15 @@ import java.util.Scanner;
  */
 public class RRPSS implements Runnable{
     RestaurantManager restaurantManager;
+
+    StaffManager staffManager;
+    StaffBoundary staffBoundary;
+
+    public RRPSS() {
+        this.restaurantManager = new RestaurantManager("restaurant.dat");
+        this.staffManager = new StaffManager("staffs.dat");
+        this.staffBoundary = new StaffBoundary(staffManager);
+    }
 
     private void showMainMenu() {
 
@@ -25,7 +35,7 @@ public class RRPSS implements Runnable{
         OrderManager orderManager = new OrderManager(menuManager, "orders.dat");
         OrderBoundary orderBoundary = new OrderBoundary(orderManager);
 
-        InvoiceManager invoiceManager = new InvoiceManager(orderManager, null, restaurantManager.getRestaurant().getGST_RATE(), restaurantManager.getRestaurant().getSERVICE_CHARGE_RATE(), "invoices.dat");
+        InvoiceManager invoiceManager = new InvoiceManager(orderManager, staffManager, restaurantManager, "invoices.dat");
         InvoiceBoundary invoiceBoundary = new InvoiceBoundary(invoiceManager);
 
 
@@ -53,7 +63,6 @@ public class RRPSS implements Runnable{
 
     private void init() {
         Scanner scanner = new Scanner(System.in);
-        this.restaurantManager = new RestaurantManager("restaurant.dat");
 
         //If GST Rate is not set
         if (restaurantManager.getRestaurant().getGST_RATE() < 0) {
@@ -65,6 +74,11 @@ public class RRPSS implements Runnable{
         if (restaurantManager.getRestaurant().getSERVICE_CHARGE_RATE() < 0) {
             System.out.print("Service Charge Rate: ");
             restaurantManager.getRestaurant().setSERVICE_CHARGE_RATE(scanner.nextDouble());
+        }
+
+        //If no staff
+        if (staffManager.getStaffs().size() < 0) {
+            staffBoundary.init();
         }
 
 //        restaurantManager.load();

@@ -2,6 +2,7 @@ package control;
 
 import entity.Invoice;
 import entity.Order;
+import entity.Restaurant;
 import entity.Staff;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class InvoiceManager extends AbstractManager {
 
     private final double SERVICE_CHARGE_RATE;
 
-    public InvoiceManager(OrderManager orderManager, StaffManager staffManager, double GST_RATE, double SERVICE_CHARGE_RATE, String FILE_PATH) {
+    public InvoiceManager(OrderManager orderManager, StaffManager staffManager, RestaurantManager restaurantManager, String FILE_PATH) {
 
         super(FILE_PATH);
 
@@ -30,9 +31,9 @@ public class InvoiceManager extends AbstractManager {
 
         this.invoices = load();
 
-        this.GST_RATE = GST_RATE;
+        this.GST_RATE = restaurantManager.getRestaurant().getGST_RATE();
 
-        this.SERVICE_CHARGE_RATE = SERVICE_CHARGE_RATE;
+        this.SERVICE_CHARGE_RATE = restaurantManager.getRestaurant().getSERVICE_CHARGE_RATE();
     }
 
     @Override

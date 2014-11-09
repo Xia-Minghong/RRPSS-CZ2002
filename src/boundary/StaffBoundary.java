@@ -20,7 +20,7 @@ public class StaffBoundary implements Runnable{
 				+ "3.Update Staff\n\t4. Back");
 		switch(sc.nextInt()){
 		    case 1:
-		    	addStaff();
+		    	addStaffs();
 		    	break;
 		    case 2:
 		    	delStaff(); 
@@ -36,11 +36,11 @@ public class StaffBoundary implements Runnable{
 	public void init(){
 		if(staffManager.getStaffs().size()==0){
 			System.out.println("Initializing staffs for the restaurant");
-			addStaff();
+			addStaffs();
 		}
 	}
 	
-	public void addStaff(){
+	public void addStaffs(){
 		Scanner sc = new Scanner(System.in);
 		do{
 			System.out.println("Enter the new Staff ID:");
