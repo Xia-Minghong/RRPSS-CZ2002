@@ -62,7 +62,8 @@ public class RRPSS implements Runnable{
 
         //quit
         menuManager.save();
-        //save other lists
+        restaurantManager.save();
+        //save other managers
     }
 
 
@@ -98,6 +99,5 @@ public class RRPSS implements Runnable{
     @Override
     public void run() {
         showMainMenu();
-        restaurantManager.save();
     }
 }
