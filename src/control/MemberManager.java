@@ -21,7 +21,7 @@ public class MemberManager extends AbstractManager {
      */
     private final String FILE_PATH;
 
-    private ArrayList<Member> members;
+    private ArrayList<Member> members;21
 
     /**
      * Constructor of the control.MemberManager
