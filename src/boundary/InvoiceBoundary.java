@@ -27,53 +27,28 @@ public class InvoiceBoundary implements Runnable {
     private void showMenu() {
         Scanner sc = new Scanner(System.in);
         while (true) {
-            System.out.println("choose what you want \n 1. Check Membership \n 2. List Members \n 3. Add entity.Member \n 4.Delete entity.Member ");
+            System.out.println("choose what you want \n 1. Create Invoice ");
 
             switch (sc.nextInt()) {
                 case 1:
-                    checkMembership();
+                	addInvoice();
                     break;
-                case 2:
-                    memberManager.printMembers();
-                    break;
-                case 3:
-                    addMember();
-                    break;
-                case 4:
-                    deleteMember();
-                    break;
+                
+                
                 default:
                     return;
             }
         }
     }
 
-    private void checkMembership() {
+
+    private void addInvoice() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("The name to check for membership");
-        String name = sc.next();
-        Member member = memberManager.getMember(name);
-        if (member != null) {
-            System.out.println("entity.Member detail:");
-            System.out.println(member);
-        } else {
-            System.out.println("Not a member");
-        }
+        System.out.println("Please enter the order id:");
+        int id_order = sc.nextInt();        
+        invoiceManager.createInvoice(id_order);
     }
 
-    private void addMember() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("The name of the member to add");
-        String name = sc.next();
-        System.out.println("The contact of the member to add");
-        String contact = sc.next();
-        memberManager.createMember(name, contact);
-    }
-
-    private void deleteMember() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("The name of the member to delete");
-        memberManager.deleteMember(sc.next());
-    }
+   
 
 }
