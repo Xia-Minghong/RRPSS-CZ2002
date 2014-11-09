@@ -16,7 +16,7 @@ public class ReservationManager extends AbstractManager {
     public ReservationManager(TableManager tableManager, String FILE_PATH) {
         super(FILE_PATH);
         this.tableManager = tableManager;
-
+        this.reservations = load();
     }
 
     private boolean isTableAvailable(Table table,
@@ -109,6 +109,15 @@ public class ReservationManager extends AbstractManager {
 
     public void setReservations(ArrayList<Reservation> reservations) {
         this.reservations = reservations;
+    }
+
+    @Override
+    public ArrayList<Reservation> load() {
+        ArrayList<Reservation> reservations = (ArrayList<Reservation>) read();
+        if (reservations == null) {
+            reservations = new ArrayList<Reservation>();
+        }
+        return reservations;
     }
 
     @Override

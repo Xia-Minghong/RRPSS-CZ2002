@@ -36,7 +36,7 @@ public class InvoiceManager extends AbstractManager {
     }
 
     @Override
-    public ArrayList load() {
+    public ArrayList<Invoice> load() {
         ArrayList<Invoice> invoices = (ArrayList<Invoice>) read();
         if (invoices == null) {
             invoices = new ArrayList<Invoice>();

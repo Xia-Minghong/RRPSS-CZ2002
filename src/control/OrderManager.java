@@ -29,6 +29,15 @@ public class OrderManager extends AbstractManager {
 	}
 
     @Override
+    public ArrayList load() {
+        ArrayList<Order> orders = (ArrayList<Order>) read();
+        if (orders == null) {
+            orders = new ArrayList<Order>();
+        }
+        return orders;
+    }
+
+    @Override
 	public void save() {
 		write(orderCollection);
 	}
