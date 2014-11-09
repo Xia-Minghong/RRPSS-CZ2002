@@ -1,9 +1,10 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Invoice{
+public class Invoice implements Serializable{
 
 	private final int INVOICE_ID;
 

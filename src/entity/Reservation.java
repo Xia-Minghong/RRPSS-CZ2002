@@ -1,8 +1,9 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class Reservation {
+public class Reservation implements Serializable{
 	private Calendar time;
 	private int pax;
 	private String cstName;

@@ -1,5 +1,6 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * @author zhou
  *
  */
-public class Order {
+public class Order implements Serializable{
 	private static int orderCount = 0;
 	private int staffID, tableID;
 	private final int orderID;

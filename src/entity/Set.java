@@ -2,9 +2,10 @@ package entity;
 
 import control.MenuManager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Set extends MenuItem{
+public class Set extends MenuItem implements Serializable{
 	
 	private ArrayList<AlaCarte> set =  new ArrayList<AlaCarte>();
 	

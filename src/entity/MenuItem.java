@@ -1,12 +1,14 @@
 package entity;
 
+import java.io.Serializable;
+
 /**
  * MenuItem is a abstract class which holds the attributes of a menuItem 
  * and provides the mutators/setters and accessors/getters accordingly
  * @author Cao Gaoxu
  * @since 2014-11-05
  */
-public abstract class MenuItem {
+public abstract class MenuItem{
 	
 	/**
 	 * The name of the menuItem
