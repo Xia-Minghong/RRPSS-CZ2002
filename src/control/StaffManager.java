@@ -43,7 +43,8 @@ public class StaffManager extends AbstractManager{
 		}
 		return null;
 	}
-	
+
+    @Override
 	public ArrayList<Staff> load(){
         ArrayList<Staff> staffs = (ArrayList<Staff>) read();
         if (staffs == null) {
