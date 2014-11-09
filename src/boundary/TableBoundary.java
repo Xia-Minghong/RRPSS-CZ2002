@@ -13,6 +13,7 @@ public class TableBoundary implements Runnable {
 
     public TableBoundary(TableManager tableManager) {
         this.tableManager = tableManager;
+        init();
     }
 
 
@@ -50,7 +51,6 @@ public class TableBoundary implements Runnable {
 
     @Override
     public void run() {
-        init();
         showMenu();
     }
 }

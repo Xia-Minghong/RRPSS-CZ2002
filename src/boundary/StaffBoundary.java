@@ -12,6 +12,7 @@ public class StaffBoundary implements Runnable{
 	
 	public StaffBoundary(StaffManager staffManager){
 		this.staffManager = staffManager;
+        init();
 	}
 	
 	public void showMenu(){
@@ -100,7 +101,6 @@ public class StaffBoundary implements Runnable{
 
     @Override
 	public void run(){
-		init();
 		showMenu();
 	}
 	

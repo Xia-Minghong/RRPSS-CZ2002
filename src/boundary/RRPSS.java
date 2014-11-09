@@ -2,6 +2,7 @@ package boundary;
 
 import control.*;
 import entity.Staff;
+import entity.Table;
 
 import java.util.Scanner;
 
@@ -12,16 +13,18 @@ import java.util.Scanner;
 public class RRPSS implements Runnable{
     RestaurantManager restaurantManager;
 
-    StaffManager staffManager;
-    StaffBoundary staffBoundary;
-
     public RRPSS() {
         this.restaurantManager = new RestaurantManager("restaurant.dat");
-        this.staffManager = new StaffManager("staffs.dat");
-        this.staffBoundary = new StaffBoundary(staffManager);
+        init();
     }
 
     private void showMainMenu() {
+
+        TableManager tableManager = new TableManager("tables.dat");
+        TableBoundary tableBoundary = new TableBoundary(tableManager);
+
+        StaffManager staffManager = new StaffManager("staffs.dat");
+        StaffBoundary staffBoundary = new StaffBoundary(staffManager);
 
         MenuManager menuManager = new MenuManager("menu.dat");
         MenuBoundary menuBoundary = new MenuBoundary(menuManager);
@@ -42,6 +45,9 @@ public class RRPSS implements Runnable{
         //print main menu
 
         //while true
+        tableBoundary.run();
+        staffBoundary.run();
+
         //If the user chooses to perform action about menu
         menuBoundary.run();
 
@@ -75,11 +81,6 @@ public class RRPSS implements Runnable{
             restaurantManager.getRestaurant().setSERVICE_CHARGE_RATE(scanner.nextDouble());
         }
 
-        //If no staff
-        if (staffManager.getStaffs().size() == 0) {
-            staffBoundary.init();
-        }
-
 //        restaurantManager.load();
 //        restaurant.setGST_RATE(0.1);
 //        restaurant.setSERVICE_CHARGE_RATE(0.1);
@@ -96,7 +97,6 @@ public class RRPSS implements Runnable{
 
     @Override
     public void run() {
-        init();
         showMainMenu();
         restaurantManager.save();
     }
