@@ -14,7 +14,7 @@ public class RestaurantManager extends AbstractManager {
     public RestaurantManager(String FILE_PATH) {
         super(FILE_PATH);
 
-        this.restaurant = (Restaurant) read();
+        this.restaurant = load();
     }
 
     public Restaurant getRestaurant() {

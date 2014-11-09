@@ -42,18 +42,17 @@ public class RRPSS implements Runnable{
         //print main menu
 
         //while true
+        //If the user chooses to perform action about menu
+        menuBoundary.run();
+
         //If the user chooses to perform action about member
         memberBoundary.run();
 
+        reservationBoundary.run();
 
         orderBoundary.run();
 
-        //If the user chooses to perform action about menu
-//        ArrayList<entity.MenuItem> menuItems = new ArrayList<entity.MenuItem>();
-//        control.Menu menu = new control.Menu(menuItems, "path");
-//        MenuBoundary menuBoundary = new MenuBoundary(menuItems, memberManager);
-//        memberBoundary.run();
-
+        invoiceBoundary.run();
 
         //quit
         menuManager.save();
