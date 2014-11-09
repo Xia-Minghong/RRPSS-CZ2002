@@ -6,14 +6,10 @@ import entity.Staff;
 
 public class StaffManager extends AbstractManager{
 
-	
-	private final String FILE_PATH;
-	
 	private ArrayList<Staff> staffs;
 	
 	public StaffManager(String FILE_PATH){
 		super(FILE_PATH);
-		this.FILE_PATH = FILE_PATH;
 		this.staffs = load();
 	}
 	
@@ -49,13 +45,11 @@ public class StaffManager extends AbstractManager{
 	}
 	
 	public ArrayList<Staff> load(){
-		Object object = read();
-		if(object instanceof ArrayList<?> && ((ArrayList<?>) object).get(0) instanceof Staff){
-			return (ArrayList<Staff>) object;
-			
-		}
-		System.out.println("Error loading staffs from file");
-		return null;
+        ArrayList<Staff> tables = (ArrayList<Staff>) read();
+        if (tables == null) {
+            tables = new ArrayList<Staff>();
+        }
+        return tables;
 	}
 	
 	@Override

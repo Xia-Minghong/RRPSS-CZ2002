@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import entity.Staff;
 
-public class StaffBoundary {
+public class StaffBoundary implements Runnable{
 	
 	private StaffManager staffManager;
 	
@@ -97,7 +97,8 @@ public class StaffBoundary {
 			System.out.println("Update one more staff?('y' to continue)");
 		}while(sc.next().equals('y'));
 	}
-	
+
+    @Override
 	public void run(){
 		init();
 		showMenu();

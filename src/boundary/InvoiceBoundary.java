@@ -2,6 +2,7 @@ package boundary;
 
 import control.InvoiceManager;
 import entity.Invoice;
+import entity.Member;
 
 import java.util.ArrayList;
 import java.util.Scanner;
