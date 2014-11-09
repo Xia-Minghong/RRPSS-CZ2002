@@ -28,11 +28,20 @@ public class InvoiceManager extends AbstractManager {
 
         this.staffManager = staffManager;
 
-        this.invoices = (ArrayList<Invoice>) read();
+        this.invoices = load();
 
         this.GST_RATE = GST_RATE;
 
         this.SERVICE_CHARGE_RATE = SERVICE_CHARGE_RATE;
+    }
+
+    @Override
+    public ArrayList load() {
+        ArrayList<Invoice> invoices = (ArrayList<Invoice>) read();
+        if (invoices == null) {
+            invoices = new ArrayList<Invoice>();
+        }
+        return invoices;
     }
 
     @Override
@@ -42,15 +51,15 @@ public class InvoiceManager extends AbstractManager {
 
     public void createInvoice(int orderID) {
         Order order = orderManager.getOrderbyID(orderID);
-        Staff staff = staffManager.getStaffbyID(order.getStaffID());
+        String staffName = staffManager.getStaffbyID(order.getStaffID()).getStaffName();
         Date TIMESTAMP = new Date();
-        String STAFF = Order.getStaff();
+//        String STAFF = order.getStaff();
         int INVOICE_ID = invoices.size();
         double GROSS_PRICE = order.getTotal();
         double GST = GROSS_PRICE * GST_RATE;
         double SERVICE_CHARGE = GROSS_PRICE * SERVICE_CHARGE_RATE;
         double NET_PRICE = GROSS_PRICE + GST + SERVICE_CHARGE;
-        Invoice invoice = new Invoice(INVOICE_ID, TIMESTAMP, STAFF, order, GROSS_PRICE, GST, SERVICE_CHARGE, NET_PRICE);
+        Invoice invoice = new Invoice(INVOICE_ID, TIMESTAMP, staffName, order, GROSS_PRICE, GST, SERVICE_CHARGE, NET_PRICE);
         printInvoice(invoice);
     }
 

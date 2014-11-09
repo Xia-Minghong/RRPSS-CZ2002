@@ -45,11 +45,11 @@ public class StaffManager extends AbstractManager{
 	}
 	
 	public ArrayList<Staff> load(){
-        ArrayList<Staff> tables = (ArrayList<Staff>) read();
-        if (tables == null) {
-            tables = new ArrayList<Staff>();
+        ArrayList<Staff> staffs = (ArrayList<Staff>) read();
+        if (staffs == null) {
+            staffs = new ArrayList<Staff>();
         }
-        return tables;
+        return staffs;
 	}
 	
 	@Override

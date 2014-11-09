@@ -9,7 +9,7 @@ public class Invoice{
 
     private final Date TIMESTAMP;
 	
-    private final String STAFF;
+    private final String STAFF_NAME;
     
     private final Order ORDER;
     
@@ -22,10 +22,10 @@ public class Invoice{
 	private final double NET_PRICE;
 
 
-    public Invoice(int INVOICE_ID, Date TIMESTAMP, String STAFF, Order ORDER, double GROSS_PRICE, double GST, double SERVICE_CHARGE, double NET_PRICE) {
+    public Invoice(int INVOICE_ID, Date TIMESTAMP, String STAFF_NAME, Order ORDER, double GROSS_PRICE, double GST, double SERVICE_CHARGE, double NET_PRICE) {
         this.INVOICE_ID = INVOICE_ID;        
         this.TIMESTAMP = TIMESTAMP;
-        this.STAFF = STAFF;
+        this.STAFF_NAME = STAFF_NAME;
         this.ORDER = ORDER;
         this.GROSS_PRICE = GROSS_PRICE;
         this.GST = GST;
@@ -37,7 +37,7 @@ public class Invoice{
 		System.out.println("Invoice ID" + INVOICE_ID);
 		System.out.println("Time: "+ TIMESTAMP);
 /** not sure how to handle timestamp  */
-		System.out.println("Staff :" + STAFF);
+		System.out.println("Staff :" + STAFF_NAME);
 		ArrayList<OrderItem> orderItems = ORDER.getOrderItems();
 		for (OrderItem orderItem : orderItems){
 			System.out.println(orderItem);
