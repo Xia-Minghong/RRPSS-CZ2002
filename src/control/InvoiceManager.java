@@ -2,8 +2,6 @@ package control;
 
 import entity.Invoice;
 import entity.Order;
-import entity.Restaurant;
-import entity.Staff;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,9 +29,9 @@ public class InvoiceManager extends AbstractManager {
 
         this.invoices = load();
 
-        this.GST_RATE = restaurantManager.getRestaurant().getGST_RATE();
+        this.GST_RATE = restaurantManager.getRestaurant().getGSTRate();
 
-        this.SERVICE_CHARGE_RATE = restaurantManager.getRestaurant().getSERVICE_CHARGE_RATE();
+        this.SERVICE_CHARGE_RATE = restaurantManager.getRestaurant().getServiceChargeRate();
     }
 
     public void createInvoice(int orderID) {

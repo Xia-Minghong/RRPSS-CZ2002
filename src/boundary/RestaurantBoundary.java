@@ -1,10 +1,7 @@
 package boundary;
 
 import control.*;
-import entity.Staff;
-import entity.Table;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -113,21 +110,32 @@ public class RestaurantBoundary implements Runnable {
         this.restaurantManager = new RestaurantManager("restaurant.dat");
 
 		// If GST Rate is not set
-		if (restaurantManager.getRestaurant().getGST_RATE() < 0) {
+		if (restaurantManager.getRestaurant().getGSTRate() < 0) {
 			System.out.print("GST Rate: ");
-			restaurantManager.getRestaurant().setGST_RATE(scanner.nextDouble());
+			restaurantManager.getRestaurant().setGSTRate(scanner.nextDouble());
 		}
 
 		// If Service Charge Rate is not set
-		if (restaurantManager.getRestaurant().getSERVICE_CHARGE_RATE() < 0) {
+		if (restaurantManager.getRestaurant().getServiceChargeRate() < 0) {
 			System.out.print("Service Charge Rate: ");
-			restaurantManager.getRestaurant().setSERVICE_CHARGE_RATE(
-					scanner.nextDouble());
+			restaurantManager.getRestaurant().setServiceChargeRate(
+                    scanner.nextDouble());
 		}
 
+        if (restaurantManager.getRestaurant().getRestaurantName() == "") {
+            System.out.print("Restaurant Name: ");
+            restaurantManager.getRestaurant().setRestaurantName(
+                    scanner.next());
+        }
+
+        if (restaurantManager.getRestaurant().getMembershipDiscountRate() < 0) {
+            System.out.print("Membership Discount Rate");
+            restaurantManager.getRestaurant().setMembershipDiscountRate(scanner.nextDouble());
+        }
+
 		// restaurantManager.load();
-		// restaurant.setGST_RATE(0.1);
-		// restaurant.setSERVICE_CHARGE_RATE(0.1);
+		// restaurant.setGSTRate(0.1);
+		// restaurant.setServiceChargeRate(0.1);
 		// //If restaurant does not have table or staffs
 		// if (restaurant.getTables().size() == 0 ||
 		// restaurant.getStaffs().size() == 0) {

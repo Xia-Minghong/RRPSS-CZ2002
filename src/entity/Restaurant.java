@@ -7,23 +7,40 @@ import java.io.Serializable;
  */
 public class Restaurant implements Serializable{
 
-    private double GST_RATE = -1;
-    private double SERVICE_CHARGE_RATE = -1;
+    private double GSTRate = -1;
+    private double serviceChargeRate = -1;
+    private String restaurantName = "";
+    private double membershipDiscountRate = -1;
 
-    public double getGST_RATE() {
-        return GST_RATE;
+    public double getGSTRate() {
+        return GSTRate;
     }
 
-    public void setGST_RATE(double GST_RATE) {
-        this.GST_RATE = GST_RATE;
+    public void setGSTRate(double GSTRate) {
+        this.GSTRate = GSTRate;
     }
 
-    public double getSERVICE_CHARGE_RATE() {
-        return SERVICE_CHARGE_RATE;
+    public double getServiceChargeRate() {
+        return serviceChargeRate;
     }
 
-    public void setSERVICE_CHARGE_RATE(double SERVICE_CHARGE_RATE) {
-        this.SERVICE_CHARGE_RATE = SERVICE_CHARGE_RATE;
+    public void setServiceChargeRate(double serviceChargeRate) {
+        this.serviceChargeRate = serviceChargeRate;
     }
 
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
+    }
+
+    public double getMembershipDiscountRate() {
+        return membershipDiscountRate;
+    }
+
+    public void setMembershipDiscountRate(double membershipDiscountRate) {
+        this.membershipDiscountRate = membershipDiscountRate;
+    }
 }
