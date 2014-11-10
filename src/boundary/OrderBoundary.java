@@ -20,9 +20,9 @@ public class OrderBoundary implements Runnable{
 		Scanner sc = new Scanner(System.in);
 		while (true)
 		{
-			System.out.println("choose what you want \n 1. Create entity.Order \n 2.get total price of a order ");
-			System.out.println(" 3. remove a order \n 4. view all orders \n 5. edit a order 6. exit");
-			
+			System.out.println("\n 1. Create entity.Order \n 2.get total price of a order ");
+			System.out.println(" 3. remove a order \n 4. view all orders \n 5. edit a order\n6. exit");
+			System.out.println("Choose what you want");
 			switch (sc.nextInt()) {
 			case 1:	
 				createOrder();
@@ -55,7 +55,7 @@ public class OrderBoundary implements Runnable{
 		Scanner sc = new Scanner(System.in);
 		while (true) {
 			System.out.println("choose what you want to do with the order");
-			System.out.println("1. add item\n2.removed item3.exit");
+			System.out.println("1. add item\n2.removed item\n3.exit");
 			switch (sc.nextInt()) {
 			case 1:	
 				orderManager.getMenuManager().showAllItem();
@@ -87,7 +87,7 @@ public class OrderBoundary implements Runnable{
 		System.out.println("Input entity.Staff No & entity.Table No sperate by whitespace");
 		Scanner scanner = new Scanner(System.in);
 		orderManager.getOrderCollection().add(new Order(scanner.nextInt(), scanner.nextInt()));
-		System.out.format("entity.Order with ID = %d was created", orderManager.getOrderCollection().get( orderManager.getOrderCollection().size()-1).getOrderID());
+		System.out.format("Order with ID = %d was created ", orderManager.getOrderCollection().get( orderManager.getOrderCollection().size()-1).getOrderID());
 	}
 	
 }
