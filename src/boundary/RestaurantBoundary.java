@@ -7,7 +7,9 @@ import entity.Table;
 import java.util.Scanner;
 
 /**
- * Boundary class for Restaurant Created by root on 14-11-7.
+ * @author <Collaborative Effort>
+ * @version 1.0
+ * @since 2014-11-6
  */
 public class RestaurantBoundary implements Runnable {
 	RestaurantManager restaurantManager;

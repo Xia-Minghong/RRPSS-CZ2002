@@ -4,10 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * A control.IOManager handles the file read/write in the boundary.RRPSS system
- * to achieve data persistence.
- * The methods of this class are static so that other classes can call the them
- * conveniently without instantiation
+ * A abstract manager containing necessary methods to achieve data persistence.
  * @author Xia Minghong
  * @version 1.0
  * @since 2014-10-24.
