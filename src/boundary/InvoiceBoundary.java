@@ -26,10 +26,16 @@ public class InvoiceBoundary implements Runnable {
     private void showMenu() {
         Scanner sc = new Scanner(System.in);
         while (true) {
-            System.out.println("choose what you want \n 1. Create Invoice ");
+            System.out.println("choose what you want \n 1. Create Invoice \n 2. Print Daily Report \n 3. Print Monthly Report \n 4. Back  ");
 
             switch (sc.nextInt()) {
                 case 1:
+                	addInvoice();
+                    break;
+                case 2:
+                	addInvoice();
+                    break;
+                case 3:
                 	addInvoice();
                     break;
                 
