@@ -50,6 +50,7 @@ public abstract class AbstractManager {
             return null;
         } catch (IOException e) {
             System.out.println("Error reading file");
+            e.printStackTrace();
             return null;
         } catch (ClassNotFoundException c) {     //handle ClassNotFound exception from the readObject()
             System.out.println("Class not be found.");

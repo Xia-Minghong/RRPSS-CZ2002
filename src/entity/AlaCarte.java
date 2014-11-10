@@ -1,7 +1,9 @@
 package entity;
 
 
-public class AlaCarte extends MenuItem {
+import java.io.Serializable;
+
+public class AlaCarte extends MenuItem implements Serializable{
 	
 	/**
 	 * the price of the Alacarte
