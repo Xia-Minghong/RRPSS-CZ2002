@@ -8,11 +8,11 @@ import java.util.Scanner;
 
 public class OrderBoundary implements Runnable{
 	
-	public OrderManager manager;
+	public OrderManager orderManager;
 	
-	public OrderBoundary(OrderManager manager) {
+	public OrderBoundary(OrderManager orderManager) {
 		// TODO Auto-generated constructor stub
-		this.manager = manager;
+		this.orderManager = orderManager;
 	}
 	
 	@Override
@@ -30,12 +30,12 @@ public class OrderBoundary implements Runnable{
 			case 2:
 				showAllOrderWithID();
 				System.out.println("choose a order you want to view");
-				System.out.println(manager.getOrderCollection().get(sc.nextInt()).getTotal());
+				System.out.println(orderManager.getOrderCollection().get(sc.nextInt()).getTotal());
 				break;
 			case 3:
 				showAllOrderWithID();
 				System.out.println("choose a order you want to remove");
-				manager.getOrderCollection().remove(sc.nextInt());
+				orderManager.getOrderCollection().remove(sc.nextInt());
 				System.out.println("successfully removed");
 				break;
 			case 4:
@@ -58,19 +58,19 @@ public class OrderBoundary implements Runnable{
 			System.out.println("1. add item\n2.removed item3.exit");
 			switch (sc.nextInt()) {
 			case 1:	
-				manager.getMenuManager().showAllItem();
+				orderManager.getMenuManager().showAllItem();
 				System.out.println("choose a item by inputting item ID");
 				int item = sc.nextInt();
-				System.out.println("How many "+ manager.getMenuManager().getMenuItemByld(item).getName() + " do you want?");
+				System.out.println("How many "+ orderManager.getMenuManager().getMenuItemByld(item).getName() + " do you want?");
 				int quantity = sc.nextInt();
-				manager.getOrderCollection().get(orderID).addOrderItem(new
-                        OrderItem(quantity, manager.getMenuManager().getMenuItemByld(item)));
+				orderManager.getOrderCollection().get(orderID).addOrderItem(new
+                        OrderItem(quantity, orderManager.getMenuManager().getMenuItemByld(item)));
 				System.out.println("successfully ordered!");
 				break;
 			case 2:
-				manager.getOrderCollection().get(orderID).showAllOrderItems();
+				orderManager.getOrderCollection().get(orderID).showAllOrderItems();
 				System.out.println("Choose a item you want to removed");
-				manager.getOrderCollection().get(orderID).removeOrderItem(sc.nextInt());
+				orderManager.getOrderCollection().get(orderID).removeOrderItem(sc.nextInt());
 				System.out.println("Removed!");
 				break;
 			default:
@@ -79,15 +79,15 @@ public class OrderBoundary implements Runnable{
 		}
 	}
 	public void showAllOrderWithID() {
-		for (Order order : manager.getOrderCollection()) {
+		for (Order order : orderManager.getOrderCollection()) {
 			System.out.format("ID = %d \t staff No = %d \t table No = \t",order.getOrderID(),order.getStaffID(),order.getTableID());
 		}
 	}
 	public void createOrder() {
 		System.out.println("Input entity.Staff No & entity.Table No sperate by whitespace");
 		Scanner scanner = new Scanner(System.in);
-		manager.getOrderCollection().add(new Order(scanner.nextInt(), scanner.nextInt()));
-		System.out.format("entity.Order with ID = %d was created", manager.getOrderCollection().get( manager.getOrderCollection().size()-1).getOrderID());
+		orderManager.getOrderCollection().add(new Order(scanner.nextInt(), scanner.nextInt()));
+		System.out.format("entity.Order with ID = %d was created", orderManager.getOrderCollection().get( orderManager.getOrderCollection().size()-1).getOrderID());
 	}
 	
 }

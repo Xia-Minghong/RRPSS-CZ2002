@@ -51,6 +51,7 @@ public class RestaurantBoundary implements Runnable {
 //		tableBoundary.run();
 //		staffBoundary.run();
 
+        staffBoundary.run();
 		int choice;
 		Scanner sc = new Scanner(System.in);
 		do {

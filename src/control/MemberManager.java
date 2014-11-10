@@ -5,7 +5,7 @@ import entity.Member;
 import java.util.ArrayList;
 
 /**
- * A manager which takes the responsibilities of:
+ * A orderManager which takes the responsibilities of:
  *  1. getting/Writing members data from/to file
  *  2. Handle the creation/deletion of a member
  * @author Xia Minghong

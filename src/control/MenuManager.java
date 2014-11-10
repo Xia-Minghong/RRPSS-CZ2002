@@ -7,7 +7,7 @@ import entity.Set;
 import java.util.ArrayList;
 
 /**
- * A manager which takes the responsibilities of :
+ * A orderManager which takes the responsibilities of :
  * 1. getting/writing menuItems data from/to file
  * 2. provide the methods to create, delete, update and show menuItems
  * @author Cao Gaoxu

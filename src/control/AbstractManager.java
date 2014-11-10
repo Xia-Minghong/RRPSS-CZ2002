@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * A abstract manager containing necessary methods to achieve data persistence.
+ * A abstract orderManager containing necessary methods to achieve data persistence.
  * @author Xia Minghong
  * @version 1.0
  * @since 2014-10-24.
