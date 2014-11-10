@@ -153,12 +153,11 @@ public class MenuManager extends AbstractManager {
 
     @Override
 	public ArrayList<MenuItem> load(){
-		Object object = read();
-		if(object instanceof ArrayList<?> && ((ArrayList<?>) object).get(0) instanceof MenuItem){
-			return (ArrayList<MenuItem>) object;
-		}
-		System.out.println("Error loading menuItems from file");
-		return new ArrayList<MenuItem>();
+        ArrayList<MenuItem> menuItems = (ArrayList<MenuItem>) read();
+        if (menuItems == null) {
+            menuItems = new ArrayList<MenuItem>();
+        }
+        return menuItems;
 		
 	}
 	

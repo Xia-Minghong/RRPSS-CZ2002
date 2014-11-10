@@ -46,10 +46,13 @@ public abstract class AbstractManager {
             fileInputStream.close();
 
             return obj;
-        } catch(IOException i) {    //handle IO exceptions
-            System.out.println("No file found, initializing...");
+        } catch (FileNotFoundException i) {    //return null if file is not fount
+            System.out.println("Not found");
             return null;
-        } catch(ClassNotFoundException c) {     //handle ClassNotFound exception from the readObject()
+        } catch (IOException e) {
+            System.out.println("Error reading file");
+            return null;
+        } catch (ClassNotFoundException c) {     //handle ClassNotFound exception from the readObject()
             System.out.println("Class not be found.");
             return null;
         }
@@ -85,7 +88,7 @@ public abstract class AbstractManager {
             System.out.println("Serialized data is stored in \""+FILE_PATH+"\"");
             return true;
         }catch(IOException i) { //handle the IO exception
-            i.printStackTrace();
+            System.out.println("Error writing file");
             return false;
         }
     }

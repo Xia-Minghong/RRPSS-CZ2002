@@ -4,6 +4,7 @@ import control.*;
 import entity.Staff;
 import entity.Table;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -54,8 +55,17 @@ public class RestaurantBoundary implements Runnable {
 		Scanner sc = new Scanner(System.in);
 		do {
 			printMenu();
-			choice = sc.nextInt();
-			switch (choice) {
+            while (true) {
+                try {
+                    String input = sc.next();
+                    choice = Integer.parseInt(input);
+                    break;
+                } catch (NumberFormatException ne) {    //handle invalid input
+                    System.out.print("Invalid choice, choose again: ");
+                }
+            }
+
+            switch (choice) {
 			case 1:
 				menuBoundary.run();
 				break;
@@ -72,6 +82,9 @@ public class RestaurantBoundary implements Runnable {
 				invoiceBoundary.run();
 				break;
 			case 6:
+                System.out.println("Saving system data");
+                tableManager.save();
+                staffManager.save();
 				menuManager.save();
 				memberManager.save();
 				reservationManager.save();
