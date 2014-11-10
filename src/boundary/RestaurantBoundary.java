@@ -9,10 +9,10 @@ import java.util.Scanner;
 /**
  * Boundary class for Restaurant Created by root on 14-11-7.
  */
-public class RRPSS implements Runnable {
+public class RestaurantBoundary implements Runnable {
 	RestaurantManager restaurantManager;
 
-	public RRPSS() {
+	public RestaurantBoundary() {
 		this.restaurantManager = new RestaurantManager("restaurant.dat");
 		init();
 	}
@@ -46,8 +46,8 @@ public class RRPSS implements Runnable {
 		// print main menu
 
 		// while true
-		tableBoundary.run();
-		staffBoundary.run();
+//		tableBoundary.run();
+//		staffBoundary.run();
 
 		int choice;
 		Scanner sc = new Scanner(System.in);
