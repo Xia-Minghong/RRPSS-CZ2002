@@ -19,7 +19,6 @@ public class MemberManager extends AbstractManager {
      * the file path from which the member list is read
      * and to which the member list is written
      */
-    private final String FILE_PATH;
 
     private ArrayList<Member> members;
 
@@ -29,7 +28,6 @@ public class MemberManager extends AbstractManager {
      */
     public MemberManager(String FILE_PATH) {
         super(FILE_PATH);
-        this.FILE_PATH = FILE_PATH;
         this.members = load();
     }
 
@@ -86,8 +84,11 @@ public class MemberManager extends AbstractManager {
         }
 
         if (index != -1) {  //if the name exists in the members list
+            System.out.println("deleting " + name + "...");
             members.remove(index);  //remove the record
+            return;
         }
+        System.out.println(name+" is not a member.");
     }
 
 //    /**

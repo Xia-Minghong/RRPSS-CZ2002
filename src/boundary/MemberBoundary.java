@@ -67,6 +67,7 @@ public class MemberBoundary implements Runnable{
         System.out.println("The contact of the member to add");
         String contact = sc.next();
         memberManager.createMember(name, contact);
+        System.out.println("New member added.");
     }
 
     private void deleteMember() {
