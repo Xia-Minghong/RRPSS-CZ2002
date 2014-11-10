@@ -1,6 +1,7 @@
 package boundary;
 
 import control.TableManager;
+import entity.Table;
 
 import java.util.Scanner;
 
@@ -18,7 +19,7 @@ public class TableBoundary implements Runnable {
 
 
     private void showMenu() {
-        System.out.println("Choose acion:\n\t1. Add Tables\n\t2. Back");
+        System.out.println("Choose acion:\n\t1. Add Tables\n\t2. Show tables\n\t3. Back");
     }
 
     /**
@@ -52,9 +53,17 @@ public class TableBoundary implements Runnable {
                     addTables();
                     break;
                 case 2:
+                    showTables();
+                case 3:
                     break;
             }
         } while (scanner.next().equals("y"));
+    }
+
+    private void showTables() {
+        for (Table table : tableManager.getTables()) {
+            System.out.println(table);
+        }
     }
 
     private int inputInteger() {

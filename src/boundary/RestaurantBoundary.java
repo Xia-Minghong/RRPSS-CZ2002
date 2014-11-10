@@ -31,7 +31,7 @@ public class RestaurantBoundary implements Runnable {
 		MemberManager memberManager = new MemberManager("members.dat");
 		MemberBoundary memberBoundary = new MemberBoundary(memberManager);
 
-		ReservationManager reservationManager = new ReservationManager(null,
+		ReservationManager reservationManager = new ReservationManager(tableManager,
 				"reservations.dat");
 		ReservationBoundary reservationBoundary = new ReservationBoundary(
 				reservationManager);
