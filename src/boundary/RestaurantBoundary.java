@@ -5,17 +5,32 @@ import control.*;
 import java.util.Scanner;
 
 /**
+ * The boundary class handling user interactions related to the restaurant
+ * The class uses various other control classes and boundary classes
+ * and is the main boundary class for this application
+ *
  * @author <Collaborative Effort>
  * @version 1.0
  * @since 2014-11-6
  */
 public class RestaurantBoundary implements Runnable {
+
+    /**
+     * The reference to a restaurant control instance
+     */
 	RestaurantManager restaurantManager;
 
+    /**
+     * Constructor of the restaurant boundary class
+     * which calls init() to initialize system variables if needed
+     */
 	public RestaurantBoundary() {
 		init();
 	}
 
+    /**
+     * Entry point of the this boundary
+     */
     @Override
 	public void run() {
 
@@ -31,7 +46,7 @@ public class RestaurantBoundary implements Runnable {
 		MemberManager memberManager = new MemberManager("members.dat");
 		MemberBoundary memberBoundary = new MemberBoundary(memberManager);
 
-		ReservationManager reservationManager = new ReservationManager(null,
+		ReservationManager reservationManager = new ReservationManager(tableManager,
 				"reservations.dat");
 		ReservationBoundary reservationBoundary = new ReservationBoundary(
 				reservationManager);
@@ -105,6 +120,9 @@ public class RestaurantBoundary implements Runnable {
 		// save other managers
 	}
 
+    /**
+     * Handles the user interactions concerning the initialization of the restaurant
+     */
 	private void init() {
 		Scanner scanner = new Scanner(System.in);
 
@@ -125,12 +143,13 @@ public class RestaurantBoundary implements Runnable {
 
         if (restaurantManager.getRestaurantName().equals("")) {
             System.out.print("Restaurant Name: ");
+            scanner.nextLine(); //clear the "\n" left from the previous input
             restaurantManager.setRestaurantName(
-                    scanner.next());
+                    scanner.nextLine());
         }
 
         if (restaurantManager.getMembershipDiscountRate() < 0) {
-            System.out.print("Membership Discount Rate");
+            System.out.print("Membership Discount Rate: ");
             restaurantManager.setMembershipDiscountRate(scanner.nextDouble());
         }
 

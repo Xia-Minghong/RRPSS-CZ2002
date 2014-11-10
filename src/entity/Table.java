@@ -55,7 +55,11 @@ public class Table implements Serializable{
         return CAPACITY;
     }
 
-//    /**
+    @Override
+    public String toString() {
+        return "ID: " + TABLE_ID + "\tCapacity: " + CAPACITY;
+    }
+    //    /**
 //     * Getter method for presence
 //     * @return the occupation state of the table
 //     */
