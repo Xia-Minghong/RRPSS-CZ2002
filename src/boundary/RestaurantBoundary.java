@@ -125,8 +125,9 @@ public class RestaurantBoundary implements Runnable {
 
         if (restaurantManager.getRestaurantName().equals("")) {
             System.out.print("Restaurant Name: ");
+            scanner.nextLine(); //clear the "\n" left from the previous input
             restaurantManager.setRestaurantName(
-                    scanner.next());
+                    scanner.nextLine());
         }
 
         if (restaurantManager.getMembershipDiscountRate() < 0) {
