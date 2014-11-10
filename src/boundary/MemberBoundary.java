@@ -26,9 +26,18 @@ public class MemberBoundary implements Runnable{
     private void showMenu() {
         Scanner sc = new Scanner(System.in);
         while (true) {
-            System.out.println("choose what you want \n 1. Check Membership \n 2. List Members \n 3. Add entity.Member \n 4.Delete entity.Member ");
-
-            switch (sc.nextInt()) {
+            System.out.println("choose what you want \n 1. Check Membership \n 2. List Members \n 3. Add Member \n 4.Delete Member ");
+            int choice;
+            while (true) {
+                try {
+                    String input = sc.next();
+                    choice = Integer.parseInt(input);
+                    break;
+                } catch (NumberFormatException ne) {    //handle invalid input
+                    System.out.print("Invalid choice, choose again: ");
+                }
+            }
+            switch (choice) {
                 case 1:
                     checkMembership();
                     break;
@@ -53,7 +62,7 @@ public class MemberBoundary implements Runnable{
         String name = sc.next();
         Member member = memberManager.getMember(name);
         if (member != null) {
-            System.out.println("entity.Member detail:");
+            System.out.println("Member detail:");
             System.out.println(member);
         } else {
             System.out.println("Not a member");

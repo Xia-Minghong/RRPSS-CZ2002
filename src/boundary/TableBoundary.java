@@ -35,7 +35,7 @@ public class TableBoundary implements Runnable {
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.print("\nTable "+tableManager.getTables().size()+" Capacity: ");
-            int capacity = scanner.nextInt();
+            int capacity = inputInteger();
             tableManager.addTable(capacity);
             System.out.print("Add more tables? ('y' to continue): ");
         } while (scanner.next().equals("y"));
@@ -46,7 +46,8 @@ public class TableBoundary implements Runnable {
         Scanner scanner = new Scanner(System.in);
         do {
             showMenu();
-            switch (scanner.nextInt()) {
+            int choice = inputInteger();
+            switch (choice) {
                 case 1:
                     addTables();
                     break;
@@ -54,5 +55,20 @@ public class TableBoundary implements Runnable {
                     break;
             }
         } while (scanner.next().equals("y"));
+    }
+
+    private int inputInteger() {
+        int integer;
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                String input = scanner.next();
+                integer = Integer.parseInt(input);
+                break;
+            } catch (NumberFormatException ne) {    //handle invalid input
+                System.out.print("Not an integer, type again: ");
+            }
+        }
+        return integer;
     }
 }
