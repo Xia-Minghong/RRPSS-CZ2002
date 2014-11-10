@@ -12,7 +12,7 @@ public class OrderManager extends AbstractManager {
 	
 	public OrderManager(MenuManager menuManager, String FILE_PATH) {
         super(FILE_PATH);
-		this.orderCollection = (ArrayList<Order>) read();
+		this.orderCollection = load();
 		this.menuManager = menuManager;
 	}
 	

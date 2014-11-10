@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author Cao Gaoxu
  * @since 2014-11-05
  */
-public abstract class MenuItem{
+public abstract class MenuItem implements Serializable{
 	
 	/**
 	 * The name of the menuItem
