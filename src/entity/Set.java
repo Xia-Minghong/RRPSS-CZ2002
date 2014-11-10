@@ -11,9 +11,10 @@ public class Set extends MenuItem implements Serializable{
 	
 	private double discountRate;
 	
-	public Set(String name, String description, String category, double discountrate){
+	public Set(String name, String description, String category, double price){
 		super(name,description, category);
-		this.discountRate = discountrate;
+		this.Price = price;
+		this.discountRate = 1;
 	}
 
 	public double getDiscountRate(){
@@ -31,20 +32,29 @@ public class Set extends MenuItem implements Serializable{
 	public ArrayList<AlaCarte> getSet(){
 		return this.set;
 	}
-	public void addtoSet(MenuManager menu,int  menuitemID){
+	
+	public void addAlaCartetoSet(ArrayList<MenuItem> menu,int  menuitemID){
 		
-		set.add((AlaCarte)menu.getMenuItemByld(menuitemID));
+		set.add((AlaCarte)menu.get(menuitemID-1));
 	}
-	public void delFromSet(MenuManager menu,int menuitemID){
-		set.remove(menu.getMenuItemByld(menuitemID));
+	public void delFromSet(int menuitemID){
+		if(this.getSet().size() == 0){
+			System.out.println("No more Ala Carte to delete!");
+		}
+		else{
+		set.remove(this.getSet().get(menuitemID-1));
+		}
 	}
 	
-	public double getPrice(){
+	public double getDiscountPrice(){
 		double sumPrice = 0;
 		for (AlaCarte alacarte : set){
 			sumPrice += alacarte.getPrice();
 		}
 		return (this.discountRate * sumPrice);
+	}
+	public double getPrice(){
+		return this.Price;
 	}
 	
 
@@ -52,6 +62,16 @@ public class Set extends MenuItem implements Serializable{
 	public void setPrice(double price) {
 		this.Price = price;
 		this.discountRate = price/this.getPrice();		
+	}
+	
+	public void showAlaCarte(){
+		System.out.println("==========="+this.getName()+"===========");
+		for (AlaCarte alacarte : this.getSet()){
+			System.out.println("***********************");
+		    System.out.println("ID"+(this.getSet().indexOf(alacarte)+1) + "\n"+"Name:\t" +alacarte.getName() +"\n"+"Category:\t"+ alacarte.getCategory() +"\n"+"Description:\t"+ alacarte.getDescription() +
+		    		            "\n"+"Price:\t"+ alacarte.getPrice());
+		}
+		System.out.println("===========End=============");
 	}
 		
 }

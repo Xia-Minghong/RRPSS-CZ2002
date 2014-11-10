@@ -5,6 +5,7 @@ import entity.MenuItem;
 import entity.Set;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * A orderManager which takes the responsibilities of :
@@ -48,10 +49,16 @@ public class MenuManager extends AbstractManager {
 	   * @param price, the price of the new menuItem
 	   */
 	public void addAlaCartetoMenu(String name,String description, String category, double price){
-		MenuItem menuitem = new AlaCarte(name, description,category, price);
-		menu.add(menuitem);
-	}
-	
+		for(MenuItem item: menu){
+			if (item.getName().equals(name)){
+				System.out.println("This Ala Carte exists!");
+				return;
+			}
+         }
+		 MenuItem menuitem = new AlaCarte(name, description,category, price);
+		 menu.add(menuitem);
+		 System.out.println("New Ala Carte added");
+	}		            
 	/**
 	 * 
 	 * @param name
@@ -59,27 +66,34 @@ public class MenuManager extends AbstractManager {
 	 * @param category
 	 * @param discountrate
 	 */
-	public void addSet(String name, String description, String category, double discountrate){
-		MenuItem menuitem = new Set(name, description, category, discountrate);
+	public void addSettoMenu(String name, String description, String category, double price){
+		Scanner sc = new Scanner(System.in);
+		for(MenuItem item: menu){
+			if (item.getName().equals(name)){
+				System.out.println("This Set exists!");
+				return;
+			}
+         }
+		MenuItem menuitem = new Set(name, description, category, price);
 		menu.add(menuitem);
+		 do{
+	        	showAllItem();
+	        	System.out.println("Enter the Ala Carte ID to add into this Set: ");
+	        	int itemID = inputInteger();
+	        	((Set) menuitem).addAlaCartetoSet(menu, itemID);
+	        	System.out.println("Add one more Ala Carte? ('y' to Continue)");
+	        }while(sc.next().equals("y"));
+		
 	}
 	
 	/**
 	 * Delete the menuItem with the input name
 	 * @param name, the name of the menuItem to be deleted
 	 */
-	public void deleteMenuItem(String name){
-		int index = -1;
+	public void deleteMenuItembyID(int itemID){
 		
-		for (MenuItem menuitem : menu){
-			if (menuitem.getName().equals(name)){
-				index = menu.indexOf(menuitem);
-				break;
-			}
-		}
-		
-		if(index != -1){
-			menu.remove(index);
+		if(itemID > 0){
+			menu.remove(itemID);
 		} 
 	}
 	
@@ -91,12 +105,7 @@ public class MenuManager extends AbstractManager {
 	 * @param category
 	 */
 	
-	//public void updateAlacarte(int menuItemID,String name,String description, String category,double price){
-		//menu.get(menuItemID-1).setName(name);
-	    //menu.get(menuItemID-1).setDescription(description);
-		//menu.get(menuItemID-1).setCategory(category);
-		//menu.get(menuItemID-1).setPrice(price);
-	//} 
+
 	
 	//public void updateSet(int menuItemID, String name,String description, String category, double discountrate){ 
 		//menu.get(menuItemID-1).setName(name);
@@ -140,10 +149,13 @@ public class MenuManager extends AbstractManager {
 	 */
 
 	public void showAllItem(){
+		System.out.println("===========Menu===========");
 		for (MenuItem menuitem : menu){
-		    System.out.println((menu.indexOf(menuitem)+1) + "   " +menuitem.getName() +"     "+ menuitem.getCategory() +"      "+ menuitem.getDescription() +
-		    		            "      "+ menuitem.getPrice());
+			System.out.println("***********************");
+		    System.out.println("ID"+(menu.indexOf(menuitem)+1) + "\n"+"Name:\t" +menuitem.getName() +"\n"+"Category:\t"+ menuitem.getCategory() +"\n"+"Description:\t"+ menuitem.getDescription() +
+		    		            "\n"+"Price:\t"+ menuitem.getPrice());
 		}
+		System.out.println("===========End=============");
 	}
 	
 	/**
@@ -173,6 +185,21 @@ public class MenuManager extends AbstractManager {
     public ArrayList<MenuItem> getMenu() {
         return menu;
     }
+
+    private int inputInteger() {
+        int integer;
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+        try {
+            String input = scanner.next();
+            integer = Integer.parseInt(input);
+            break;
+        } catch (NumberFormatException ne) {    //handle invalid input
+            System.out.print("Not an integer, type again: ");
+        }
+    }
+    return integer;
+  }
 }
 	
 		
