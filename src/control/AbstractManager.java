@@ -4,7 +4,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * A abstract orderManager containing necessary methods to achieve data persistence.
+ * A abstract orderManager containing necessary attributes and methods to achieve data persistence.
+ *
  * @author Xia Minghong
  * @version 1.0
  * @since 2014-10-24.
@@ -16,6 +17,10 @@ public abstract class AbstractManager {
      */
     private final String FILE_PATH;
 
+    /**
+     * Constructor of the AbstractManager class
+     * @param FILE_PATH the file path from which object will be read and to which the object will be written
+     */
     public AbstractManager(String FILE_PATH) {
         this.FILE_PATH = FILE_PATH;
     }
@@ -93,8 +98,17 @@ public abstract class AbstractManager {
         }
     }
 
+    /**
+     * An abstract method to guarantee that each manager that needs to achieve data persistence
+     * will implement a customized load method
+     * @return the raw object read from the file
+     */
     public abstract Object load();
 
+    /**
+     * An abstract method to guarantee that each manager that needs to achieve data persistence
+     * will implement a customized save method
+     */
     public abstract void save();
 
 
