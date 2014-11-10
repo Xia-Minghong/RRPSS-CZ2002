@@ -158,7 +158,7 @@ public class MenuManager extends AbstractManager {
 			return (ArrayList<MenuItem>) object;
 		}
 		System.out.println("Error loading menuItems from file");
-		return null;
+		return new ArrayList<MenuItem>();
 		
 	}
 	
