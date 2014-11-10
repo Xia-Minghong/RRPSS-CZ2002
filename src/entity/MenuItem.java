@@ -39,7 +39,15 @@ public abstract class MenuItem implements Serializable{
 		this.Category = category;
 		
 	}
-	/**
+
+    /**
+     * This no-argument constructor is needed by subclass's Serialization
+     * mechanism.
+     */
+    protected MenuItem() {
+    }
+
+    /**
 	 * getter method for menuItem's name
 	 * @return the name of the menuItem
 	 */
