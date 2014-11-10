@@ -1,7 +1,7 @@
 //Input check for all non-string inputs
 
 
-table yes
+# table yes
 staff sex m / f
 staff id duplicate check
 

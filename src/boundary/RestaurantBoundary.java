@@ -16,7 +16,8 @@ public class RestaurantBoundary implements Runnable {
 		init();
 	}
 
-	private void showMainMenu() {
+    @Override
+	public void run() {
 
 		TableManager tableManager = new TableManager("tables.dat");
 		TableBoundary tableBoundary = new TableBoundary(tableManager);
@@ -52,7 +53,7 @@ public class RestaurantBoundary implements Runnable {
 		int choice;
 		Scanner sc = new Scanner(System.in);
 		do {
-			printMenu();
+            showMainMenu();
             while (true) {
                 try {
                     String input = sc.next();
@@ -148,12 +149,7 @@ public class RestaurantBoundary implements Runnable {
 		// }
 	}
 
-	@Override
-	public void run() {
-		showMainMenu();
-	}
-
-	private void printMenu() {
+	private void showMainMenu() {
 		System.out.println("1. Menu management");
 		System.out.println("2. Member management");
 		System.out.println("3. Reservation management");

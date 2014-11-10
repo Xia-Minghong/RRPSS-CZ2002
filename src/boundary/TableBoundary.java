@@ -18,15 +18,7 @@ public class TableBoundary implements Runnable {
 
 
     private void showMenu() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Choose acion:\n\t1. Add Tables\n\t2. Back");
-        switch (scanner.nextInt()) {
-            case 1:
-                addTables();
-                break;
-            case 2:
-                break;
-        }
     }
 
     /**
@@ -51,6 +43,16 @@ public class TableBoundary implements Runnable {
 
     @Override
     public void run() {
-        showMenu();
+        Scanner scanner = new Scanner(System.in);
+        do {
+            showMenu();
+            switch (scanner.nextInt()) {
+                case 1:
+                    addTables();
+                    break;
+                case 2:
+                    break;
+            }
+        } while (scanner.next() == "y");
     }
 }
