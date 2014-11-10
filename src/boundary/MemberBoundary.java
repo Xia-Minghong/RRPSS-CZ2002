@@ -6,29 +6,42 @@ import entity.Member;
 import java.util.Scanner;
 
 /**
+ * The boundary class handling user interactions related to members
+ *
  * @author Xia Minghong
  * @version 1.0
  * @since 2014-11-6
  */
 public class MemberBoundary implements Runnable{
 
+    /**
+     * The reference to the member control instance
+     */
     private MemberManager memberManager;
 
+    /**
+     * Constructor of the MemberBoundary class
+     * @param memberManager the reference to the member manager instance
+     */
     public MemberBoundary(MemberManager memberManager) {
         this.memberManager = memberManager;
     }
 
-    @Override
-    public void run() {
-        showMenu();
-    }
 
     private void showMenu() {
+        System.out.println("choose what you want \n 1. Check Membership \n 2. List Members \n 3. Add Member \n 4.Delete Member ");
+    }
+
+    /**
+     * The entry point of the member boundary
+     */
+    @Override
+    public void run() {
         Scanner sc = new Scanner(System.in);
         while (true) {
-            System.out.println("choose what you want \n 1. Check Membership \n 2. List Members \n 3. Add Member \n 4.Delete Member ");
             int choice;
             while (true) {
+                showMenu();
                 try {
                     String input = sc.next();
                     choice = Integer.parseInt(input);
@@ -56,6 +69,9 @@ public class MemberBoundary implements Runnable{
         }
     }
 
+    /**
+     * A method that handles the user interactions related to membership checking
+     */
     private void checkMembership() {
         Scanner sc = new Scanner(System.in);
         System.out.println("The name to check for membership");
@@ -69,6 +85,9 @@ public class MemberBoundary implements Runnable{
         }
     }
 
+    /**
+     * A method that handles the user interactions related to adding a member
+     */
     private void addMember() {
         Scanner sc = new Scanner(System.in);
         System.out.println("The name of the member to add");
@@ -79,6 +98,9 @@ public class MemberBoundary implements Runnable{
         System.out.println("New member added.");
     }
 
+    /**
+     * A method that handles the user interactions related to deleting a member
+     */
     private void deleteMember() {
         Scanner sc = new Scanner(System.in);
         System.out.println("The name of the member to delete");
