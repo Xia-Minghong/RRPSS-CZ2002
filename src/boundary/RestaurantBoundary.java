@@ -110,27 +110,27 @@ public class RestaurantBoundary implements Runnable {
         this.restaurantManager = new RestaurantManager("restaurant.dat");
 
 		// If GST Rate is not set
-		if (restaurantManager.getRestaurant().getGSTRate() < 0) {
+		if (restaurantManager.getGSTRate() < 0) {
 			System.out.print("GST Rate: ");
-			restaurantManager.getRestaurant().setGSTRate(scanner.nextDouble());
+			restaurantManager.setGSTRate(scanner.nextDouble());
 		}
 
 		// If Service Charge Rate is not set
-		if (restaurantManager.getRestaurant().getServiceChargeRate() < 0) {
+		if (restaurantManager.getServiceChargeRate() < 0) {
 			System.out.print("Service Charge Rate: ");
-			restaurantManager.getRestaurant().setServiceChargeRate(
+			restaurantManager.setServiceChargeRate(
                     scanner.nextDouble());
 		}
 
-        if (restaurantManager.getRestaurant().getRestaurantName() == "") {
+        if (restaurantManager.getRestaurantName() == "") {
             System.out.print("Restaurant Name: ");
-            restaurantManager.getRestaurant().setRestaurantName(
+            restaurantManager.setRestaurantName(
                     scanner.next());
         }
 
-        if (restaurantManager.getRestaurant().getMembershipDiscountRate() < 0) {
+        if (restaurantManager.getMembershipDiscountRate() < 0) {
             System.out.print("Membership Discount Rate");
-            restaurantManager.getRestaurant().setMembershipDiscountRate(scanner.nextDouble());
+            restaurantManager.setMembershipDiscountRate(scanner.nextDouble());
         }
 
 		// restaurantManager.load();

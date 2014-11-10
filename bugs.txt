@@ -47,5 +47,5 @@ Invoice:
 	need: memberManager, restaurantManager
 
 restaurant:
-	name
-	membership discount
+	# name
+	# membership discount

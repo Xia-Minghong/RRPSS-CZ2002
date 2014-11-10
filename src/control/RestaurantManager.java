@@ -21,6 +21,38 @@ public class RestaurantManager extends AbstractManager {
         return restaurant;
     }
 
+    public double getGSTRate() {
+        return this.restaurant.getGSTRate();
+    }
+
+    public void setGSTRate(double rate) {
+        this.restaurant.setGSTRate(rate);
+    }
+
+    public double getServiceChargeRate() {
+        return this.restaurant.getServiceChargeRate();
+    }
+
+    public void setServiceChargeRate(double rate) {
+        this.restaurant.setServiceChargeRate(rate);
+    }
+
+    public String getRestaurantName() {
+        return this.restaurant.getRestaurantName();
+    }
+
+    public void setRestaurantName(String name) {
+        this.restaurant.setRestaurantName(name);
+    }
+
+    public double getMembershipDiscountRate() {
+        return this.restaurant.getMembershipDiscountRate();
+    }
+
+    public void setMembershipDiscountRate(double rate) {
+        this.restaurant.setMembershipDiscountRate(rate);
+    }
+
     @Override
     public Restaurant load() {
         Restaurant restaurant = (Restaurant) read();
