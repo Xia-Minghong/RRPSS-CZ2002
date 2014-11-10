@@ -23,9 +23,9 @@ public class MenuBoundary implements Runnable{
         Scanner sc = new Scanner(System.in);
         ArrayList<MenuItem> menu = menuManager.getMenu();
         while(true){
-            System.out.println("Choose which you want: \n 1.Add New Alacarte to Menu \n"
-                    + "2. Add New Set to Menu\n 3. Delete MenuItem from the Menu\n 4.Update the Alacarte\n"
-                    +"5. Update the Set on the Menu\n 6. Show all MenuItems \n" );
+            System.out.println("Choose which you want: \n1. Add New Alacarte to Menu \n"
+                    + "2. Add New Set to Menu\n3. Delete MenuItem from the Menu\n4. Update the Alacarte\n"
+                    +"5. Update the Set on the Menu\n 6. Show all MenuItems \n7.Back" );
             switch (sc.nextInt()){
                 case 1 :
                     System.out.println("The name of the new Alacarte:");
@@ -112,6 +112,8 @@ public class MenuBoundary implements Runnable{
                 case 6:
                     menuManager.showAllItem();
                     break;
+                default:
+                	return;
 
             }
         }
