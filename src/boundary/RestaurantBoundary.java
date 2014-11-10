@@ -13,7 +13,6 @@ public class RestaurantBoundary implements Runnable {
 	RestaurantManager restaurantManager;
 
 	public RestaurantBoundary() {
-		this.restaurantManager = new RestaurantManager("restaurant.dat");
 		init();
 	}
 
@@ -94,6 +93,8 @@ public class RestaurantBoundary implements Runnable {
 
 	private void init() {
 		Scanner scanner = new Scanner(System.in);
+
+        this.restaurantManager = new RestaurantManager("restaurant.dat");
 
 		// If GST Rate is not set
 		if (restaurantManager.getRestaurant().getGST_RATE() < 0) {

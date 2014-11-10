@@ -50,7 +50,7 @@ public abstract class AbstractManager {
 
             return obj;
         } catch(IOException i) {    //handle IO exceptions
-            System.out.println("File I/O Error.");
+            System.out.println("No file found, initializing...");
             return null;
         } catch(ClassNotFoundException c) {     //handle ClassNotFound exception from the readObject()
             System.out.println("Class not be found.");
