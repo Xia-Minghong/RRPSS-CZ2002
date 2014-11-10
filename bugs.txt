@@ -1,0 +1,51 @@
+//Input check for all non-string inputs
+
+
+table yes
+staff sex m / f
+staff id duplicate check
+
+Menu:
+	Formatting , heading, catagory
+	move the "choose..." to the bottom
+	Show MenuItem: use "\t"
+	delete:
+		 ": "
+		check existence
+		use id to delete
+	update: 
+		check existence
+		case break;
+
+Member:
+	existence delete
+	response for each action
+
+Reservation:
+	date check
+	create: null point exception
+
+Order:
+	check all: existence
+	table number
+	Add a getById
+	view order toString
+	reuse
+	remove item show id
+	change getOrderById
+	call staffmanager check staff
+
+Staff:
+	Check(id)
+	list staffs
+
+Invoice:
+	\t\t
+	imitate the format given in the manual
+	back
+	check member, discount
+	need: memberManager, restaurantManager
+
+restaurant:
+	name
+	membership discount
