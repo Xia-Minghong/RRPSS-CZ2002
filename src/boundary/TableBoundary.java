@@ -38,7 +38,7 @@ public class TableBoundary implements Runnable {
             int capacity = scanner.nextInt();
             tableManager.addTable(capacity);
             System.out.print("Add more tables? ('y' to continue): ");
-        } while (scanner.next()=="y");
+        } while (scanner.next().equals("y"));
     }
 
     @Override
@@ -53,6 +53,6 @@ public class TableBoundary implements Runnable {
                 case 2:
                     break;
             }
-        } while (scanner.next() == "y");
+        } while (scanner.next().equals("y"));
     }
 }

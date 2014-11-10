@@ -123,7 +123,7 @@ public class RestaurantBoundary implements Runnable {
                     scanner.nextDouble());
 		}
 
-        if (restaurantManager.getRestaurantName() == "") {
+        if (restaurantManager.getRestaurantName().equals("")) {
             System.out.print("Restaurant Name: ");
             restaurantManager.setRestaurantName(
                     scanner.next());
