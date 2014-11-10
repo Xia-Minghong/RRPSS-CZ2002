@@ -130,7 +130,7 @@ public class RestaurantBoundary implements Runnable {
         }
 
         if (restaurantManager.getMembershipDiscountRate() < 0) {
-            System.out.print("Membership Discount Rate");
+            System.out.print("Membership Discount Rate: ");
             restaurantManager.setMembershipDiscountRate(scanner.nextDouble());
         }
 
