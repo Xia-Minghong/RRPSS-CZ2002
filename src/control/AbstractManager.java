@@ -47,7 +47,6 @@ public abstract class AbstractManager {
 
             return obj;
         } catch (FileNotFoundException i) {    //return null if file is not fount
-            System.out.println("Not found");
             return null;
         } catch (IOException e) {
             System.out.println("Error reading file");
