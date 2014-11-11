@@ -58,7 +58,7 @@ public class Reservation implements Serializable{
 		this.isCheckIn = checkIn;
 	}
 
-	@Override
+	
 	public String toString() {
 		return "Customer Name:" + this.cstName + "\nTime:"
 				+ this.time.get(Calendar.DATE) + "/"

@@ -34,10 +34,20 @@ public class ReservationBoundary {
 			case 3:
 				checkReservation();
 				break;
+			case 4:
+				int index;
+				for (index = 0; index < reservationManager.getReservations()
+						.size(); ++index) {
+					System.out.println((index + 1)
+							+ "."
+							+ reservationManager.getReservations().get(index)
+									.toString());
+				}
+				break;
 			default:
 				break;
 			}
-		} while (choice != 4);
+		} while (choice != 5);
 	}
 
 	private void createReservation() {
@@ -116,7 +126,8 @@ public class ReservationBoundary {
 		System.out.println("1: Create new reservation");
 		System.out.println("2: Remove old reservaiton");
 		System.out.println("3: Check a reservation");
-		System.out.println("4: Go back");
+		System.out.println("4. Show all reservations");
+		System.out.println("5: Go back");
 		System.out.print("Choose any options above:");
 	}
 }
