@@ -34,22 +34,26 @@ public class Invoice implements Serializable{
         this.SERVICE_CHARGE = SERVICE_CHARGE;
         this.NET_PRICE = NET_PRICE;
     }
-	
-	public void print(){
-		System.out.println("======================================================");
-		System.out.println("||Invoice ID:\t\t" + INVOICE_ID + "\t||");
-		System.out.println("||Time:\t\t\t\t"+ TIMESTAMP+ "\t||");
-		System.out.println("||Staff:\t\t\t" + STAFF_NAME+ "\t||");
-		ArrayList<OrderItem> orderItems = ORDER.getOrderItems();
-		for (OrderItem orderItem : orderItems){
-			System.out.println("||" + orderItem + "\t||");
-		}
-		System.out.println("||Gross Price:\t\t"+ GROSS_PRICE+ "\t||");
-		System.out.println("||GST:\t\t\t\t"+ GST+ "\t||");
-		System.out.println("||Service Charge:\t"+ SERVICE_CHARGE+ "\t||");
-		System.out.println("||Net Price:\t\t"+ NET_PRICE+ "\t||");
-		System.out.println("======================================================");
-	}
+
+    @Override
+    public String toString() {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("======================================================\n");
+        stringBuffer.append("||Invoice ID:\t\t" + INVOICE_ID + "\t||\n");
+        stringBuffer.append("||Time:\t\t\t\t"+ TIMESTAMP+ "\t||\n");
+        stringBuffer.append("||Staff:\t\t\t" + STAFF_NAME+ "\t||\n");
+        ArrayList<OrderItem> orderItems = ORDER.getOrderItems();
+        for (OrderItem orderItem : orderItems){
+            stringBuffer.append("||" + orderItem + "\t||\n");
+        }
+        stringBuffer.append("||Gross Price:\t\t"+ GROSS_PRICE+ "\t||\n");
+        stringBuffer.append("||GST:\t\t\t\t"+ GST+ "\t||\n");
+        stringBuffer.append("||Service Charge:\t"+ SERVICE_CHARGE+ "\t||\n");
+        stringBuffer.append("||Net Price:\t\t"+ NET_PRICE+ "\t||\n");
+        stringBuffer.append("======================================================\n");
+        return stringBuffer.toString();
+    }
+
 
 
     public Calendar getTIMESTAMP() {

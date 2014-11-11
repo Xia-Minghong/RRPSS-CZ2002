@@ -66,9 +66,7 @@ public class InvoiceManager extends AbstractManager {
     }
 
     public void printInvoice(Invoice invoice) {
-        invoice.print();
-
-
+        System.out.println(invoice);
     }
 
     @Override

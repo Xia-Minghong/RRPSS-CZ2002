@@ -63,7 +63,7 @@ public class InvoiceBoundary implements Runnable {
 
             if (invoice_d == day && invoice_m == month && invoice_y == year) {
                 dailyTotal += invoice.getNET_PRICE();
-                invoice.print();
+                System.out.println(invoice);
             }
         }
 
