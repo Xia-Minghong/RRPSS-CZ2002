@@ -146,6 +146,16 @@ public class MenuManager extends AbstractManager {
 		//}
 		///System.out.println("===========End=============");
 	///}
+	public String menuToString(){
+		StringBuffer ans = new StringBuffer();
+		ans.append("===========Menu===========\n");
+		for(MenuItem menuitem: menu){
+			ans.append("***********************\n"+"ID"+(this.getMenu().indexOf(menuitem)+1) + "\n"+menuitem+"\n");
+		}
+		ans.append("===========End=============");
+		return ans.toString();
+
+	}
 	
 	/**
 	 * Load menuItems data from file by interacting with IOManager

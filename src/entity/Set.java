@@ -71,7 +71,7 @@ public class Set extends MenuItem implements Serializable{
 		    System.out.println("ID"+(this.getSet().indexOf(alacarte)+1) + "\n"+"Name:\t" +alacarte.getName() +"\n"+"Category:\t"+ alacarte.getCategory() +"\n"+"Description:\t"+ alacarte.getDescription() +
 		    		            "\n"+"Price:\t"+ alacarte.getPrice());
 		}
-		System.out.println("===========End=============");
+		System.out.println("===========End=============\n");
 	}
 	@Override
 	public String toString(){

@@ -44,8 +44,7 @@ public class MenuBoundary implements Runnable{
                 	createSet(menuManager);
                     break;
                 case 3:
-                    System.out.print("The ID of the menuItem to delete:\t");
-                    menuManager.deleteMenuItembyID(inputInteger());
+                	deleteMenuItem();
                     break;
                 case 4 :
                     updateAlacarte(menu);
@@ -54,7 +53,7 @@ public class MenuBoundary implements Runnable{
                 	updateSet(menu);
                     break;
                 case 6:
-                	PrintMenu();
+                	System.out.println(menuManager.menuToString());
                     break;
                 default:
                 	return;
@@ -79,7 +78,7 @@ public class MenuBoundary implements Runnable{
         }
         else{
         	do{
-	        	PrintMenu();
+	        	System.out.println(menuManager.menuToString());
 	        	System.out.println("Enter the Ala Carte ID to add into this Set:\t");
 	        	int itemID = inputInteger();
 	        	if(itemID>(menuManager.getMenu().size())){
@@ -180,7 +179,7 @@ public class MenuBoundary implements Runnable{
                 break;
             case 6 :
             	do{
-            		PrintMenu();
+            		System.out.println(menuManager.menuToString());
     	        	System.out.print("Enter the Ala Carte ID to add into this Set: ");
     	        	int itemID = inputInteger();
     	        	((Set)menu.get(setid-1)).addAlaCartetoSet(menu, itemID);
@@ -201,19 +200,29 @@ public class MenuBoundary implements Runnable{
         }
 	}
     
+	public void deleteMenuItem(){
+		Scanner sc = new Scanner(System.in);
+		do{
+			System.out.print(menuManager.menuToString());
+			System.out.print("The ID of the menuItem to delete:\t");
+            menuManager.deleteMenuItembyID(inputInteger());
+            System.out.print("Delete one more menu item? ('y' to continue");
+		}while(sc.next().equals("y"));
+        	
+	}
 	
 	/**
 	 * Show all the menuItems in the menu with their attributes.
 	 */
 
-	public void PrintMenu(){
-		System.out.println("===========Menu===========");
-		for (MenuItem menuitem : menuManager.getMenu()){
-			System.out.println("***********************");
-		    System.out.println("ID"+(menuManager.getMenu().indexOf(menuitem)+1) + "\n"+menuitem);
-		}
-		System.out.println("===========End=============");
-	}
+	//public void PrintMenu(){
+		//System.out.println("===========Menu===========");
+		//for (MenuItem menuitem : menuManager.getMenu()){
+			//System.out.println("***********************");
+		    //System.out.println("ID"+(menuManager.getMenu().indexOf(menuitem)+1) + "\n"+menuitem);
+		//}
+		//System.out.println("===========End=============");
+	//}
 	private int inputInteger() {
         int integer;
         Scanner scanner = new Scanner(System.in);
