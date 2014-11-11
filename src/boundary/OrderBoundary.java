@@ -28,7 +28,7 @@ public class OrderBoundary implements Runnable{
 			System.out.println("\n 1. Create Order \n 2. Get total price of a order ");
 			System.out.println(" 3. Remove a order \n 4. View all orders \n 5. Edit a order\n any other input to exit");
 			System.out.println("Choose what you want: ");			
-			switch (secureNextInt(sc)) {
+			switch (secureNextInt(sc)) { 
 			case 1:	
 				editOrder(createOrder());
 				break;
