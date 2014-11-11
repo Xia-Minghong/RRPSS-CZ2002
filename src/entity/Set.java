@@ -96,7 +96,7 @@ public class Set extends MenuItem implements Serializable{
 		for(AlaCarte alacarte:this.set){
 			ans.append("\t\t\t"+this.getSet().indexOf(alacarte)+"\t"+alacarte.getName()+"\n");
 		}
-		ans.append("Price:\t"+this.getPrice());
+		ans.append("\nPrice:\t\t"+this.getPrice());
 		return ans.toString();
 	}
 		

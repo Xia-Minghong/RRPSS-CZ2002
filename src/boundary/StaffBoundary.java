@@ -103,7 +103,7 @@ public class StaffBoundary implements Runnable{
                            corrGender = gender.equals("m");
                            break;
                        }
-                       System.out.println("Invalid gender, try again");
+                       System.out.print("Invalid gender, try again: ");
                    }
 
 				   toUpdateStaff.setGender(corrGender);

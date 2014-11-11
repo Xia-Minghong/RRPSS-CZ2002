@@ -150,7 +150,7 @@ public class MenuManager extends AbstractManager {
 		StringBuffer ans = new StringBuffer();
 		ans.append("===========Menu===========\n");
 		for(MenuItem menuitem: menu){
-			ans.append("***********************\n"+"ID\t"+(this.getMenu().indexOf(menuitem)+1) + "\n"+menuitem+"\n");
+			ans.append("*****************************\n"+"ID\t"+(this.getMenu().indexOf(menuitem)+1) + "\n"+menuitem+"\n");
 		}
 		ans.append("===========End=============");
 		return ans.toString();

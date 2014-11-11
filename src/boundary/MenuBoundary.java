@@ -83,14 +83,8 @@ public class MenuBoundary implements Runnable{
 	        	System.out.println(menuManager.menuToString());
 	        	System.out.println("Enter the Ala Carte ID to add into this Set:\t");
 	        	int itemID = inputInteger();
-	        	if(itemID>=(menuManager.getMenu().size())){
-	        		System.out.println("This Ala Carte does not exist!");
-	        	}
-	        	else{
-	        	    newSet.addAlaCartetoSet(menuManager.getMenu(), itemID);
-	        	    System.out.println("Add one more Ala Carte? ('y' to Continue)");
-	        	}
-
+	        	newSet.addAlaCartetoSet(menuManager.getMenu(), itemID);
+	        	System.out.println("Add one more Ala Carte? ('y' to Continue)");
 	        }while(sc.next().equals("y"));
         }
   		  
@@ -186,7 +180,7 @@ public class MenuBoundary implements Runnable{
     	        	System.out.print("Enter the Ala Carte ID to add into this Set: ");
     	        	int itemID = inputInteger();
     	        	((Set)menu.get(setid-1)).addAlaCartetoSet(menu, itemID);
-    	        	System.out.println("Add one more Ala Carte? ('y' to Continue)");
+    	        	System.out.print("Add one more Ala Carte? ('y' to Continue)");
     	        }while(sc.next().equals("y"));
             	break;
             case 7 :
@@ -250,7 +244,7 @@ public class MenuBoundary implements Runnable{
     			doub = Double.parseDouble(input);
     			break;
     		}catch(NumberFormatException ne){
-    			System.out.println("Not an valid value, type again: ");
+    			System.out.print("Not an valid value, type again: ");
     		}
     	}
     	return doub;
@@ -262,7 +256,7 @@ public class MenuBoundary implements Runnable{
 				return manager.getMenuItemByld(itemID);
 			} catch (ArrayIndexOutOfBoundsException e) {
 				// TODO: handle exception
-				System.out.println("Invalid ID please input again");
+				System.out.print("Invalid ID please input again: ");
 			}
 		}
 	}
