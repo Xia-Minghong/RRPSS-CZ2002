@@ -2,9 +2,8 @@ package boundary;
 
 import control.InvoiceManager;
 import entity.Invoice;
-import entity.Member;
 
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 
 /**
@@ -33,13 +32,7 @@ public class InvoiceBoundary implements Runnable {
                 	addInvoice();
                     break;
                 case 2:
-                	System.out.print("Please enter the date(DD/MM/YYYY):");
-                	dateStr = sc.next();
-                	//dateStr = "11/11/2014";
-                	date = dateStr.split("/");
-	                checkDay= calTime.set(new Integer(date[2]), new Integer(date[1]) - 1,
-           				new Integer(date[0],0,0));
-                	printDay(checkDay);
+                	printDailyReport();
                     break;
                 case 3:
                 	System.out.print("Please enter the date(MM/YYYY):");
@@ -58,6 +51,76 @@ public class InvoiceBoundary implements Runnable {
         }
     }
 
+    private void printDailyReport() {
+        double dailyTotal=0;
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Please enter the date(DD/MM/YYYY):");
+        String dateStr = sc.next();
+        //dateStr = "11/11/2014";
+        String[] date = dateStr.split("/");
+        int day = Integer.parseInt(date[2]);
+        int month = Integer.parseInt(date[1]);
+        int year = Integer.parseInt(date[0]);
+
+        for (Invoice invoice : invoiceManager.getInvoices()) {
+            int invoice_d = invoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH);
+            int invoice_m = invoice.getTIMESTAMP().get(Calendar.MONTH)+1;
+            int invoice_y = invoice.getTIMESTAMP().get(Calendar.YEAR);
+
+            if (invoice_d == day && invoice_m == month && invoice_y == year) {
+                dailyTotal += invoice.getNET_PRICE();
+                invoice.print();
+            }
+        }
+
+    }
+
+    private void printMonthlyReport() {
+        Invoice maxRevenueInvoice=invoiceManager.getInvoices().get(0);
+        Invoice minRevenueInvoice=invoiceManager.getInvoices().get(0);
+        double totalRevenue= 0;
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Please enter the date(MM/YYYY):");
+        String dateStr = sc.next();
+        //dateStr = "11/2014";
+        String[] date = dateStr.split("/");
+
+        int month = Integer.parseInt(date[1]);
+        int year = Integer.parseInt(date[0]);
+
+        for (Invoice invoice : invoiceManager.getInvoices()) {
+
+            int invoice_m = invoice.getTIMESTAMP().get(Calendar.MONTH)+1;
+            int invoice_y = invoice.getTIMESTAMP().get(Calendar.YEAR);
+
+            if ( invoice_m == month && invoice_y == year) {
+                if(minRevenueInvoice==null)
+                    minRevenueInvoice = invoice;
+                if (maxRevenueInvoice==null)
+                    maxRevenueInvoice = invoice;
+                if (invoice.getNET_PRICE() < minRevenueInvoice.getNET_PRICE())
+                    minRevenueInvoice = invoice;
+                if (invoice.getNET_PRICE() > maxRevenueInvoice.getNET_PRICE())
+                    maxRevenueInvoice = invoice;
+
+                totalRevenue += invoice.getNET_PRICE();
+            }
+        }
+
+        int maxRevenueYear = maxRevenueInvoice.getTIMESTAMP().get(Calendar.YEAR);
+        int maxRevenueMonth = maxRevenueInvoice.getTIMESTAMP().get(Calendar.MONTH);
+        int maxRevenueDay = maxRevenueInvoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH);
+
+//        String maxRevenueDate =
+
+        int minRevenueYear = minRevenueInvoice.getTIMESTAMP().get(Calendar.YEAR);
+        int minRevenueMonth = minRevenueInvoice.getTIMESTAMP().get(Calendar.MONTH);
+        int minRevenueDay = minRevenueInvoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH);
+
+//        String minRevenueDate = ;
+
+    }
 
     private void addInvoice() {
         Scanner sc = new Scanner(System.in);

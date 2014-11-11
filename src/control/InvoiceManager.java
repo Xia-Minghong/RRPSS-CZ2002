@@ -4,6 +4,7 @@ import entity.Invoice;
 import entity.Order;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class InvoiceManager extends AbstractManager {
@@ -37,7 +38,8 @@ public class InvoiceManager extends AbstractManager {
     public void createInvoice(int orderID) {
         Order order = orderManager.getOrderbyID(orderID);
         String staffName = staffManager.getStaffbyID(order.getStaffID()).getStaffName();
-        Date TIMESTAMP = new Date();
+        Calendar TIMESTAMP = Calendar.getInstance();
+        TIMESTAMP.setTime(new Date());
 //        String STAFF = order.getStaff();
         int INVOICE_ID = invoices.size();
         double GROSS_PRICE = order.getTotal();
@@ -69,4 +71,7 @@ public class InvoiceManager extends AbstractManager {
     }
 
 
+    public ArrayList<Invoice> getInvoices() {
+        return invoices;
+    }
 }
