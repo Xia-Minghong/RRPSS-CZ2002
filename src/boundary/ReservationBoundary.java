@@ -29,7 +29,13 @@ public class ReservationBoundary {
 			choice = sc.nextInt();
 			switch (choice) {
 			case 1:
-				createReservation();
+				boolean isCreated = createReservation();
+				if (isCreated) {
+					System.out.println("Your reservation:");
+					int size = reservationManager.getReservations().size();
+					System.out.println(reservationManager.getReservations()
+							.get(size - 1).toString());
+				}
 				break;
 			case 2:
 				removeReservation();
@@ -53,7 +59,7 @@ public class ReservationBoundary {
 		} while (choice != 5);
 	}
 
-	private void createReservation() {
+	private boolean createReservation() {
 		final String DATE_FORMAT = "dd/MM/yyyy";
 		final String TIME_FORMAT = "HH:mm";
 		Scanner sc = new Scanner(System.in);
@@ -92,15 +98,18 @@ public class ReservationBoundary {
 				.isReservationExpired(reservation);
 		if (isExpired) {
 			System.out.println("Reservation is not created. It is expired.");
+			return false;
 		} else {
 			boolean isAssigned = reservationManager.assignTable(reservation);
 			if (isAssigned) {
 				System.out
 						.println("Reservation has been successfully created!");
 				reservationManager.getReservations().add(reservation);
+				return true;
 			} else {
 				System.out
 						.println("Reservation is not created. No table is available!");
+				return false;
 			}
 		}
 	}
