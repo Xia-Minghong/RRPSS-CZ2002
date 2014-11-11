@@ -2,13 +2,14 @@ package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Invoice implements Serializable{
 
 	private final int INVOICE_ID;
 
-    private final Date TIMESTAMP;
+    private final Calendar TIMESTAMP;
 	
     private final String STAFF_NAME;
     
@@ -23,7 +24,7 @@ public class Invoice implements Serializable{
 	private final double NET_PRICE;
 
 
-    public Invoice(int INVOICE_ID, Date TIMESTAMP, String STAFF_NAME, Order ORDER, double GROSS_PRICE, double GST, double SERVICE_CHARGE, double NET_PRICE) {
+    public Invoice(int INVOICE_ID, Calendar TIMESTAMP, String STAFF_NAME, Order ORDER, double GROSS_PRICE, double GST, double SERVICE_CHARGE, double NET_PRICE) {
         this.INVOICE_ID = INVOICE_ID;        
         this.TIMESTAMP = TIMESTAMP;
         this.STAFF_NAME = STAFF_NAME;
