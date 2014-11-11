@@ -2,12 +2,14 @@ package control;
 
 import entity.Invoice;
 import entity.Order;
+import entity.Staff;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class InvoiceManager extends AbstractManager {
+	
 
 
     private OrderManager orderManager;
@@ -59,6 +61,8 @@ public class InvoiceManager extends AbstractManager {
         double SERVICE_CHARGE = GROSS_PRICE * SERVICE_CHARGE_RATE;
         double NET_PRICE = GROSS_PRICE + GST + SERVICE_CHARGE;
         Invoice invoice = new Invoice(restaurantName, INVOICE_ID, orderID, TIMESTAMP, staffName, order, GROSS_PRICE, GST, SERVICE_CHARGE, NET_PRICE);
+        
+		invoices.add(invoice);
         printInvoice(invoice);
     }
 
