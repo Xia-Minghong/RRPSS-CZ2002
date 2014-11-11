@@ -41,7 +41,9 @@ public class AlaCarte extends MenuItem implements Serializable{
 	
 	@Override
 	public String toString(){
-		return "\n";
+		StringBuffer ans = new StringBuffer();
+		ans.append("Name:\t\t\t"+this.getName()+"\n"+"Category:\t\t"+ this.getCategory() +"\n"+"Description:\t"+ this.getDescription()+"\n"+"Price:\t"+this.Price);
+		return ans.toString();
 	}
 	
 }
