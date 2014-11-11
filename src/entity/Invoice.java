@@ -43,11 +43,16 @@ public class Invoice implements Serializable{
 
     @Override
     public String toString() {
+    	int printDay=TIMESTAMP.get(Calendar.DATE);
+    	int printMonth=TIMESTAMP.get(Calendar.MONTH)+1;
+    	int printYear=TIMESTAMP.get(Calendar.YEAR);
+    	int printHour=TIMESTAMP.get(Calendar.HOUR_OF_DAY);
+    	int printMinute=TIMESTAMP.get(Calendar.MINUTE);
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append(restaurantName+ "\n");
         stringBuffer.append("=========================================================\n");
         stringBuffer.append("||Invoice ID:\t\t" + "\t\t\t"+ INVOICE_ID + "||\n");
-        stringBuffer.append("||Time:\t\t\t\t"+ TIMESTAMP.get(Calendar.DATE)+"/" +TIMESTAMP.get(Calendar.MONTH)+ "/" + TIMESTAMP.get(Calendar.YEAR)+"\t"+ TIMESTAMP.get(Calendar.HOUR_OF_DAY)+":"+TIMESTAMP.get(Calendar.MINUTE)+"\t||\n");
+        stringBuffer.append("||Time:\t\t\t\t"+ printDay+"/" +printMonth+ "/" + printYear+"\t"+printHour +":"+printMinute+"\t||\n");
         stringBuffer.append("||Staff:\t\t\t" + STAFF_NAME+ "\t\t\t||\n");
         ArrayList<OrderItem> orderItems = ORDER.getOrderItems();
         for (OrderItem orderItem : orderItems){
