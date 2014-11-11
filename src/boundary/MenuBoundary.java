@@ -83,8 +83,15 @@ public class MenuBoundary implements Runnable{
 	        	System.out.println(menuManager.menuToString());
 	        	System.out.println("Enter the Ala Carte ID to add into this Set:\t");
 	        	int itemID = inputInteger();
-	        	newSet.addAlaCartetoSet(menuManager.getMenu(), itemID);
-	        	System.out.println("Add one more Ala Carte? ('y' to Continue)");
+	        	if((menuManager.getMenu().get(itemID-1)) instanceof Set){
+	        		System.out.println("Cannot add a set into a set, try again: ");
+	        		itemID = inputInteger();
+	        	}
+	        	else{
+	        		newSet.addAlaCartetoSet(menuManager.getMenu(), itemID);
+	        	    System.out.println("Add one more Ala Carte? ('y' to Continue)");
+	        	}
+	        	
 	        }while(sc.next().equals("y"));
         }
   		  

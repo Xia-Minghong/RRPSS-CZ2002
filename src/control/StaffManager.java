@@ -22,6 +22,7 @@ public class StaffManager extends AbstractManager{
 		}
 		Staff newStaff = new Staff(Employee_Id, name, gender,jobtitle);
 		staffs.add(newStaff);
+		System.out.println("New staff is added.");
 	}
 	
 	public void deleteStaff(String name){

@@ -38,6 +38,7 @@ public class Set extends MenuItem implements Serializable{
 			 try{
 			 AlaCarte alacarte = (AlaCarte) menu.get(menuitemID-1);
 			 set.add(alacarte);
+			 return;
 		}catch(ArrayIndexOutOfBoundsException e){
 			System.out.println("Invalid ID please input again!");
 			return;
@@ -92,11 +93,11 @@ public class Set extends MenuItem implements Serializable{
 	@Override
 	public String toString(){
 		StringBuffer ans = new StringBuffer();
-		ans.append("Name:\t\t\t"+this.getName()+"\n"+"Category:\t\t"+ this.getCategory() +"\n"+"Description:\t"+ this.getDescription()+"\n"+"Include:");
+		ans.append("Type:\t\t\tSet\nName:\t\t\t"+this.getName()+"\n"+"Category:\t\t"+ this.getCategory() +"\n"+"Description:\t\t"+ this.getDescription()+"\n"+"Include:");
 		for(AlaCarte alacarte:this.set){
 			ans.append("\t\t\t"+this.getSet().indexOf(alacarte)+"\t"+alacarte.getName()+"\n");
 		}
-		ans.append("\nPrice:\t\t"+this.getPrice());
+		ans.append("\nPrice:\t\t\t"+this.getPrice());
 		return ans.toString();
 	}
 		
