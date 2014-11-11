@@ -64,7 +64,7 @@ public class StaffBoundary implements Runnable{
 			String  name = sc.next();
 			staffManager.deleteStaff(name);
 			System.out.println("Delete one more staff?('y' to continue):");
-		}while(sc.next().equals('y'));
+		}while(sc.next().equals("y"));
 		
 	}
 	
