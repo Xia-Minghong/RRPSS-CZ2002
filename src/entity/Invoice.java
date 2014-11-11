@@ -9,7 +9,9 @@ public class Invoice implements Serializable{
 
 	private final int INVOICE_ID;
 
-    private final Calendar TIMESTAMP;
+    private final int ORDERID;
+    
+	private final Calendar TIMESTAMP;
 	
     private final String STAFF_NAME;
     
@@ -23,9 +25,13 @@ public class Invoice implements Serializable{
 	
 	private final double NET_PRICE;
 
+	private String restaurantName;
 
-    public Invoice(int INVOICE_ID, Calendar TIMESTAMP, String STAFF_NAME, Order ORDER, double GROSS_PRICE, double GST, double SERVICE_CHARGE, double NET_PRICE) {
-        this.INVOICE_ID = INVOICE_ID;        
+
+    public Invoice(String restaurantName, int INVOICE_ID, int ORDERID, Calendar TIMESTAMP, String STAFF_NAME, Order ORDER, double GROSS_PRICE, double GST, double SERVICE_CHARGE, double NET_PRICE) {
+        this.restaurantName = restaurantName;
+    	this.INVOICE_ID = INVOICE_ID;
+    	this.ORDERID = ORDERID;
         this.TIMESTAMP = TIMESTAMP;
         this.STAFF_NAME = STAFF_NAME;
         this.ORDER = ORDER;
@@ -38,19 +44,21 @@ public class Invoice implements Serializable{
     @Override
     public String toString() {
         StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append("======================================================\n");
-        stringBuffer.append("||Invoice ID:\t\t" + INVOICE_ID + "\t||\n");
-        stringBuffer.append("||Time:\t\t\t\t"+ TIMESTAMP+ "\t||\n");
-        stringBuffer.append("||Staff:\t\t\t" + STAFF_NAME+ "\t||\n");
+        stringBuffer.append(restaurantName+ "\n");
+        stringBuffer.append("=========================================================\n");
+        stringBuffer.append("||Invoice ID:\t\t" + "\t\t\t"+ INVOICE_ID + "||\n");
+        stringBuffer.append("||Time:\t\t\t\t"+ TIMESTAMP.get(Calendar.DATE)+"/" +TIMESTAMP.get(Calendar.MONTH)+ "/" + TIMESTAMP.get(Calendar.YEAR)+"\t"+ TIMESTAMP.get(Calendar.HOUR_OF_DAY)+":"+TIMESTAMP.get(Calendar.MINUTE)+"\t||\n");
+        stringBuffer.append("||Staff:\t\t\t" + STAFF_NAME+ "\t\t\t||\n");
         ArrayList<OrderItem> orderItems = ORDER.getOrderItems();
         for (OrderItem orderItem : orderItems){
-            stringBuffer.append("||" + orderItem + "\t||\n");
+            stringBuffer.append("||" + orderItem + "||\n");
         }
-        stringBuffer.append("||Gross Price:\t\t"+ GROSS_PRICE+ "\t||\n");
-        stringBuffer.append("||GST:\t\t\t\t"+ GST+ "\t||\n");
-        stringBuffer.append("||Service Charge:\t"+ SERVICE_CHARGE+ "\t||\n");
-        stringBuffer.append("||Net Price:\t\t"+ NET_PRICE+ "\t||\n");
-        stringBuffer.append("======================================================\n");
+        stringBuffer.append("||Gross Price:\t\t"+ "\t\t\t"  + GROSS_PRICE+ "||\n");
+        stringBuffer.append("||GST:\t\t\t\t"+  + GST+ "||\n");
+        stringBuffer.append("||Service Charge:\t"+ "\t\t\t"+ SERVICE_CHARGE+ "||\n");
+        stringBuffer.append("---------------------------------------------------------\n");
+        stringBuffer.append("||Net Price:\t\t"+ "\t\t\t" +NET_PRICE +"||\n");
+        stringBuffer.append("=========================================================\n");
         return stringBuffer.toString();
     }
 
@@ -62,5 +70,14 @@ public class Invoice implements Serializable{
 
     public double getNET_PRICE() {
         return NET_PRICE;
+    }
+    
+    public Order getOrder(){
+    	return ORDER;
+    }
+    
+    public int getOrderID(){
+    	
+    	return ORDERID;
     }
 }

@@ -45,6 +45,7 @@ public class InvoiceManager extends AbstractManager {
     public void createInvoice(int orderID, String name) {
         Order order = orderManager.getOrderbyID(orderID);
         String staffName = order.getStaff().getStaffName();
+        String restaurantName = restaurantManager.getRestaurantName();
         Calendar TIMESTAMP = Calendar.getInstance();
         TIMESTAMP.setTime(new Date());
 //        String STAFF = order.getStaff();
@@ -57,7 +58,7 @@ public class InvoiceManager extends AbstractManager {
         double GST = GROSS_PRICE * GST_RATE;
         double SERVICE_CHARGE = GROSS_PRICE * SERVICE_CHARGE_RATE;
         double NET_PRICE = GROSS_PRICE + GST + SERVICE_CHARGE;
-        Invoice invoice = new Invoice(INVOICE_ID, TIMESTAMP, staffName, order, GROSS_PRICE, GST, SERVICE_CHARGE, NET_PRICE);
+        Invoice invoice = new Invoice(restaurantName, INVOICE_ID, orderID, TIMESTAMP, staffName, order, GROSS_PRICE, GST, SERVICE_CHARGE, NET_PRICE);
         printInvoice(invoice);
     }
 

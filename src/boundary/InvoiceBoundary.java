@@ -117,13 +117,29 @@ public class InvoiceBoundary implements Runnable {
     }
 
     private void addInvoice() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter the order id:");
-        int id_order = sc.nextInt();
+        
+    	Scanner sc = new Scanner(System.in);
+    	int orderID=0;
+        boolean success = false;
+        while(!success){
+    	   System.out.println("Please enter the order id:");
+       
+    	   int testOrderID = sc.nextInt();
+    	   for (Invoice invoice : invoiceManager.getInvoices()){
+    		   if(testOrderID == invoice.getOrderID()){
+    			   System.out.println("Sorry, invoice has been created before.\n");
+    			   //inout again
+    			   break;
+        	}
+        	orderID = testOrderID;
+        }
+       }
+       
         System.out.println("Enter name of the customer (check membership)");
         sc.nextLine();
         String name = sc.nextLine();
-        invoiceManager.createInvoice(id_order, name);
+    
+		invoiceManager.createInvoice(orderID, name);
     }
 
    
