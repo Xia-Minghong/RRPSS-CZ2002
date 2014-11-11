@@ -44,7 +44,7 @@ public class InvoiceManager extends AbstractManager {
 
     public void createInvoice(int orderID, String name) {
         Order order = orderManager.getOrderbyID(orderID);
-        String staffName = order.getStaff().getStaffName()
+        String staffName = order.getStaff().getStaffName();
         Calendar TIMESTAMP = Calendar.getInstance();
         TIMESTAMP.setTime(new Date());
 //        String STAFF = order.getStaff();
