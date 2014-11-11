@@ -90,7 +90,8 @@ public abstract class AbstractManager {
             objectOutputStream.close();
             fileOutputStream.close();
 
-            System.out.println("Serialized data is stored in \""+FILE_PATH+"\"");
+            //used for debug purpose
+//            System.out.println("Serialized data is stored in \""+FILE_PATH+"\"");
             return true;
         }catch(IOException i) { //handle the IO exception
             System.out.println("Error writing file");

@@ -2,7 +2,7 @@
 
 
 # table yes
-staff sex m / f
+# staff sex m / f
 staff id duplicate check
 
 Menu:
@@ -12,18 +12,18 @@ Menu:
 	delete:
 		 ": "
 		check existence
-		use id to delete
+		# use id to delete
 	update: 
 		check existence
-		case break;
+		# case break;
 
 Member:
-	existence delete
-	response for each action
+	# existence delete
+	# response for each action
 
 Reservation:
 	date check
-	create: null point exception
+	# create: null point exception
 
 Order:
 	check all: existence
@@ -37,7 +37,7 @@ Order:
 
 Staff:
 	Check(id)
-	list staffs
+	# list staffs
 
 Invoice:
 	\t\t
