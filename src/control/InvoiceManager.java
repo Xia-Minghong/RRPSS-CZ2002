@@ -88,4 +88,9 @@ public class InvoiceManager extends AbstractManager {
     public ArrayList<Invoice> getInvoices() {
         return invoices;
     }
+    
+    public Order checkOrderByID(int checkID){
+    	
+    	return orderManager.getOrderbyID(checkID);
+    }
 }

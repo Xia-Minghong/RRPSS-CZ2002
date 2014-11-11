@@ -112,9 +112,17 @@ public class InvoiceBoundary implements Runnable {
         int minRevenueMonth = minRevenueInvoice.getTIMESTAMP().get(Calendar.MONTH);
         int minRevenueDay = minRevenueInvoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH);
 
-//        String minRevenueDate = ;
-
+//        String minRevenueDate = Integer.toString(minRevenueDay);
+        
+        if (maxRevenueInvoice== null){
+        	System.out.println("No invoices for the month.");
+        	System.out.println("Total Revenue = $0");
+        
+        }
+        System.out.println("Highest revenue is $" + maxRevenueInvoice.getNET_PRICE()+" on " + minRevenueDay +"/" + minRevenueMonth + "/"+ minRevenueYear);
+        System.out.println("Lowest revenue is $" + minRevenueInvoice.getNET_PRICE()+" on " + minRevenueDay +"/" + minRevenueMonth + "/"+ minRevenueYear);
     }
+    
 
     private void addInvoice() {
 
@@ -122,13 +130,14 @@ public class InvoiceBoundary implements Runnable {
         int orderID = 0;
         boolean success;
         int testOrderID;
+        
         do {
             success = true;
             System.out.println("Please enter the order id:");
             testOrderID = sc.nextInt();
             if(testOrderID == -1) break;
             for (Invoice invoice : invoiceManager.getInvoices()) {
-                if (testOrderID == invoice.getOrderID()) {
+                if (invoiceManager.checkOrderByID(testOrderID) == null || testOrderID == invoice.getOrderID()) {
                     success = false;
                     break;
                 }
