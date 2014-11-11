@@ -93,7 +93,6 @@ public class ReservationBoundary {
 			if(!isValid)
 				System.out.println("It's not a valid pax number! Please try again.");
 		}while(!isValid);
-		
 		System.out.print("Please enter the customer name(no space):");
 		String buffer = sc.nextLine();
 		cstName = sc.nextLine();
@@ -123,6 +122,10 @@ public class ReservationBoundary {
 		System.out.print("Please enter the customer name:");
 		String cstName = sc.nextLine();
 		ArrayList<Integer> listOfIndex = reservationManager.searchByName(cstName);
+		if(listOfIndex.size() == 0){
+			System.out.println("No reservations associated with this customer!");
+			return;
+		}
 		System.out.println("Reservations associated with this customer:");
 		int index;
 		for(index = 0; index < listOfIndex.size();++index){
@@ -144,6 +147,10 @@ public class ReservationBoundary {
 		System.out.println("Please enter the customer name:");
 		String name = sc.nextLine();
 		ArrayList<Integer> listOfIndex = reservationManager.searchByName(name);
+		if(listOfIndex.size() == 0){
+			System.out.println("No reservations associated with this customer!");
+			return;
+		}
 		System.out.println("Reservations associated with this customer:");
 		int index;
 		for(index = 0; index < listOfIndex.size();++index){

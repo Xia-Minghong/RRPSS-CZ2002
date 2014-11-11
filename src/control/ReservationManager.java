@@ -120,15 +120,6 @@ public class ReservationManager extends AbstractManager {
 		reservation.setTable(minCapTable);
 		return true;
 	}
-
-	/*
-	 * public boolean removeReservation(final String cstName){
-	 * ArrayList<Integer> listOfIndex = searchByName(cstName);
-	 * System.out.println("Reservations associated with this customer:"); int
-	 * index; for(index = 0; index < listOfIndex.size();++index){
-	 * System.out.println(reservations.get(index).toString()); }
-	 * System.out.print("Choose one to remove:"); int choice = }
-	 */
 	/**
 	 * This method is to remove a reservation by its index.
 	 * 
