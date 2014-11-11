@@ -106,7 +106,7 @@ public class StaffBoundary implements Runnable{
 				   break;
 			}
 			System.out.println("Update one more staff?('y' to continue)");
-		}while(sc.next().equals('y'));
+		}while(sc.next().equals("y"));
 	}
 
     @Override
