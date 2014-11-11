@@ -39,7 +39,6 @@ public class Invoice implements Serializable{
 		System.out.println("======================================================");
 		System.out.println("||Invoice ID:\t\t" + INVOICE_ID + "\t||");
 		System.out.println("||Time:\t\t"+ TIMESTAMP+ "\t||");
-/** not sure how to handle timestamp  */
 		System.out.println("||Staff:\t\t" + STAFF_NAME+ "\t||");
 		ArrayList<OrderItem> orderItems = ORDER.getOrderItems();
 		for (OrderItem orderItem : orderItems){
@@ -53,11 +52,11 @@ public class Invoice implements Serializable{
 	}
 
 
-		
-		
-		
+    public Calendar getTIMESTAMP() {
+        return TIMESTAMP;
+    }
 
-
-
-
+    public double getNET_PRICE() {
+        return NET_PRICE;
+    }
 }
