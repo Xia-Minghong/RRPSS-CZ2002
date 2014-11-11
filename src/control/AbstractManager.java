@@ -32,7 +32,7 @@ public abstract class AbstractManager {
 //    }
 
     /**
-     * Read method with a given path
+     * Read object from file
      * @return the deserialized object of class Object or null if the method fails
      */
     public Object read() {
@@ -71,7 +71,7 @@ public abstract class AbstractManager {
 //    }
 
     /**
-     * Write method with a given path and a object
+     * Write an object to file
      * @param object the object to be written
      * @return true if the write method is successful or false if otherwise
      */

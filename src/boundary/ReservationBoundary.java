@@ -6,6 +6,7 @@ import entity.Reservation;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 
@@ -29,13 +30,7 @@ public class ReservationBoundary {
 			choice = sc.nextInt();
 			switch (choice) {
 			case 1:
-				boolean isCreated = createReservation();
-				if (isCreated) {
-					System.out.println("Your reservation:");
-					int size = reservationManager.getReservations().size();
-					System.out.println(reservationManager.getReservations()
-							.get(size - 1).toString());
-				}
+				createReservation();
 				break;
 			case 2:
 				removeReservation();
@@ -44,22 +39,25 @@ public class ReservationBoundary {
 				checkReservation();
 				break;
 			case 4:
-				int index;
-				for (index = 0; index < reservationManager.getReservations()
-						.size(); ++index) {
-					System.out.println((index + 1)
-							+ "."
-							+ reservationManager.getReservations().get(index)
-									.toString());
-				}
+				showAllReservations();
 				break;
+			/*case 6:
+				System.out.println("Table ID:");
+				int ID = sc.nextInt();
+				System.out.println(reservationManager.checkIn(ID));
+				break;
+			case 7:
+				System.out.println("Table ID:");
+				int id = sc.nextInt();
+				System.out.println(reservationManager.checkOut(id));
+				break;*/
 			default:
 				break;
 			}
 		} while (choice != 5);
 	}
 
-	private boolean createReservation() {
+	private void createReservation() {
 		final String DATE_FORMAT = "dd/MM/yyyy";
 		final String TIME_FORMAT = "HH:mm";
 		Scanner sc = new Scanner(System.in);
@@ -78,7 +76,7 @@ public class ReservationBoundary {
 		} while (!isValid);
 		date = dateStr.split("/");
 		do {
-			System.out.print("Please enter the time(HH:MM)");
+			System.out.print("Please enter the time(HH:MM):");
 			timeStr = sc.next();
 			isValid = validateDate(timeStr, TIME_FORMAT);
 			if (!isValid)
@@ -95,28 +93,26 @@ public class ReservationBoundary {
 			if(!isValid)
 				System.out.println("It's not a valid pax number! Please try again.");
 		}while(!isValid);
-		
-		System.out.print("Please enter the customer name:");
-		String buffer = sc.next();
+		System.out.print("Please enter the customer name(no space):");
+		String buffer = sc.nextLine();
 		cstName = sc.nextLine();
-		reservationManager.clearReservation();
 		Reservation reservation = new Reservation(calTime, new Integer(pax), cstName);
 		boolean isExpired = reservationManager
 				.isReservationExpired(reservation);
 		if (isExpired) {
 			System.out.println("Reservation is not created. It is expired.");
-			return false;
 		} else {
 			boolean isAssigned = reservationManager.assignTable(reservation);
 			if (isAssigned) {
 				System.out
 						.println("Reservation has been successfully created!");
 				reservationManager.getReservations().add(reservation);
-				return true;
+				
+				System.out.println("Your reservation:");
+				System.out.println(reservation.toString());
 			} else {
 				System.out
 						.println("Reservation is not created. No table is available!");
-				return false;
 			}
 		}
 	}
@@ -125,7 +121,20 @@ public class ReservationBoundary {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Please enter the customer name:");
 		String cstName = sc.nextLine();
-		boolean isRemoved = reservationManager.removeReservation(cstName);
+		ArrayList<Integer> listOfIndex = reservationManager.searchByName(cstName);
+		if(listOfIndex.size() == 0){
+			System.out.println("No reservations associated with this customer!");
+			return;
+		}
+		System.out.println("Reservations associated with this customer:");
+		int index;
+		for(index = 0; index < listOfIndex.size();++index){
+			System.out.print((index + 1) + ". ");
+			System.out.println(reservationManager.getReservations().get(index).toString());
+		}
+		System.out.print("Choose one to remove:");
+		int choice = sc.nextInt();
+		boolean isRemoved = reservationManager.removeReservationByIndex(choice - 1);
 		if (isRemoved) {
 			System.out.println("Reservation is successfully removed!");
 		} else {
@@ -137,12 +146,16 @@ public class ReservationBoundary {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Please enter the customer name:");
 		String name = sc.nextLine();
-		int index = reservationManager.searchByName(name);
-		if (index != -1) {
-			System.out.println(reservationManager.getReservations().get(index)
-					.toString());
-		} else {
-			System.out.println("No reservation for this customer!");
+		ArrayList<Integer> listOfIndex = reservationManager.searchByName(name);
+		if(listOfIndex.size() == 0){
+			System.out.println("No reservations associated with this customer!");
+			return;
+		}
+		System.out.println("Reservations associated with this customer:");
+		int index;
+		for(index = 0; index < listOfIndex.size();++index){
+			System.out.print((index + 1) + ". ");
+			System.out.println(reservationManager.getReservations().get(index).toString());
 		}
 	}
 
@@ -152,6 +165,8 @@ public class ReservationBoundary {
 		System.out.println("3: Check a reservation");
 		System.out.println("4. Show all reservations");
 		System.out.println("5: Go back");
+		//System.out.println("6: Check in");
+		//System.out.println("7: Check out");
 		System.out.print("Choose any options above:");
 	}
 
@@ -173,6 +188,17 @@ public class ReservationBoundary {
 			return true;
 		}catch(NumberFormatException ex){
 			return false;
+		}
+	}
+	/**
+	 * This method is to print all existing reservations
+	 */
+	public void showAllReservations() {
+		System.out.println("All reservations:");
+		int index;
+		for (index = 0; index < reservationManager.getReservations().size(); ++index) {
+			System.out.print((index + 1) + ". ");
+			System.out.println(reservationManager.getReservations().get(index).toString());
 		}
 	}
 }

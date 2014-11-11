@@ -2,6 +2,7 @@ package boundary;
 
 import control.MenuManager;
 import control.OrderManager;
+import entity.AlaCarte;
 import entity.MenuItem;
 import entity.Order;
 import entity.Set;
@@ -10,17 +11,30 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * @author Cao
+ * The boundary class handing user interaction related to Menu
+ * 
+ * @author Cao Gaoxu
+ * @version1.0
  * Created by root on 14-11-8.
  */
 public class MenuBoundary implements Runnable{
-
+	
+	/**
+	 * The reference to a menu control instance
+	 */
     private MenuManager menuManager;
-
+    
+    /**
+     * Constructor of the restaurant boundary class
+     * @param menuManager, the instance of the MenuManager
+     */
     public MenuBoundary(MenuManager menuManager) {
         this.menuManager = menuManager;
     }
-
+    
+    /**
+     * Entry point of this boundary
+     */
     @Override
     public void run(){
         Scanner sc = new Scanner(System.in);
@@ -28,14 +42,16 @@ public class MenuBoundary implements Runnable{
         while(true){
             System.out.print("1. Add New Alacarte to Menu \n"
                     + "2. Add New Set to Menu\n3. Delete MenuItem from the Menu\n4. Update the Alacarte\n"
-                    +"5. Update the Set on the Menu\n6. Show all MenuItems \n7.Back\nChoose which you want:" );
+                    +"5. Update the Set on the Menu\n6. Show all MenuItems \n7. Back\nChoose which you want:" );
             int choice = inputInteger();
             switch (choice){
                 case 1 :
                     System.out.print("The name of the new Alacarte:\t");
-                    String name = sc.next();
+                    sc.next();
+                    String name = sc.nextLine();
                     System.out.print("The description of the new Alacarte:\t");
-                    String description = sc.next();
+                    sc.next();
+                    String description = sc.nextLine();
                     System.out.print("The category of the new Alacarte:\t");
                     String category = sc.next();
                     System.out.print("The price of the new Alacarte:\t");
@@ -64,12 +80,19 @@ public class MenuBoundary implements Runnable{
         }
     }
     
+    /**
+     * Method to create the new set according to the user input
+     * @param menuManager, the instance of the MenuManager
+     */
     public void createSet(MenuManager menuManager){
+    	
     	Scanner sc = new Scanner(System.in);
         System.out.print("The name of the new Set:\t");
-        String setname = sc.next();
+        sc.next();
+        String setname = sc.nextLine();
         System.out.print("The description of the new Set:\t");
-        String setdescription = sc.next();
+        sc.next();
+        String setdescription = sc.nextLine();
         System.out.print("The category of the new Set:\t");
         String setcategory = sc.next();
         System.out.print("The price of the new Set:\t");
@@ -81,29 +104,43 @@ public class MenuBoundary implements Runnable{
         else{
         	do{
 	        	System.out.println(menuManager.menuToString());
-	        	System.out.println("Enter the Ala Carte ID to add into this Set:\t");
-	        	int itemID = inputInteger();
-	        	newSet.addAlaCartetoSet(menuManager.getMenu(), itemID);
-	        	System.out.println("Add one more Ala Carte? ('y' to Continue)");
+	        	System.out.print("Enter the Ala Carte ID to add into this Set:\t");
+	        	int itemID = menuManager.getMenu().indexOf(secureGetMenuItem(menuManager));
+	        	if((menuManager.getMenu().get(itemID)) instanceof Set){
+	        		System.out.println("Cannot add a set into a set! ");
+	        	}
+	        	else{
+	        		 try{
+	        			 AlaCarte alacarte = (AlaCarte) (menuManager.getMenu().get(itemID));
+	        			 newSet.addAlaCartetoSet(menuManager.getMenu(), itemID);
+	        		}catch(IndexOutOfBoundsException e){
+	        			System.out.println("Invalid ID please input again!");
+	             	}
+	          }
+	        	System.out.print("Add one more Ala Carte? ('y' to Continue)");
 	        }while(sc.next().equals("y"));
-        }
-  		  
+         }
     }
     
+	/**
+	 * Method to update the Ala Carte's details according to user input
+	 * @param menu, pass in the menu
+	 */
 	public void updateAlacarte(ArrayList<MenuItem> menu){
 		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("The ID of the Alacarte to update");
-        int menuitemid = inputInteger();
-        MenuItem item = secureGetMenuItem(menuManager,menuitemid);
+		System.out.print(menuManager.menuToString());
+		System.out.print("The ID of the Alacarte to update: ");
+        MenuItem item = secureGetMenuItem(menuManager);
         do{
-        System.out.print(" 1.Name\n 2.Description\n"
+        System.out.print("1.Name\n2.Description\n"
                 + "3.Category\n4.Price\n5.Back\nChoose which attribute to update:");
         switch(inputInteger()){
             case 1 :
 
-                System.out.println("The new name of the Alacarte:");
-                String newname = sc.next();
+                System.out.print("The new name of the Alacarte:");
+                sc.next();
+                String newname = sc.nextLine();
                 for(MenuItem menuitem:menu){
                 	if(menuitem.getName().equals(newname)){
                 		System.out.println("This Ala Carte exists!");
@@ -113,82 +150,106 @@ public class MenuBoundary implements Runnable{
                 item.setName(newname);
                 break;
             case 2 :
-                System.out.println("The new description of the Alacarte");
-                String newdescription = sc.next();
+                System.out.print("The new description of the Alacarte");
+                sc.next();
+                String newdescription = sc.nextLine();
                 item.setDescription(newdescription);
                 break;
             case 3 :
-                System.out.println("The new category of the Alacarte: ");
+                System.out.print("The new category of the Alacarte: ");
                 String newcategory = sc.next();
                 item.setCategory(newcategory);
                 break;
             case 4 :
 
-                System.out.println("The new price of the Alacarte: ");
-                double newprice = sc.nextDouble();
+                System.out.print("The new price of the Alacarte: ");
+                double newprice = inputDouble();
                 item.setPrice(newprice);
                 break;
             default:
             	break;
         }
-        System.out.println("Update any other details? ('y' to continue)");
+        System.out.print("Update any other details? ('y' to continue)");
        }while(sc.next().equals("y"));
 	} 
 	
-	
+	/**
+	 * Method to update the set details according to user input
+	 * @param menu, pass in the menu
+	 */
 	public void updateSet(ArrayList<MenuItem> menu){
-		Scanner sc = new Scanner(System.in);
-        System.out.println("The ID of the Set to update");
-        int setid = sc.nextInt();
-        System.out.print(" 1.Name\n 2.Description\n"
-                + "3.Category\n4.Price\n5.Discountrate6.Add Ala Carte\n7.Delete Ala Carte\n8.Back\nChoose which attribute to update:");
-        switch(sc.nextInt()){
+		Scanner sc = new Scanner(System.in);        
+		System.out.print(menuManager.menuToString());
+		System.out.print("The ID of the Set to update: ");
+        int setid = menuManager.getMenu().indexOf(secureGetMenuItem(menuManager));
+        while(true){
+            if((menuManager.getMenu().get(setid)) instanceof Set){
+            	break;
+            }
+            else{
+            	System.out.print("Not a Set, please choose a set ID again: ");
+            	setid = inputInteger();
+            }
+		}
+        
+        System.out.print("1.Name\n2.Description\n"
+                + "3.Category\n4.Price\n5.Discountrate\n6.Add Ala Carte\n7.Delete Ala Carte\n8.Back\nChoose which attribute to update:");
+
+		switch(inputInteger()){
             case 1 :
-                System.out.println("The new name of the Set:");
-                String setnewname = sc.next();
+                System.out.print("The new name of the Set:");
+                sc.next();
+                String setnewname = sc.nextLine();
                 for(MenuItem menuitem:menu){
                 	if(menuitem.getName().equals(setnewname)){
                 		System.out.println("This Ala Carte exists!");
                 		return;
                 	}
                 }
-                menu.get(setid-1).setName(setnewname);
+                menu.get(setid).setName(setnewname);
                 break;
             case 2 :
                 System.out.print("The new description of the Set");
-                String setnewdescription = sc.next();
-                menu.get(setid-1).setDescription(setnewdescription);
+                sc.next();
+                String setnewdescription = sc.nextLine();
+                menu.get(setid).setDescription(setnewdescription);
                 break;
             case 3 :
                 System.out.print("The new category of the Set: ");
                 String setnewcategory = sc.next();
-                menu.get(setid-1).setCategory(setnewcategory);
+                menu.get(setid).setCategory(setnewcategory);
                 break;
             case 4 :
                 System.out.print("The new price of the Set: ");
-                double setnewprice = sc.nextDouble();
-                ((Set) menu.get(setid-1)).setPrice(setnewprice);
+                double setnewprice = inputDouble();
+                ((Set) menu.get(setid)).setPrice(setnewprice);
                 break;
             case 5 :
                 System.out.print("The new discountrate of the Set: ");
-                double newdiscountrate = sc.nextDouble();
-                ((Set)menu.get(setid-1)).setDiscountRate(newdiscountrate);
+                double newdiscountrate = inputDouble();
+                ((Set)menu.get(setid)).setDiscountRate(newdiscountrate);
                 break;
             case 6 :
             	do{
             		System.out.println(menuManager.menuToString());
     	        	System.out.print("Enter the Ala Carte ID to add into this Set: ");
-    	        	int itemID = inputInteger();
-    	        	((Set)menu.get(setid-1)).addAlaCartetoSet(menu, itemID);
+    	        	int itemID = menuManager.getMenu().indexOf(secureGetMenuItem(menuManager));
+    	        	if((menuManager.getMenu().get(itemID)) instanceof Set){
+    	        		System.out.println("Not an Ala Carte!");
+    	        	}
+    	        	else{
+    	        		((Set)menu.get(setid)).addAlaCartetoSet(menu, itemID);
+    	        	}
+    	        	
     	        	System.out.print("Add one more Ala Carte? ('y' to Continue)");
     	        }while(sc.next().equals("y"));
             	break;
             case 7 :
             	do{
-            		((Set)menu.get(setid-1)).showAlaCarte();
+            		((Set)menu.get(setid)).showAlaCarte();
             		System.out.print("Enter the Ala Carte ID in the Set to delete: ");
             		int itemID = inputInteger();
-            		((Set)menu.get(setid-1)).delFromSet(itemID);
+            		((Set)menu.get(setid)).delFromSet(itemID);
             		System.out.print("Delete one more Ala Carte?('y' to continue)");
             	}while(sc.next().equals("y"));
             	break;
@@ -197,29 +258,26 @@ public class MenuBoundary implements Runnable{
         }
 	}
     
+	/**
+	 * Perform the action of deleting a MenuItem
+	 */
 	public void deleteMenuItem(){
 		Scanner sc = new Scanner(System.in);
 		do{
 			System.out.print(menuManager.menuToString());
 			System.out.print("The ID of the menuItem to delete:\t");
-            menuManager.deleteMenuItembyID(inputInteger());
-            System.out.print("Delete one more menu item? ('y' to continue");
+			int itemID;
+			
+            menuManager.deleteMenuItembyID(menuManager.getMenu().indexOf(secureGetMenuItem(menuManager)));
+            System.out.print("Delete one more menu item? ('y' to continue)");
 		}while(sc.next().equals("y"));
         	
 	}
 	
 	/**
-	 * Show all the menuItems in the menu with their attributes.
+	 * Repeatedly asking for an integer input from user until getting one
+	 * @return the integer from the user input
 	 */
-
-	//public void PrintMenu(){
-		//System.out.println("===========Menu===========");
-		//for (MenuItem menuitem : menuManager.getMenu()){
-			//System.out.println("***********************");
-		    //System.out.println("ID"+(menuManager.getMenu().indexOf(menuitem)+1) + "\n"+menuitem);
-		//}
-		//System.out.println("===========End=============");
-	//}
 	private int inputInteger() {
         int integer;
         Scanner scanner = new Scanner(System.in);
@@ -235,6 +293,10 @@ public class MenuBoundary implements Runnable{
         return integer;
     }
     
+	/**
+	 * Repeatedly asking for a double input from user until getting one 
+	 * @return the double from the user input.
+	 */
     private double inputDouble(){
     	double doub;
     	Scanner sc = new Scanner(System.in);
@@ -250,11 +312,18 @@ public class MenuBoundary implements Runnable{
     	return doub;
     }
     
-	public MenuItem secureGetMenuItem(MenuManager manager,int itemID) {
+    /**
+     * Repeatedly asking for a valid MenuItem ID input from user until getting one
+     * @param manager, pass in the instance of MenuManager
+     * @param itemID, the ID of the menuItem
+     * @return the menuItem get from the input
+     */
+	public MenuItem secureGetMenuItem(MenuManager manager) {
 		while (true) {
 			try {
+			    int itemID = inputInteger();
 				return manager.getMenuItemByld(itemID);
-			} catch (ArrayIndexOutOfBoundsException e) {
+			} catch (IndexOutOfBoundsException e) {
 				// TODO: handle exception
 				System.out.print("Invalid ID please input again: ");
 			}

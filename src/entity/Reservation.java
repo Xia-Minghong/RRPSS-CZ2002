@@ -66,6 +66,6 @@ public class Reservation implements Serializable {
 				+ time.get(Calendar.YEAR) + " "
 				+ time.get(Calendar.HOUR_OF_DAY) + ":"
 				+ time.get(Calendar.MINUTE) + "\nAssgined table: "
-				+ table.toString();
+				+ table.toString() + " Checked in? " + this.getIsCheckIn();
 	}
 }

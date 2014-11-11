@@ -5,9 +5,8 @@ import entity.Member;
 import java.util.ArrayList;
 
 /**
- * A orderManager which takes the responsibilities of:
- *  1. getting/Writing members data from/to file
- *  2. Handle the creation/deletion of a member
+ * A control class for member related logic and actions
+ *
  * @author Xia Minghong
  * @version 1.0
  * @since 2014-11-4.
@@ -16,10 +15,9 @@ public class MemberManager extends AbstractManager {
 
 
     /**
-     * the file path from which the member list is read
-     * and to which the member list is written
+     * An ArrayList of members holding the member instances to mimic the behavior of a database
+     * Each query to this list is equivalent to a query to a database
      */
-
     private ArrayList<Member> members;
 
     /**
@@ -33,7 +31,7 @@ public class MemberManager extends AbstractManager {
 
     /**
      * Create a new member and add into the member list
-     *  @param name    the name of the new member
+     *  @param name the name of the new member
      * @param contact the contact of the new member
      */
     public void createMember(String name, String contact) {
@@ -43,7 +41,6 @@ public class MemberManager extends AbstractManager {
 
     /**
      * Get the member with the name given
-     *
      *
      * @param name the name of the member
      * @return the member with the name given
@@ -107,8 +104,12 @@ public class MemberManager extends AbstractManager {
 //        return null;
 //    }
 
+    /**
+     * Customized method to read the list of member instances from file
+     * @return the list of member instances read from file or a new (empty) list of members if no one is read
+     */
     @Override
-    public ArrayList load() {
+    public ArrayList<Member> load() {
         ArrayList<Member> members = (ArrayList<Member>) read();
         if (members == null) {
             members = new ArrayList<Member>();
@@ -117,7 +118,7 @@ public class MemberManager extends AbstractManager {
     }
 
     /**
-     * Save the member list into file
+     * Customized method to write the list of member instances to file
      */
     @Override
     public void save() {
