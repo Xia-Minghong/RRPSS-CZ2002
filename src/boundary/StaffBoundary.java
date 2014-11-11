@@ -19,7 +19,7 @@ public class StaffBoundary implements Runnable{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Choose action :\n\t 1. Add Staff\n\t2. Delete staff\n\t"
 				+ "3.Update Staff\n\t4. Back");
-		switch(sc.nextInt()){
+		switch(inputInteger()){
 		    case 1:
 		    	addStaffs();
 		    	break;
@@ -45,7 +45,7 @@ public class StaffBoundary implements Runnable{
 		Scanner sc = new Scanner(System.in);
 		do{
 			System.out.print("Enter the new Staff ID:");
-			int employee_id = sc.nextInt();
+			int employee_id = inputInteger();
 			System.out.print("Enter the name of the staff:");
 			sc.next();
 			String name = sc.nextLine();
@@ -83,11 +83,11 @@ public class StaffBoundary implements Runnable{
 		Scanner sc = new Scanner(System.in);
 		do{
 			System.out.println("Enter the ID of the staff who need to be update:");
-			int employee_id = sc.nextInt();
+			int employee_id = inputInteger();
 			Staff toUpdateStaff = staffManager.getStaffbyID(employee_id);
 			System.out.println("Choose which one to update:\n\t1.Staff's Name\n\t"
 					+ "2.Staff's Gender\n\t3.Staff's Job Title\n\t4.Back");
-			switch(sc.nextInt()){
+			switch(inputInteger()){
 			   case 1:
 				   System.out.println("Enter the new name");
 				   String newName = sc.next();
@@ -119,6 +119,21 @@ public class StaffBoundary implements Runnable{
 			System.out.println("Update one more staff?('y' to continue)");
 		}while(sc.next().equals("y"));
 	}
+	
+	private int inputInteger() {
+        int integer;
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                String input = scanner.next();
+                integer = Integer.parseInt(input);
+                break;
+            } catch (NumberFormatException ne) {    //handle invalid input
+                System.out.print("Not an integer, type again: ");
+            }
+        }
+        return integer;
+    }
 
     @Override
 	public void run(){
