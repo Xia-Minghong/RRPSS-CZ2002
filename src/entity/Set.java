@@ -93,9 +93,9 @@ public class Set extends MenuItem implements Serializable{
 	@Override
 	public String toString(){
 		StringBuffer ans = new StringBuffer();
-		ans.append("Type:\t\t\tSet\nName:\t\t\t"+this.getName()+"\n"+"Category:\t\t"+ this.getCategory() +"\n"+"Description:\t\t"+ this.getDescription()+"\n"+"Include:");
+		ans.append("Type:\t\t\tSet\nName:\t\t\t"+this.getName()+"\n"+"Category:\t\t"+ this.getCategory() +"\n"+"Description:\t\t"+ this.getDescription()+"\n"+"Include:\n");
 		for(AlaCarte alacarte:this.set){
-			ans.append("\t\t\t"+this.getSet().indexOf(alacarte)+"\t"+alacarte.getName()+"\n");
+			ans.append("\t\t\t"+(this.getSet().indexOf(alacarte)+1)+"\t"+alacarte.getName()+"\n");
 		}
 		ans.append("\nPrice:\t\t\t"+this.getPrice());
 		return ans.toString();
