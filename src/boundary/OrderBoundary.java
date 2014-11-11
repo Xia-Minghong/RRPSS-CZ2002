@@ -38,12 +38,15 @@ public class OrderBoundary implements Runnable{
 				System.out.println(secureGetOrder(orderManager,sc).getTotal());
 				break;
 			case 3:
-				int id;
+				System.out.println("This functionality is deprecated");
+				break;
+				/*int id;
 				orderManager.showAllOrderWithID();
 				System.out.println("Choose a order you want to remove");
 				orderManager.removeOrderByID(id = secureGetOrderID(orderManager, sc));
 				System.out.println("Successfully removed id = "+id);
 				break;
+				*/
 			case 4:
 				orderManager.showAllOrderWithID();
 				break;
