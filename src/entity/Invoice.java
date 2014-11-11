@@ -2,14 +2,13 @@ package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 public class Invoice implements Serializable{
 
 	private final int INVOICE_ID;
 
-    private final Calendar TIMESTAMP;
+    private final Date TIMESTAMP;
 	
     private final String STAFF_NAME;
     
@@ -24,8 +23,8 @@ public class Invoice implements Serializable{
 	private final double NET_PRICE;
 
 
-    public Invoice(int INVOICE_ID, Calendar TIMESTAMP, String STAFF_NAME, Order ORDER, double GROSS_PRICE, double GST, double SERVICE_CHARGE, double NET_PRICE) {
-        this.INVOICE_ID = INVOICE_ID;
+    public Invoice(int INVOICE_ID, Date TIMESTAMP, String STAFF_NAME, Order ORDER, double GROSS_PRICE, double GST, double SERVICE_CHARGE, double NET_PRICE) {
+        this.INVOICE_ID = INVOICE_ID;        
         this.TIMESTAMP = TIMESTAMP;
         this.STAFF_NAME = STAFF_NAME;
         this.ORDER = ORDER;
@@ -34,28 +33,30 @@ public class Invoice implements Serializable{
         this.SERVICE_CHARGE = SERVICE_CHARGE;
         this.NET_PRICE = NET_PRICE;
     }
-
+	
 	public void print(){
-		System.out.println("Invoice ID" + INVOICE_ID);
-		System.out.println("Time: "+ TIMESTAMP);
+		System.out.println("======================================================");
+		System.out.println("||Invoice ID:\t\t" + INVOICE_ID + "\t||");
+		System.out.println("||Time:\t\t"+ TIMESTAMP+ "\t||");
 /** not sure how to handle timestamp  */
-		System.out.println("Staff :" + STAFF_NAME);
+		System.out.println("||Staff:\t\t" + STAFF_NAME+ "\t||");
 		ArrayList<OrderItem> orderItems = ORDER.getOrderItems();
 		for (OrderItem orderItem : orderItems){
-			System.out.println(orderItem);
+			System.out.println("||" + orderItem + "\t||");
 		}
-		System.out.println("Gross Price:"+ GROSS_PRICE);
-		System.out.println("GST: "+ GST);
-		System.out.println("Service Charge: "+ SERVICE_CHARGE);
-		System.out.println("Net Price: "+ NET_PRICE);
-}
+		System.out.println("||Gross Price:\t"+ GROSS_PRICE+ "\t||");
+		System.out.println("||GST:\t\t\t"+ GST+ "\t||");
+		System.out.println("||Service Charge:\t\t"+ SERVICE_CHARGE+ "\t||");
+		System.out.println("||Net Price:\t"+ NET_PRICE+ "\t||");	
+		System.out.println("======================================================");
+	}
 
-    public double getNET_PRICE() {
-        return NET_PRICE;
-    }
 
-    public Calendar getTIMESTAMP() {
-        return TIMESTAMP;
-    }
+		
+		
+		
+
+
+
 
 }
