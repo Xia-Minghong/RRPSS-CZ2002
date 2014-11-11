@@ -123,7 +123,7 @@ public class ReservationManager extends AbstractManager {
         this.reservations = reservations;
     }
 
-    
+    @Override
     public ArrayList<Reservation> load() {
         ArrayList<Reservation> reservations = (ArrayList<Reservation>) read();
         if (reservations == null) {
@@ -132,7 +132,7 @@ public class ReservationManager extends AbstractManager {
         return reservations;
     }
 
-    
+    @Override
     public void save() {
         write(reservations);
     }
