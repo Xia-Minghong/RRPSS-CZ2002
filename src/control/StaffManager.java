@@ -14,6 +14,12 @@ public class StaffManager extends AbstractManager{
 	}
 	
 	public void createStaff(int Employee_Id,String name, Boolean gender, String jobtitle){
+		for(Staff staff:staffs){
+			if(staff.getStaffID() == Employee_Id){
+				System.out.println("The Staff ID exists! Please check!");
+				return;
+			}
+		}
 		Staff newStaff = new Staff(Employee_Id, name, gender,jobtitle);
 		staffs.add(newStaff);
 	}
