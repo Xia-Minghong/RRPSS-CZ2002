@@ -2,6 +2,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * 
@@ -12,31 +13,29 @@ import java.util.ArrayList;
  *
  */
 public class Order implements Serializable{
-	private static int orderCount = 0;
-	private int staffID, tableID;
-	private final int orderID;
+	/**
+	 * VersionUID
+	 */
+	private static final long serialVersionUID = 8178299784454335281L;
+	/**
+	 * 
+	 */
+	private int tableID;
+	private Staff staff;
 	private ArrayList<OrderItem> orderItems;
 	
 	
-	
-	public Order(int staffID, int tableID) {
-		orderCount ++;
-		this.orderID = orderCount;
-		this.staffID = staffID;
+	public Order(Staff staff, int tableID) {
+		this.staff = staff;
 		this.tableID = tableID;
 		orderItems = new ArrayList<OrderItem>();
 	}
 
-	
-
-	public static int getOrderCount() {
-		return orderCount;
-	}
 
 
 
-	public int getStaffID() {
-		return staffID;
+	public Staff getStaff() {
+		return staff;
 	}
 
 
@@ -47,20 +46,14 @@ public class Order implements Serializable{
 
 
 
-	public int getOrderID() {
-		return orderID;
-	}
-
-
 
 	public ArrayList<OrderItem> getOrderItems() {
 		return orderItems;
 	}
 	
 	public void showAllOrderItems() {
-		for (OrderItem orderItem : orderItems) {
-			System.out.println(orderItem.getItem().getName());
-			System.out.println(orderItem.getItem().getPrice()+"  x  " + orderItem.getQuantity());
+		for (int i = 0; i < orderItems.size(); i++) {
+			System.out.println((i+1)+orderItems.get(i).toString());
 		}
 	}
 
@@ -68,9 +61,11 @@ public class Order implements Serializable{
 	public void addOrderItem(OrderItem item) {
 		orderItems.add(item);
 	}
+	
 	public void removeOrderItem(int id) {
-		orderItems.remove(id);
+		orderItems.remove(id-1);
 	}
+	
 	public double getTotal() {
 		double ans = 0;
 		for (OrderItem orderItem : orderItems) {

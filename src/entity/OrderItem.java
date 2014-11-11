@@ -38,6 +38,6 @@ public class OrderItem implements Serializable{
 	 */
 	@Override
 	public String toString() {
-		return String.format("%d \t %s \t %f", quantity,item.getName(),getTotalPrice());		
+		return String.format("%d \t\t %s \t %f", quantity,item.getName(),getTotalPrice());		
 	}
 }
