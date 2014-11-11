@@ -321,7 +321,7 @@ public class MenuBoundary implements Runnable{
 	public MenuItem secureGetMenuItem(MenuManager manager) {
 		while (true) {
 			try {
-			    int itemID = inputInteger()-1;
+			    int itemID = inputInteger();
 				return manager.getMenuItemByld(itemID);
 			} catch (IndexOutOfBoundsException e) {
 				// TODO: handle exception

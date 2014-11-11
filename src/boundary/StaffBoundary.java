@@ -6,6 +6,12 @@ import java.util.Scanner;
 
 import entity.Staff;
 
+/**
+ * The boundary class handing
+ * @author Cao Gaoxu
+ * @version 1.0
+ *@since 2014-11-07
+ */
 public class StaffBoundary implements Runnable{
 	
 	private StaffManager staffManager;
