@@ -32,13 +32,14 @@ public class OrderBoundary implements Runnable{
 			case 2:
 				orderManager.showAllOrderWithID();
 				System.out.println("choose a order you want to view");
-				System.out.println(orderManager.getOrderCollection().get(sc.nextInt()).getTotal());
+				System.out.println(secureGetOrder(orderManager,sc).getTotal());
 				break;
 			case 3:
+				int id;
 				orderManager.showAllOrderWithID();
 				System.out.println("choose a order you want to remove");
-				orderManager.removeOrderByID(secureNextInt(sc));
-				System.out.println("successfully removed");
+				orderManager.removeOrderByID(id = secureGetOrderID(orderManager, sc));
+				System.out.println("successfully removed id = "+id);
 				break;
 			case 4:
 				orderManager.showAllOrderWithID();
@@ -46,7 +47,7 @@ public class OrderBoundary implements Runnable{
 			case 5:
 				orderManager.showAllOrderWithID();
 				System.out.println("choose a order you want to edit");
-				editOrder(sc.nextInt());
+				editOrder(secureGetOrderID(orderManager, sc));
 				break;
 			default:
 				return;
@@ -61,6 +62,31 @@ public class OrderBoundary implements Runnable{
 			} catch (Exception e) {
 				// TODO: handle exception
 				System.out.println("Please input an interger!");
+			}
+		}
+	}
+	
+	
+	public static Order secureGetOrder(OrderManager manager,Scanner sc) {
+		while (true) {
+			try {
+				return manager.getOrderbyID(secureNextInt(sc));
+			} catch (ArrayIndexOutOfBoundsException e) {
+				// TODO: handle exception
+				System.out.println("Invalid Index please input again");
+			}
+		}
+	}
+	
+	public static int secureGetOrderID(OrderManager manager,Scanner sc) {
+		int id;
+		while (true) {
+			try {
+				Order a = manager.getOrderbyID(id = secureNextInt(sc));
+				return id;
+			} catch (ArrayIndexOutOfBoundsException e) {
+				// TODO: handle exception
+				System.out.println("Invalid Index please input again");
 			}
 		}
 	}
