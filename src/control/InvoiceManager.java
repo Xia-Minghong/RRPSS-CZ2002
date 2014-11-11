@@ -12,8 +12,6 @@ public class InvoiceManager extends AbstractManager {
 
     private OrderManager orderManager;
 
-    private StaffManager staffManager;
-    
     private MemberManager memberManager;
 
     private RestaurantManager restaurantManager;
@@ -25,14 +23,12 @@ public class InvoiceManager extends AbstractManager {
     private final double SERVICE_CHARGE_RATE;
     
     
-    public InvoiceManager(OrderManager orderManager, StaffManager staffManager, RestaurantManager restaurantManager, MemberManager memberManager, String FILE_PATH) {
+    public InvoiceManager(OrderManager orderManager, RestaurantManager restaurantManager, MemberManager memberManager, String FILE_PATH) {
 
         super(FILE_PATH);
 
         this.orderManager = orderManager;
 
-        this.staffManager = staffManager;
-        
         this.restaurantManager = restaurantManager;
         
         this.memberManager = memberManager;
@@ -48,7 +44,7 @@ public class InvoiceManager extends AbstractManager {
 
     public void createInvoice(int orderID, String name) {
         Order order = orderManager.getOrderbyID(orderID);
-        String staffName = staffManager.getStaffbyID(order.getStaff().getStaffID()).getStaffName();
+        String staffName = order.getStaff().getStaffName()
         Calendar TIMESTAMP = Calendar.getInstance();
         TIMESTAMP.setTime(new Date());
 //        String STAFF = order.getStaff();

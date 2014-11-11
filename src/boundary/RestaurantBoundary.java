@@ -54,8 +54,7 @@ public class RestaurantBoundary implements Runnable {
 		OrderManager orderManager = new OrderManager(menuManager,staffManager, "orders.dat");
 		OrderBoundary orderBoundary = new OrderBoundary(orderManager);
 
-		InvoiceManager invoiceManager = new InvoiceManager(orderManager,
-				staffManager, restaurantManager, memberManager, "invoices.dat");
+		InvoiceManager invoiceManager = new InvoiceManager(orderManager, restaurantManager, memberManager, "invoices.dat");
 		InvoiceBoundary invoiceBoundary = new InvoiceBoundary(invoiceManager);
 
 		// print main menu
