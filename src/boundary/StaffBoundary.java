@@ -48,11 +48,20 @@ public class StaffBoundary implements Runnable{
 			int employee_id = sc.nextInt();
 			System.out.println("Enter the name of the staff:");
 			String name = sc.next();
-			System.out.println("Enter the Gender:(true for male and false for female)");
-			boolean gender = sc.nextBoolean();
+			System.out.println("Enter the correct Gender (m for male, f for female): ");
+            String gender;
+            boolean corrGender;
+            while (true) {
+                 gender = sc.next();
+                 if (gender.equals("m") || gender.equals("f")) {
+                     corrGender = gender.equals("m");
+                     break;
+                 }
+                 System.out.println("Invalid gender, try again");
+               }
 			System.out.println("Enter the job Title: ");
 			String jobtitle = sc.next();
-			staffManager.createStaff(employee_id, name, gender, jobtitle);
+			staffManager.createStaff(employee_id, name, corrGender, jobtitle);
 			System.out.print("Add another staff? ('y' to continue) :");
 		}while(sc.next().equals("y"));
 	}
