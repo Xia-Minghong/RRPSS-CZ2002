@@ -64,7 +64,7 @@ public class ReservationBoundary {
 		final String TIME_FORMAT = "HH:mm";
 		Scanner sc = new Scanner(System.in);
 		Calendar calTime = Calendar.getInstance();
-		int pax;
+		String pax;
 		String cstName;
 		String dateStr, timeStr;
 		String[] date, time;
@@ -72,7 +72,7 @@ public class ReservationBoundary {
 		do {
 			System.out.print("Please enter the date(DD/MM/YYYY):");
 			dateStr = sc.next();
-			isValid = validate(dateStr, DATE_FORMAT);
+			isValid = validateDate(dateStr, DATE_FORMAT);
 			if (!isValid)
 				System.out.println("It's not a valid date! Please try again.");
 		} while (!isValid);
@@ -80,7 +80,7 @@ public class ReservationBoundary {
 		do {
 			System.out.print("Please enter the time(HH:MM)");
 			timeStr = sc.next();
-			isValid = validate(timeStr, TIME_FORMAT);
+			isValid = validateDate(timeStr, TIME_FORMAT);
 			if (!isValid)
 				System.out.println("It's not a valid time! Please try again.");
 		} while (!isValid);
@@ -88,12 +88,19 @@ public class ReservationBoundary {
 		calTime.set(new Integer(date[2]), new Integer(date[1]) - 1,
 				new Integer(date[0]), new Integer(time[0]),
 				new Integer(time[1]));
-		System.out.print("Please enter the pax:");
-		pax = sc.nextInt();
+		do{
+			System.out.print("Please enter the pax:");
+			pax = sc.next();
+			isValid = validatePax(pax);
+			if(!isValid)
+				System.out.println("It's not a valid pax number! Please try again.");
+		}while(!isValid);
+		
 		System.out.print("Please enter the customer name:");
-		cstName = sc.next();
+		String buffer = sc.next();
+		cstName = sc.nextLine();
 		reservationManager.clearReservation();
-		Reservation reservation = new Reservation(calTime, pax, cstName);
+		Reservation reservation = new Reservation(calTime, new Integer(pax), cstName);
 		boolean isExpired = reservationManager
 				.isReservationExpired(reservation);
 		if (isExpired) {
@@ -117,7 +124,7 @@ public class ReservationBoundary {
 	private void removeReservation() {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Please enter the customer name:");
-		String cstName = sc.next();
+		String cstName = sc.nextLine();
 		boolean isRemoved = reservationManager.removeReservation(cstName);
 		if (isRemoved) {
 			System.out.println("Reservation is successfully removed!");
@@ -129,7 +136,7 @@ public class ReservationBoundary {
 	private void checkReservation() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Please enter the customer name:");
-		String name = sc.next();
+		String name = sc.nextLine();
 		int index = reservationManager.searchByName(name);
 		if (index != -1) {
 			System.out.println(reservationManager.getReservations().get(index)
@@ -148,13 +155,23 @@ public class ReservationBoundary {
 		System.out.print("Choose any options above:");
 	}
 
-	private boolean validate(String dateStr, final String FORMAT) {
+	private boolean validateDate(String dateStr, final String FORMAT) {
 		try {
 			DateFormat dateFormat = new SimpleDateFormat(FORMAT);
 			dateFormat.setLenient(false);
 			dateFormat.parse(dateStr);
 			return true;
 		} catch (ParseException ex) {
+			return false;
+		}
+	}
+	private boolean validatePax(String pax){
+		try{
+			Integer intPax = new Integer(pax);
+			if(intPax.compareTo(0) <= 0)
+				return false;
+			return true;
+		}catch(NumberFormatException ex){
 			return false;
 		}
 	}
