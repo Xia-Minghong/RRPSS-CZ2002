@@ -60,7 +60,7 @@ public class Reservation implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Customer Name:" + this.cstName + " Pax:" + this.pax + "\nTime:"
+		return "\nCustomer Name:" + this.cstName + " Pax:" + this.pax + "\nTime:"
 				+ this.time.get(Calendar.DATE) + "/"
 				+ (time.get(Calendar.MONTH) + 1) + "/"
 				+ time.get(Calendar.YEAR) + " "
