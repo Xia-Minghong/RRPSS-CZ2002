@@ -35,13 +35,7 @@ public class InvoiceBoundary implements Runnable {
                 	printDailyReport();
                     break;
                 case 3:
-                	System.out.print("Please enter the date(MM/YYYY):");
-                	dateStr = sc.next();
-                	//dateStr = "11/2014";
-                	date = dateStr.split("/");
-	                checkMonth= calTime.set(0, new Integer(date[1]) - 1,
-           				new Integer(date[0]),0,0);
-                	printMonth(checkMonth);
+                	printMonthlyReport();
                     break;
                 
                 
@@ -76,9 +70,9 @@ public class InvoiceBoundary implements Runnable {
     }
 
     private void printMonthlyReport() {
-        Invoice maxRevenueInvoice=invoiceManager.getInvoices().get(0);
-        Invoice minRevenueInvoice=invoiceManager.getInvoices().get(0);
-        double totalRevenue= 0;
+        Invoice maxRevenueInvoice = null;
+        Invoice minRevenueInvoice = null;
+        double totalRevenue = 0;
 
         Scanner sc = new Scanner(System.in);
         System.out.print("Please enter the date(MM/YYYY):");
@@ -91,13 +85,13 @@ public class InvoiceBoundary implements Runnable {
 
         for (Invoice invoice : invoiceManager.getInvoices()) {
 
-            int invoice_m = invoice.getTIMESTAMP().get(Calendar.MONTH)+1;
+            int invoice_m = invoice.getTIMESTAMP().get(Calendar.MONTH) + 1;
             int invoice_y = invoice.getTIMESTAMP().get(Calendar.YEAR);
 
-            if ( invoice_m == month && invoice_y == year) {
-                if(minRevenueInvoice==null)
+            if (invoice_m == month && invoice_y == year) {
+                if (minRevenueInvoice == null)
                     minRevenueInvoice = invoice;
-                if (maxRevenueInvoice==null)
+                if (maxRevenueInvoice == null)
                     maxRevenueInvoice = invoice;
                 if (invoice.getNET_PRICE() < minRevenueInvoice.getNET_PRICE())
                     minRevenueInvoice = invoice;
