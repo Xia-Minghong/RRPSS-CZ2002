@@ -29,16 +29,16 @@ public class InvoiceBoundary implements Runnable {
 
             switch (sc.nextInt()) {
                 case 1:
-                	addInvoice();
+                    addInvoice();
                     break;
                 case 2:
-                	printDailyReport();
+                    printDailyReport();
                     break;
                 case 3:
-                	printMonthlyReport();
+                    printMonthlyReport();
                     break;
-                
-                
+
+
                 default:
                     return;
             }
@@ -46,7 +46,7 @@ public class InvoiceBoundary implements Runnable {
     }
 
     private void printDailyReport() {
-        double dailyTotal=0;
+        double dailyTotal = 0;
         Scanner sc = new Scanner(System.in);
         System.out.print("Please enter the date(DD/MM/YYYY):");
         String dateStr = sc.next();
@@ -58,7 +58,7 @@ public class InvoiceBoundary implements Runnable {
 
         for (Invoice invoice : invoiceManager.getInvoices()) {
             int invoice_d = invoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH);
-            int invoice_m = invoice.getTIMESTAMP().get(Calendar.MONTH)+1;
+            int invoice_m = invoice.getTIMESTAMP().get(Calendar.MONTH) + 1;
             int invoice_y = invoice.getTIMESTAMP().get(Calendar.YEAR);
 
             if (invoice_d == day && invoice_m == month && invoice_y == year) {
@@ -117,31 +117,35 @@ public class InvoiceBoundary implements Runnable {
     }
 
     private void addInvoice() {
-        
-    	Scanner sc = new Scanner(System.in);
-    	int orderID=0;
-        boolean success = false;
-        while(!success){
-    	   System.out.println("Please enter the order id:");
-       
-    	   int testOrderID = sc.nextInt();
-    	   for (Invoice invoice : invoiceManager.getInvoices()){
-    		   if(testOrderID == invoice.getOrderID()){
-    			   System.out.println("Sorry, invoice has been created before.\n");
-    			   //inout again
-    			   break;
-        	}
-        	orderID = testOrderID;
+
+        Scanner sc = new Scanner(System.in);
+        int orderID = 0;
+        boolean success;
+        int testOrderID;
+        do {
+            success = true;
+            System.out.println("Please enter the order id:");
+            testOrderID = sc.nextInt();
+            if(testOrderID == -1) break;
+            for (Invoice invoice : invoiceManager.getInvoices()) {
+                if (testOrderID == invoice.getOrderID()) {
+                    success = false;
+                    break;
+                }
+            }
+        } while (!success);
+        orderID = testOrderID;
+        if (orderID == -1) {
+            System.out.println("exit");
+            return;
         }
-       }
-       
+
         System.out.println("Enter name of the customer (check membership)");
         sc.nextLine();
         String name = sc.nextLine();
-    
-		invoiceManager.createInvoice(orderID, name);
+
+        invoiceManager.createInvoice(orderID, name);
     }
 
-   
 
 }
