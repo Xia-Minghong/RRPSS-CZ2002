@@ -109,7 +109,7 @@ public class MemberManager extends AbstractManager {
      * @return the list of member instances read from file or a new (empty) list of members if no one is read
      */
     @Override
-    public ArrayList load() {
+    public ArrayList<Member> load() {
         ArrayList<Member> members = (ArrayList<Member>) read();
         if (members == null) {
             members = new ArrayList<Member>();
