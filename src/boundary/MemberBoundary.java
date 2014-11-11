@@ -75,7 +75,7 @@ public class MemberBoundary implements Runnable{
     private void checkMembership() {
         Scanner sc = new Scanner(System.in);
         System.out.println("The name to check for membership");
-        String name = sc.next();
+        String name = sc.nextLine();
         Member member = memberManager.getMember(name);
         if (member != null) {
             System.out.println("Member detail:");
@@ -91,9 +91,9 @@ public class MemberBoundary implements Runnable{
     private void addMember() {
         Scanner sc = new Scanner(System.in);
         System.out.println("The name of the member to add");
-        String name = sc.next();
+        String name = sc.nextLine();
         System.out.println("The contact of the member to add");
-        String contact = sc.next();
+        String contact = sc.nextLine();
         memberManager.createMember(name, contact);
         System.out.println("New member added.");
     }
@@ -104,7 +104,7 @@ public class MemberBoundary implements Runnable{
     private void deleteMember() {
         Scanner sc = new Scanner(System.in);
         System.out.println("The name of the member to delete");
-        memberManager.deleteMember(sc.next());
+        memberManager.deleteMember(sc.nextLine());
     }
 
 }
