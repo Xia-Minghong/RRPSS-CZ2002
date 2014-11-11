@@ -71,23 +71,19 @@ public class MenuManager extends AbstractManager {
          }
 		MenuItem menuitem = new Set(name, description, category, price);
 		menu.add(menuitem);
-		 do{
-	        	showAllItem();
-	        	System.out.println("Enter the Ala Carte ID to add into this Set: ");
-	        	int itemID = inputInteger();
-	        	((Set) menuitem).addAlaCartetoSet(menu, itemID);
-	        	System.out.println("Add one more Ala Carte? ('y' to Continue)");
-	        }while(sc.next().equals("y"));
-		 return (Set) menuitem;
+		return (Set) menuitem;
 		
 	}
 	
 
 	public void deleteMenuItembyID(int itemID){
 		
-		if(itemID > 0){
-			menu.remove(itemID);
+		if(itemID > this.menu.size()){
+			System.out.println("This menu item does not exist!");
 		} 
+		else{
+			menu.remove(itemID);
+		}
 	}
 	
 	/**
@@ -141,14 +137,24 @@ public class MenuManager extends AbstractManager {
 	 * Show all the menuItems in the menu with their attributes.
 	 */
 
-	public void showAllItem(){
-		System.out.println("===========Menu===========");
-		for (MenuItem menuitem : menu){
-			System.out.println("***********************");
-		    System.out.println("ID"+(menu.indexOf(menuitem)+1) + "\n"+"Name:\t\t\t" +menuitem.getName() +"\n"+"Category:\t\t"+ menuitem.getCategory() +"\n"+"Description:\t"+ menuitem.getDescription() +
-		    		            "\n"+"Price:\t\t\t"+ menuitem.getPrice());
+	//public void showAllItem(){
+		//System.out.println("===========Menu===========");
+		//for (MenuItem menuitem : menu){
+			//System.out.println("***********************");
+		    //System.out.println("ID"+(menu.indexOf(menuitem)+1) + "\n"+"Name:\t\t\t" +menuitem.getName() +"\n"+"Category:\t\t"+ menuitem.getCategory() +"\n"+"Description:\t"+ menuitem.getDescription() +
+		    		            //"\n"+"Price:\t\t\t"+ menuitem.getPrice());
+		//}
+		///System.out.println("===========End=============");
+	///}
+	public String menuToString(){
+		StringBuffer ans = new StringBuffer();
+		ans.append("===========Menu===========\n");
+		for(MenuItem menuitem: menu){
+			ans.append("***********************\n"+"ID"+(this.getMenu().indexOf(menuitem)+1) + "\n"+menuitem+"\n");
 		}
-		System.out.println("===========End=============");
+		ans.append("===========End=============");
+		return ans.toString();
+
 	}
 	
 	/**

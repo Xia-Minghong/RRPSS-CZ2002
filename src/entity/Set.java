@@ -71,15 +71,16 @@ public class Set extends MenuItem implements Serializable{
 		    System.out.println("ID"+(this.getSet().indexOf(alacarte)+1) + "\n"+"Name:\t" +alacarte.getName() +"\n"+"Category:\t"+ alacarte.getCategory() +"\n"+"Description:\t"+ alacarte.getDescription() +
 		    		            "\n"+"Price:\t"+ alacarte.getPrice());
 		}
-		System.out.println("===========End=============");
+		System.out.println("===========End=============\n");
 	}
 	@Override
 	public String toString(){
 		StringBuffer ans = new StringBuffer();
-		ans.append("Include:");
+		ans.append("Name:\t\t\t"+this.getName()+"\n"+"Category:\t\t"+ this.getCategory() +"\n"+"Description:\t"+ this.getDescription()+"\n"+"Include:");
 		for(AlaCarte alacarte:this.set){
 			ans.append("\t\t\t"+this.getSet().indexOf(alacarte)+"\t"+alacarte.getName()+"\n");
 		}
+		ans.append("Price:\t"+this.getPrice());
 		return ans.toString();
 	}
 		

@@ -1,8 +1,10 @@
 package boundary;
 
 import control.OrderManager;
+import entity.MenuItem;
 import entity.Order;
 import entity.OrderItem;
+import entity.Staff;
 
 import java.util.Scanner;
 
@@ -20,29 +22,29 @@ public class OrderBoundary implements Runnable{
 		Scanner sc = new Scanner(System.in);
 		while (true)
 		{
-			System.out.println("\n 1. Create entity.Order \n 2.get total price of a order ");
+			System.out.println("\n 1. Create Order \n 2.get total price of a order ");
 			System.out.println(" 3. remove a order \n 4. view all orders \n 5. edit a order\n6. exit");
-			System.out.println("Choose what you want");
-			switch (sc.nextInt()) {
+			System.out.println("Choose what you want: ");			
+			switch (secureNextInt(sc)) {
 			case 1:	
-				createOrder();
+				editOrder(createOrder());
 				break;
 			case 2:
-				showAllOrderWithID();
+				orderManager.showAllOrderWithID();
 				System.out.println("choose a order you want to view");
 				System.out.println(orderManager.getOrderCollection().get(sc.nextInt()).getTotal());
 				break;
 			case 3:
-				showAllOrderWithID();
+				orderManager.showAllOrderWithID();
 				System.out.println("choose a order you want to remove");
-				orderManager.getOrderCollection().remove(sc.nextInt());
+				orderManager.removeOrderByID(secureNextInt(sc));
 				System.out.println("successfully removed");
 				break;
 			case 4:
-				showAllOrderWithID();
+				orderManager.showAllOrderWithID();
 				break;
 			case 5:
-				showAllOrderWithID();
+				orderManager.showAllOrderWithID();
 				System.out.println("choose a order you want to edit");
 				editOrder(sc.nextInt());
 				break;
@@ -51,18 +53,31 @@ public class OrderBoundary implements Runnable{
 			}
 		}
 	}
+	
+	public static int secureNextInt(Scanner sc) {
+		while (true) {
+			try {
+				return sc.nextInt();
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("Please input an interger!");
+			}
+		}
+	}
+	
 	private void editOrder(int orderID) {
 		Scanner sc = new Scanner(System.in);
+		orderManager.getOrderCollection().get(orderID).showAllOrderItems();
 		while (true) {
+			System.out.println("1. add item\n2.removed item\n3.show all item\n4.exit");
 			System.out.println("choose what you want to do with the order");
-			System.out.println("1. add item\n2.removed item\n3.exit");
-			switch (sc.nextInt()) {
+			switch (secureNextInt(sc)) {
 			case 1:	
-				orderManager.getMenuManager().showAllItem();
+				orderManager.getMenuManager().menuToString();
 				System.out.println("choose a item by inputting item ID");
-				int item = sc.nextInt();
+				int item = secureNextInt(sc);
 				System.out.println("How many "+ orderManager.getMenuManager().getMenuItemByld(item).getName() + " do you want?");
-				int quantity = sc.nextInt();
+				int quantity = secureNextInt(sc);
 				orderManager.getOrderCollection().get(orderID).addOrderItem(new
                         OrderItem(quantity, orderManager.getMenuManager().getMenuItemByld(item)));
 				System.out.println("successfully ordered!");
@@ -70,24 +85,37 @@ public class OrderBoundary implements Runnable{
 			case 2:
 				orderManager.getOrderCollection().get(orderID).showAllOrderItems();
 				System.out.println("Choose a item you want to removed");
-				orderManager.getOrderCollection().get(orderID).removeOrderItem(sc.nextInt());
+				orderManager.getOrderCollection().get(orderID).removeOrderItem(secureNextInt(sc));
 				System.out.println("Removed!");
+				break;
+			case 3:
+				orderManager.getOrderCollection().get(orderID).showAllOrderItems();
 				break;
 			default:
 				return;
 			}
 		}
 	}
-	public void showAllOrderWithID() {
-		for (Order order : orderManager.getOrderCollection()) {
-			System.out.format("ID = %d \t staff No = %d \t table No = \t",order.getOrderID(),order.getStaffID(),order.getTableID());
+	
+	public int createOrder() {
+		Scanner sc = new Scanner(System.in);
+		Staff aStaff;
+		System.out.println("Input Staff No");
+		while (true) {
+			aStaff = orderManager.getStaffManager().getStaffbyID(secureNextInt(sc));
+			if (aStaff != null) {
+				break;
+			}
+			System.out.println("Invalid StaffNo, try again");
 		}
-	}
-	public void createOrder() {
-		System.out.println("Input entity.Staff No & entity.Table No sperate by whitespace");
-		Scanner scanner = new Scanner(System.in);
-		orderManager.getOrderCollection().add(new Order(scanner.nextInt(), scanner.nextInt()));
-		System.out.format("Order with ID = %d was created ", orderManager.getOrderCollection().get( orderManager.getOrderCollection().size()-1).getOrderID());
+		
+		
+		System.out.println("Input Table No");
+		int tableNo = secureNextInt(sc);
+		
+		orderManager.getOrderCollection().add(new Order(aStaff,tableNo));
+		System.out.format("Order with ID = %d was created ", orderManager.getTotalNumberOfOrder());
+		return orderManager.getTotalNumberOfOrder();
 	}
 	
 }
