@@ -45,7 +45,7 @@ public class OrderManager extends AbstractManager {
 		}
 	}
 	public int getTotalNumberOfOrder() {
-		return orderCollection.size()+1;
+		return orderCollection.size();
 	}
 	
 	public MenuManager getMenuManager() {
