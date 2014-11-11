@@ -61,12 +61,12 @@ public class MenuManager extends AbstractManager {
 	}		            
 
 
-	public void addSettoMenu(String name, String description, String category, double price){
+	public Set addSettoMenu(String name, String description, String category, double price){
 		Scanner sc = new Scanner(System.in);
 		for(MenuItem item: menu){
 			if (item.getName().equals(name)){
 				System.out.println("This Set exists!");
-				return;
+				return null;
 			}
          }
 		MenuItem menuitem = new Set(name, description, category, price);
@@ -78,6 +78,7 @@ public class MenuManager extends AbstractManager {
 	        	((Set) menuitem).addAlaCartetoSet(menu, itemID);
 	        	System.out.println("Add one more Ala Carte? ('y' to Continue)");
 	        }while(sc.next().equals("y"));
+		 return (Set) menuitem;
 		
 	}
 	
