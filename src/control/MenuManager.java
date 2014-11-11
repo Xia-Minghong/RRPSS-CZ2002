@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * A orderManager which takes the responsibilities of :
+ * A MenuManager which takes the responsibilities of :
  * 1. getting/writing menuItems data from/to file
  * 2. provide the methods to create, delete, update and show menuItems
  * @author Cao Gaoxu
@@ -25,28 +25,26 @@ public class MenuManager extends AbstractManager {
 	private ArrayList<MenuItem> menu;
 	
 	
-//	/**
-//	 * the file path from which the menuItem list is read and
-//	 * to which the menuItems list is written
-//	 */
-//	private final String FILE_PATH;
 	
 	/**
-	 * constructor of Menu
-	 * during the construction, menuItems are read from file and 
+	 * constructor of MenuMananger
+	 * during the construction, MenuManager are read from file and 
 	 * the menuItem list in initialized
+	 * @param FILE_PATH, the file path from which the menuItem list is readand 
+	 * to which the list is written
 	 */
 	
 	public MenuManager(String FILE_PATH){
         super(FILE_PATH);
 		menu = load();
 	}
+	
 	  /**
-	   * Create a new menuItem and add it into the menuItem list
-	   * @param name, the name of new menuItem
-	   * @param description, the words used to describe the new menuItem
-	   * @param category, the category of the new menuItem
-	   * @param price, the price of the new menuItem
+	   * Create a new Ala Carte and add it into the menuItem list
+	   * @param name, the name of new Ala Carte
+	   * @param description, the words used to describe the new Ala Carte
+	   * @param category, the category of the new Ala Carte
+	   * @param price, the price of the new Ala Carte
 	   */
 	public void addAlaCartetoMenu(String name,String description, String category, double price){
 		for(MenuItem item: menu){
@@ -58,8 +56,16 @@ public class MenuManager extends AbstractManager {
 		 MenuItem menuitem = new AlaCarte(name, description,category, price);
 		 menu.add(menuitem);
 		 System.out.println("New Ala Carte added");
-	}		            
-
+	}
+	
+	/**
+	 * Create a new set and add it to the menuItem list
+	 * @param name, the name of the new Set
+	 * @param description, the words used to describe the new set.
+	 * @param category, the category or the new set.
+	 * @param price, the price of the new set.
+	 * @return the the new set itself.
+	 */
 
 	public Set addSettoMenu(String name, String description, String category, double price){
 		Scanner sc = new Scanner(System.in);
@@ -75,7 +81,10 @@ public class MenuManager extends AbstractManager {
 		
 	}
 	
-
+	/**
+	 * Delete the MenuItem from the menuItem list by its ID
+	 * @param itemID, the ID of the menuItem to delete
+	 */
 	public void deleteMenuItembyID(int itemID){
 		
 		if(itemID > this.menu.size()){
@@ -86,23 +95,8 @@ public class MenuManager extends AbstractManager {
 		}
 	}
 	
-	/**
-	 * Update menuItem's details
-	 * @param menuItemID, the id of the menuItem to be updated
-	 * @param name, the updated name of the menuItem.
-	 * @param description, the description that is needed to be updated
-	 * @param category
-	 */
-	
 
 	
-	//public void updateSet(int menuItemID, String name,String description, String category, double discountrate){ 
-		//menu.get(menuItemID-1).setName(name);
-		//menu.get(menuItemID-1).setDescription(description);
-		//menu.get(menuItemID-1).setCategory(category);
-		//((Set) menu.get(menuItemID-1)).setDiscountRate(discountrate);
-		
-    //}
 	
 	/**
 	 * Get the menuItemId with the given name
@@ -134,18 +128,9 @@ public class MenuManager extends AbstractManager {
 	}
 	
 	/**
+	 * Format the menuItem in order and
 	 * Show all the menuItems in the menu with their attributes.
 	 */
-
-	//public void showAllItem(){
-		//System.out.println("===========Menu===========");
-		//for (MenuItem menuitem : menu){
-			//System.out.println("***********************");
-		    //System.out.println("ID"+(menu.indexOf(menuitem)+1) + "\n"+"Name:\t\t\t" +menuitem.getName() +"\n"+"Category:\t\t"+ menuitem.getCategory() +"\n"+"Description:\t"+ menuitem.getDescription() +
-		    		            //"\n"+"Price:\t\t\t"+ menuitem.getPrice());
-		//}
-		///System.out.println("===========End=============");
-	///}
 	public String menuToString(){
 		StringBuffer ans = new StringBuffer();
 		ans.append("===========Menu===========\n");
@@ -174,13 +159,18 @@ public class MenuManager extends AbstractManager {
 	
 	/**
 	 * Save the munuItem list into file
+	 * print the error message when error occur
 	 */
 	public void save(){
 		if( !write(menu)){
 			System.out.println("Error saving menuItems to file!");
 		}
 	}
-
+	
+	/**
+	 * Getter method to get menu
+	 * @return menu
+	 */
     public ArrayList<MenuItem> getMenu() {
         return menu;
     }

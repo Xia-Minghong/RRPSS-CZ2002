@@ -5,8 +5,17 @@ import control.MenuManager;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Set is a model class which holds the relevant attributes
+ * of a set and provides the mutators and accessors accordingly
+ * @author Cao Gaoxu
+ *
+ */
 public class Set extends MenuItem implements Serializable{
 	
+	/**
+	 * 
+	 */
 	private ArrayList<AlaCarte> set =  new ArrayList<AlaCarte>();
 	
 	private double discountRate;
@@ -23,6 +32,7 @@ public class Set extends MenuItem implements Serializable{
 	
 	/**
 	 * 
+	 * @param discountrate
 	 */
 	public void setDiscountRate(double discountrate){
 		this.discountRate = discountrate;

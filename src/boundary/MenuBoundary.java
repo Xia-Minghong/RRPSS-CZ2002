@@ -2,6 +2,7 @@ package boundary;
 
 import control.MenuManager;
 import control.OrderManager;
+import entity.AlaCarte;
 import entity.MenuItem;
 import entity.Order;
 import entity.Set;
@@ -10,17 +11,30 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * @author Cao
+ * The boundary class handing user interaction related to Menu
+ * 
+ * @author Cao Gaoxu
+ * @version1.0
  * Created by root on 14-11-8.
  */
 public class MenuBoundary implements Runnable{
-
+	
+	/**
+	 * The reference to a menu control instance
+	 */
     private MenuManager menuManager;
-
+    
+    /**
+     * Constructor of the restaurant boundary class
+     * @param menuManager, the instance of the MenuManager
+     */
     public MenuBoundary(MenuManager menuManager) {
         this.menuManager = menuManager;
     }
-
+    
+    /**
+     * Entry point of this boundary
+     */
     @Override
     public void run(){
         Scanner sc = new Scanner(System.in);
@@ -64,6 +78,10 @@ public class MenuBoundary implements Runnable{
         }
     }
     
+    /**
+     * Method to create the new set according to the user input
+     * @param menuManager, the instance of the MenuManager
+     */
     public void createSet(MenuManager menuManager){
     	Scanner sc = new Scanner(System.in);
         System.out.print("The name of the new Set:\t");
@@ -87,15 +105,22 @@ public class MenuBoundary implements Runnable{
 	        		System.out.println("Cannot add a set into a set! ");
 	        	}
 	        	else{
-	        		newSet.addAlaCartetoSet(menuManager.getMenu(), itemID);
-	        	    
-	        	}
+	        		 try{
+	        			 AlaCarte alacarte = (AlaCarte) (menuManager.getMenu().get(itemID-1));
+	        			 newSet.addAlaCartetoSet(menuManager.getMenu(), itemID);
+	        		}catch(IndexOutOfBoundsException e){
+	        			System.out.println("Invalid ID please input again!");
+	             	}
+	          }
 	        	System.out.print("Add one more Ala Carte? ('y' to Continue)");
 	        }while(sc.next().equals("y"));
-        }
-  		  
+         }
     }
     
+	/**
+	 * Method to update the Ala Carte's details according to user input
+	 * @param menu, pass in the menu
+	 */
 	public void updateAlacarte(ArrayList<MenuItem> menu){
 		
 		Scanner sc = new Scanner(System.in);
@@ -132,7 +157,7 @@ public class MenuBoundary implements Runnable{
             case 4 :
 
                 System.out.print("The new price of the Alacarte: ");
-                double newprice = sc.nextDouble();
+                double newprice = inputDouble();
                 item.setPrice(newprice);
                 break;
             default:
@@ -142,7 +167,10 @@ public class MenuBoundary implements Runnable{
        }while(sc.next().equals("y"));
 	} 
 	
-	
+	/**
+	 * Method to update the set details according to user input
+	 * @param menu, pass in the menu
+	 */
 	public void updateSet(ArrayList<MenuItem> menu){
 		Scanner sc = new Scanner(System.in);        
 		System.out.print(menuManager.menuToString());
@@ -185,12 +213,12 @@ public class MenuBoundary implements Runnable{
                 break;
             case 4 :
                 System.out.print("The new price of the Set: ");
-                double setnewprice = sc.nextDouble();
+                double setnewprice = inputDouble();
                 ((Set) menu.get(setid-1)).setPrice(setnewprice);
                 break;
             case 5 :
                 System.out.print("The new discountrate of the Set: ");
-                double newdiscountrate = sc.nextDouble();
+                double newdiscountrate = inputDouble();
                 ((Set)menu.get(setid-1)).setDiscountRate(newdiscountrate);
                 break;
             case 6 :
@@ -222,6 +250,9 @@ public class MenuBoundary implements Runnable{
         }
 	}
     
+	/**
+	 * Perform the action of deleting a MenuItem
+	 */
 	public void deleteMenuItem(){
 		Scanner sc = new Scanner(System.in);
 		do{
@@ -233,7 +264,10 @@ public class MenuBoundary implements Runnable{
         	
 	}
 	
-
+	/**
+	 * Repeatedly asking for an integer input from user until getting one
+	 * @return the integer from the user input
+	 */
 	private int inputInteger() {
         int integer;
         Scanner scanner = new Scanner(System.in);
@@ -249,6 +283,10 @@ public class MenuBoundary implements Runnable{
         return integer;
     }
     
+	/**
+	 * Repeatedly asking for a double input from user until getting one 
+	 * @return the double from the user input.
+	 */
     private double inputDouble(){
     	double doub;
     	Scanner sc = new Scanner(System.in);
@@ -264,6 +302,12 @@ public class MenuBoundary implements Runnable{
     	return doub;
     }
     
+    /**
+     * Repeatedly asking for a valid MenuItem ID input from user until getting one
+     * @param manager, pass in the instance of MenuManager
+     * @param itemID, the ID of the menuItem
+     * @return the menuItem get from the input
+     */
 	public MenuItem secureGetMenuItem(MenuManager manager,int itemID) {
 		while (true) {
 			try {
