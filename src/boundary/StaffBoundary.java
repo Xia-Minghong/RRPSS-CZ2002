@@ -44,7 +44,7 @@ public class StaffBoundary implements Runnable{
 	public void addStaffs(){
 		Scanner sc = new Scanner(System.in);
 		do{
-			System.out.println("Enter the new Staff ID:");
+			System.out.print("Enter the new Staff ID:");
 			int employee_id = sc.nextInt();
 			System.out.println("Enter the name of the staff:");
 			String name = sc.next();

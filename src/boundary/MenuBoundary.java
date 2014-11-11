@@ -1,7 +1,9 @@
 package boundary;
 
 import control.MenuManager;
+import control.OrderManager;
 import entity.MenuItem;
+import entity.Order;
 import entity.Set;
 
 import java.util.ArrayList;
@@ -81,7 +83,7 @@ public class MenuBoundary implements Runnable{
 	        	System.out.println(menuManager.menuToString());
 	        	System.out.println("Enter the Ala Carte ID to add into this Set:\t");
 	        	int itemID = inputInteger();
-	        	if(itemID>(menuManager.getMenu().size())){
+	        	if(itemID>=(menuManager.getMenu().size())){
 	        		System.out.println("This Ala Carte does not exist!");
 	        	}
 	        	else{
@@ -99,6 +101,7 @@ public class MenuBoundary implements Runnable{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("The ID of the Alacarte to update");
         int menuitemid = inputInteger();
+        MenuItem item = secureGetMenuItem(menuManager,menuitemid);
         do{
         System.out.print(" 1.Name\n 2.Description\n"
                 + "3.Category\n4.Price\n5.Back\nChoose which attribute to update:");
@@ -113,23 +116,23 @@ public class MenuBoundary implements Runnable{
                 		return;
                 	}
                 }
-                menu.get(menuitemid-1).setName(newname);
+                item.setName(newname);
                 break;
             case 2 :
                 System.out.println("The new description of the Alacarte");
                 String newdescription = sc.next();
-                menu.get(menuitemid-1).setDescription(newdescription);
+                item.setDescription(newdescription);
                 break;
             case 3 :
                 System.out.println("The new category of the Alacarte: ");
                 String newcategory = sc.next();
-                menu.get(menuitemid-1).setCategory(newcategory);
+                item.setCategory(newcategory);
                 break;
             case 4 :
 
                 System.out.println("The new price of the Alacarte: ");
                 double newprice = sc.nextDouble();
-                menu.get(menuitemid-1).setPrice(newprice);
+                item.setPrice(newprice);
                 break;
             default:
             	break;
@@ -247,10 +250,21 @@ public class MenuBoundary implements Runnable{
     			doub = Double.parseDouble(input);
     			break;
     		}catch(NumberFormatException ne){
-    			System.out.println("Not an integer, type again: ");
+    			System.out.println("Not an valid value, type again: ");
     		}
     	}
     	return doub;
     }
+    
+	public MenuItem secureGetMenuItem(MenuManager manager,int itemID) {
+		while (true) {
+			try {
+				return manager.getMenuItemByld(itemID);
+			} catch (ArrayIndexOutOfBoundsException e) {
+				// TODO: handle exception
+				System.out.println("Invalid ID please input again");
+			}
+		}
+	}
 }
 
