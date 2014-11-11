@@ -141,7 +141,7 @@ public class OrderBoundary implements Runnable{
 		
 		orderManager.getOrderCollection().add(new Order(aStaff,tableNo));
 		System.out.format("Order with ID = %d was created ", orderManager.getTotalNumberOfOrder());
-		return orderManager.getTotalNumberOfOrder();
+		return orderManager.getTotalNumberOfOrder()-1;
 	}
 	
 }
