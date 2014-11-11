@@ -83,8 +83,18 @@ public class StaffBoundary implements Runnable{
 				   toUpdateStaff.setStaffName(newName);
 				   break;
 			   case 2:
-				   System.out.println("Enter the correct Gender: ");
-				   boolean corrGender = sc.nextBoolean();
+				   System.out.println("Enter the correct Gender (m for male, f for female): ");
+                   String gender;
+                   boolean corrGender;
+                   while (true) {
+                       gender = sc.next();
+                       if (gender.equals("m") || gender.equals("f")) {
+                           corrGender = gender.equals("m");
+                           break;
+                       }
+                       System.out.println("Invalid gender, try again");
+                   }
+
 				   toUpdateStaff.setGender(corrGender);
 				   break;
 			   case 3: 
