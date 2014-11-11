@@ -29,7 +29,7 @@ public class MemberBoundary implements Runnable{
 
 
     private void showMenu() {
-        System.out.println("choose what you want \n 1. Check Membership \n 2. List Members \n 3. Add Member \n 4.Delete Member ");
+        System.out.println("choose what you want \n 1. Check Membership \n 2. List Members \n 3. Add Member \n 4. Delete Member \n 5. Go back");
     }
 
     /**
