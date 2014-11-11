@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 
 public class OrderManager extends AbstractManager {
-	private static final double TAXRATE = 0.4;
 	private ArrayList<Order> orderCollection;
 	private MenuManager menuManager;
 	private StaffManager staffManager;
@@ -33,16 +32,20 @@ public class OrderManager extends AbstractManager {
 	}
 	
 	public void showAllOrderWithID() {
+		System.out.println("==================================");
 		for (int i = 0; i < orderCollection.size(); i++) {
-			System.out.format("ID = %d \t staff No = %d \t table No = \t",i+1,orderCollection.get(i).getStaff().getStaffID(),orderCollection.get(i).getTableID());			
+			System.out.format("ID = %d \t staff No = %d \t table No = %d \t\n",i+1,orderCollection.get(i).getStaff().getStaffID(),orderCollection.get(i).getTableID());			
 		}
+		System.out.println("==================================");
 	}
 	
 	public void showAllOrderWithIDAndContent() {
+		System.out.println("==================================");
 		for (int i = 0; i < orderCollection.size(); i++) {
 			System.out.format("ID = %d \t staff No = %d \t table No = \t",i+1,orderCollection.get(i).getStaff().getStaffID(),orderCollection.get(i).getTableID());
 			orderCollection.get(i).showAllOrderItems();
 		}
+		System.out.println("==================================");
 	}
 	public int getTotalNumberOfOrder() {
 		return orderCollection.size();

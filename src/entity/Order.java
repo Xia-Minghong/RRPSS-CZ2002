@@ -52,9 +52,13 @@ public class Order implements Serializable{
 	}
 	
 	public void showAllOrderItems() {
+		System.out.println("==================================");
+		System.out.println("ID\tQuantity\tName\tTotalPrice");
 		for (int i = 0; i < orderItems.size(); i++) {
-			System.out.println((i+1)+orderItems.get(i).toString());
+			System.out.println((i+1)+"\t"+orderItems.get(i).toString());
+			
 		}
+		System.out.println("==================================");
 	}
 
 	

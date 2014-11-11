@@ -6,7 +6,10 @@ import entity.Order;
 import entity.OrderItem;
 import entity.Staff;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import sun.print.resources.serviceui;
 
 public class OrderBoundary implements Runnable{
 	
@@ -56,12 +59,15 @@ public class OrderBoundary implements Runnable{
 	}
 	
 	public static int secureNextInt(Scanner sc) {
+		int ans;
 		while (true) {
 			try {
 				return sc.nextInt();
-			} catch (Exception e) {
+			} catch (InputMismatchException e) {
 				// TODO: handle exception
 				System.out.println("Please input an interger!");
+				sc.nextLine();
+				//e.printStackTrace();
 			}
 		}
 	}
@@ -74,6 +80,7 @@ public class OrderBoundary implements Runnable{
 			} catch (ArrayIndexOutOfBoundsException e) {
 				// TODO: handle exception
 				System.out.println("Invalid Index please input again");
+				System.out.println(888);//debug
 			}
 		}
 	}
@@ -87,35 +94,49 @@ public class OrderBoundary implements Runnable{
 			} catch (ArrayIndexOutOfBoundsException e) {
 				// TODO: handle exception
 				System.out.println("Invalid Index please input again");
+				//System.out.println(8);//debug
 			}
 		}
 	}
 	
+	public static int secureRangeInt(Scanner sc,int a,int b) {
+		int ans=secureNextInt(sc);
+		while (ans>b || ans<a) {
+			ans = secureNextInt(sc);
+			System.out.println("Invalid try again!");//debug
+		} 
+		return ans;
+	}
+	
 	private void editOrder(int orderID) {
 		Scanner sc = new Scanner(System.in);
-		orderManager.getOrderCollection().get(orderID).showAllOrderItems();
+		System.out.println("==================================");
+		orderManager.getOrderbyID(orderID).showAllOrderItems();
+		System.out.println("==================================");
 		while (true) {
 			System.out.println("1. add item\n2.removed item\n3.show all item\n4.exit");
 			System.out.println("choose what you want to do with the order");
 			switch (secureNextInt(sc)) {
 			case 1:	
-				orderManager.getMenuManager().menuToString();
+				System.out.println(orderManager.getMenuManager().menuToString());
 				System.out.println("choose a item by inputting item ID");
-				int item = secureNextInt(sc);
+				//System.out.println(orderManager.getMenuManager().getMenu().size());
+				int item = secureRangeInt(sc, 1, orderManager.getMenuManager().getMenu().size());
+
 				System.out.println("How many "+ orderManager.getMenuManager().getMenuItemByld(item).getName() + " do you want?");
 				int quantity = secureNextInt(sc);
-				orderManager.getOrderCollection().get(orderID).addOrderItem(new
+				orderManager.getOrderbyID(orderID).addOrderItem(new
                         OrderItem(quantity, orderManager.getMenuManager().getMenuItemByld(item)));
 				System.out.println("successfully ordered!");
 				break;
 			case 2:
-				orderManager.getOrderCollection().get(orderID).showAllOrderItems();
+				orderManager.getOrderbyID(orderID).showAllOrderItems();
 				System.out.println("Choose a item you want to removed");
-				orderManager.getOrderCollection().get(orderID).removeOrderItem(secureNextInt(sc));
+				orderManager.getOrderbyID(orderID).removeOrderItem(secureRangeInt(sc, 1, orderManager.getOrderbyID(orderID).getOrderItems().size()));
 				System.out.println("Removed!");
 				break;
 			case 3:
-				orderManager.getOrderCollection().get(orderID).showAllOrderItems();
+				orderManager.getOrderbyID(orderID).showAllOrderItems();
 				break;
 			default:
 				return;
@@ -140,8 +161,8 @@ public class OrderBoundary implements Runnable{
 		int tableNo = secureNextInt(sc);
 		
 		orderManager.getOrderCollection().add(new Order(aStaff,tableNo));
-		System.out.format("Order with ID = %d was created ", orderManager.getTotalNumberOfOrder());
-		return orderManager.getTotalNumberOfOrder()-1;
+		System.out.format("Order with ID = %d was created \n", orderManager.getTotalNumberOfOrder());
+		return orderManager.getTotalNumberOfOrder();
 	}
 	
 }
