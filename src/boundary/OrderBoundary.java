@@ -1,6 +1,7 @@
 package boundary;
 
 import control.OrderManager;
+import entity.MenuItem;
 import entity.Order;
 import entity.OrderItem;
 import entity.Staff;
@@ -72,7 +73,7 @@ public class OrderBoundary implements Runnable{
 			System.out.println("choose what you want to do with the order");
 			switch (secureNextInt(sc)) {
 			case 1:	
-				orderManager.getMenuManager().showAllItem();
+				PrintMenu();
 				System.out.println("choose a item by inputting item ID");
 				int item = secureNextInt(sc);
 				System.out.println("How many "+ orderManager.getMenuManager().getMenuItemByld(item).getName() + " do you want?");
@@ -94,6 +95,15 @@ public class OrderBoundary implements Runnable{
 				return;
 			}
 		}
+	}
+	
+	public void PrintMenu(){
+		System.out.println("===========Menu===========");
+		for (MenuItem menuitem : orderManager.getMenuManager().getMenu()){
+			System.out.println("***********************");
+		    System.out.println("ID"+(orderManager.getMenuManager().getMenu().indexOf(menuitem)+1) + "\n"+menuitem);
+		}
+		System.out.println("===========End=============");
 	}
 	
 	public int createOrder() {
