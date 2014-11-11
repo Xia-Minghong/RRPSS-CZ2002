@@ -21,12 +21,12 @@ public class ReservationBoundary {
 		Scanner sc = new Scanner(System.in);
 		int choice;
 		do {
+			System.out.println();
 			printMenu();
 			choice = sc.nextInt();
 			switch (choice) {
 			case 1:
 				createReservation();
-				reservationManager.showAllReservations();
 				break;
 			case 2:
 				removeReservation();
@@ -60,14 +60,14 @@ public class ReservationBoundary {
 
 		System.out.print("Please enter the date(DD/MM/YYYY):");
 
-		// dateStr = sc.next();
-		dateStr = "11/11/2014";
+		 dateStr = sc.next();
+		//dateStr = "11/11/2014";
 
 		date = dateStr.split("/");
 		System.out.print("Please enter the time(HH:MM)");
 
-		// timeStr = sc.next();
-		timeStr = "18:30";
+		 timeStr = sc.next();
+		//timeStr = "08:54";
 
 		time = timeStr.split(":");
 		calTime.set(new Integer(date[2]), new Integer(date[1]) - 1,
@@ -75,25 +75,31 @@ public class ReservationBoundary {
 				new Integer(time[1]));
 		System.out.print("Please enter the pax:");
 
-		// pax = sc.nextInt();
-		pax = 7;
+		 pax = sc.nextInt();
+		//pax = 7;
 
 		System.out.print("Please enter the customer name:");
 
-		// cstName = sc.next();
-		cstName = "abc";
+		cstName = sc.next();
+		//cstName = "abc";
 
-		System.out.println();
 
 		reservationManager.clearReservation();
 		Reservation reservation = new Reservation(calTime, pax, cstName);
-		boolean isAssigned = reservationManager.assignTable(reservation);
-		if (isAssigned) {
-			System.out.println("Reservation has been successfully created!");
-			reservationManager.getReservations().add(reservation);
+		boolean isExpired = reservationManager
+				.isReservationExpired(reservation);
+		if (isExpired) {
+			System.out.println("Reservation is not created. It is expired.");
 		} else {
-			System.out
-					.println("Reservation is not created. No table is available!");
+			boolean isAssigned = reservationManager.assignTable(reservation);
+			if (isAssigned) {
+				System.out
+						.println("Reservation has been successfully created!");
+				reservationManager.getReservations().add(reservation);
+			} else {
+				System.out
+						.println("Reservation is not created. No table is available!");
+			}
 		}
 	}
 

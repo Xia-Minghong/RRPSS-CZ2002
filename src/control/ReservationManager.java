@@ -64,7 +64,6 @@ public class ReservationManager extends AbstractManager {
 		if (minCapTable == null)
 			return false;
 		reservation.setTable(minCapTable);
-		System.out.println(minCapTable.toString());
 		return true;
 	}
 
@@ -98,7 +97,7 @@ public class ReservationManager extends AbstractManager {
 		}
 	}
 
-	private boolean isReservationExpired(Reservation reservation){
+	public boolean isReservationExpired(Reservation reservation){
 		Calendar curTime = Calendar.getInstance();
 		Calendar resTime = reservation.getTime();
 		curTime.setTime(new Date());
