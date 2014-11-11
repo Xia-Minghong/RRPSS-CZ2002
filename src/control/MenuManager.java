@@ -59,13 +59,8 @@ public class MenuManager extends AbstractManager {
 		 menu.add(menuitem);
 		 System.out.println("New Ala Carte added");
 	}		            
-	/**
-	 * 
-	 * @param name
-	 * @param description
-	 * @param category
-	 * @param discountrate
-	 */
+
+
 	public void addSettoMenu(String name, String description, String category, double price){
 		Scanner sc = new Scanner(System.in);
 		for(MenuItem item: menu){
@@ -86,10 +81,7 @@ public class MenuManager extends AbstractManager {
 		
 	}
 	
-	/**
-	 * Delete the menuItem with the input name
-	 * @param name, the name of the menuItem to be deleted
-	 */
+
 	public void deleteMenuItembyID(int itemID){
 		
 		if(itemID > 0){
