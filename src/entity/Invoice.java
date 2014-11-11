@@ -38,16 +38,16 @@ public class Invoice implements Serializable{
 	public void print(){
 		System.out.println("======================================================");
 		System.out.println("||Invoice ID:\t\t" + INVOICE_ID + "\t||");
-		System.out.println("||Time:\t\t"+ TIMESTAMP+ "\t||");
-		System.out.println("||Staff:\t\t" + STAFF_NAME+ "\t||");
+		System.out.println("||Time:\t\t\t\t"+ TIMESTAMP+ "\t||");
+		System.out.println("||Staff:\t\t\t" + STAFF_NAME+ "\t||");
 		ArrayList<OrderItem> orderItems = ORDER.getOrderItems();
 		for (OrderItem orderItem : orderItems){
 			System.out.println("||" + orderItem + "\t||");
 		}
-		System.out.println("||Gross Price:\t"+ GROSS_PRICE+ "\t||");
-		System.out.println("||GST:\t\t\t"+ GST+ "\t||");
-		System.out.println("||Service Charge:\t\t"+ SERVICE_CHARGE+ "\t||");
-		System.out.println("||Net Price:\t"+ NET_PRICE+ "\t||");	
+		System.out.println("||Gross Price:\t\t"+ GROSS_PRICE+ "\t||");
+		System.out.println("||GST:\t\t\t\t"+ GST+ "\t||");
+		System.out.println("||Service Charge:\t"+ SERVICE_CHARGE+ "\t||");
+		System.out.println("||Net Price:\t\t"+ NET_PRICE+ "\t||");
 		System.out.println("======================================================");
 	}
 

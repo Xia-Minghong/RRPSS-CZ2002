@@ -41,7 +41,7 @@ Staff:
 
 Invoice:
 	\t\t
-	imitate the format given in the manual
+	imitate the format given in the manuald
 	# back
 	check member, discount
 	need: memberManager, restaurantManager
@@ -49,3 +49,36 @@ Invoice:
 restaurant:
 	# name
 	# membership discount
+
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+//Input check for all non-string inputs
+
+staff: print
+ManuItem: Id space
+Set: check alacarte mexist
+
+member:
+    go back
+
+Order: table index
+    new line
+    input check infinity
+    print menu to string
+    handle array bound  >=1
+    gettotalprice: print issue
+    show all item: header, id hou mian yao kong ge
+    edit order: bug
+
+Reservation:
+    next() -> nextLine()
+    create: show table
+    show all reservation: name
+
+Invoice:
+    title, date
+    null pointer print message
+
+
+
