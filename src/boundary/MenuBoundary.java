@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
+ * @author Cao
  * Created by root on 14-11-8.
  */
 public class MenuBoundary implements Runnable{
@@ -53,7 +54,7 @@ public class MenuBoundary implements Runnable{
                 	updateSet(menu);
                     break;
                 case 6:
-                    menuManager.showAllItem();
+                	PrintMenu();
                     break;
                 default:
                 	return;
@@ -72,7 +73,20 @@ public class MenuBoundary implements Runnable{
         String setcategory = sc.next();
         System.out.println("The price of the new Set:");
         double setprice = inputDouble();  
-        menuManager.addSettoMenu(setname, setdescription, setcategory, setprice);
+        Set newSet = menuManager.addSettoMenu(setname, setdescription, setcategory, setprice);
+        if (newSet == null){
+        	return;
+        }
+        else{
+        	do{
+	        	PrintMenu();
+	        	System.out.println("Enter the Ala Carte ID to add into this Set: ");
+	        	int itemID = inputInteger();
+	        	newSet.addAlaCartetoSet(menuManager.getMenu(), itemID);
+	        	System.out.println("Add one more Ala Carte? ('y' to Continue)");
+	        }while(sc.next().equals("y"));
+        }
+  		  
     }
     
 	public void updateAlacarte(ArrayList<MenuItem> menu){
@@ -160,7 +174,7 @@ public class MenuBoundary implements Runnable{
                 break;
             case 6 :
             	do{
-    	        	menuManager.showAllItem();
+            		PrintMenu();
     	        	System.out.println("Enter the Ala Carte ID to add into this Set: ");
     	        	int itemID = inputInteger();
     	        	((Set)menu.get(setid-1)).addAlaCartetoSet(menu, itemID);
@@ -180,7 +194,22 @@ public class MenuBoundary implements Runnable{
                 break;
         }
 	}
-    private int inputInteger() {
+    
+	
+	/**
+	 * Show all the menuItems in the menu with their attributes.
+	 */
+
+	public void PrintMenu(){
+		System.out.println("===========Menu===========");
+		for (MenuItem menuitem : menuManager.getMenu()){
+			System.out.println("***********************");
+		    System.out.println("ID"+(menuManager.getMenu().indexOf(menuitem)+1) + "\n"+"Name:\t" +menuitem.getName() +"\n"+"Category:\t"+ menuitem.getCategory() +"\n"+"Description:\t"+ menuitem.getDescription() +
+		    		            "\n"+menuitem+"Price:\t"+ menuitem.getPrice());
+		}
+		System.out.println("===========End=============");
+	}
+	private int inputInteger() {
         int integer;
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -194,6 +223,7 @@ public class MenuBoundary implements Runnable{
         }
         return integer;
     }
+    
     private double inputDouble(){
     	double doub;
     	Scanner sc = new Scanner(System.in);

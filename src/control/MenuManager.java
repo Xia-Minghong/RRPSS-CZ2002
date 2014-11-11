@@ -66,23 +66,17 @@ public class MenuManager extends AbstractManager {
 	 * @param category
 	 * @param discountrate
 	 */
-	public void addSettoMenu(String name, String description, String category, double price){
+	public Set addSettoMenu(String name, String description, String category, double price){
 		Scanner sc = new Scanner(System.in);
 		for(MenuItem item: menu){
 			if (item.getName().equals(name)){
 				System.out.println("This Set exists!");
-				return;
+				return null;
 			}
          }
 		MenuItem menuitem = new Set(name, description, category, price);
 		menu.add(menuitem);
-		 do{
-	        	showAllItem();
-	        	System.out.println("Enter the Ala Carte ID to add into this Set: ");
-	        	int itemID = inputInteger();
-	        	((Set) menuitem).addAlaCartetoSet(menu, itemID);
-	        	System.out.println("Add one more Ala Carte? ('y' to Continue)");
-	        }while(sc.next().equals("y"));
+		return (Set) menuitem;
 		
 	}
 	
@@ -144,19 +138,7 @@ public class MenuManager extends AbstractManager {
 		}
 	}
 	
-	/**
-	 * Show all the menuItems in the menu with their attributes.
-	 */
 
-	public void showAllItem(){
-		System.out.println("===========Menu===========");
-		for (MenuItem menuitem : menu){
-			System.out.println("***********************");
-		    System.out.println("ID"+(menu.indexOf(menuitem)+1) + "\n"+"Name:\t" +menuitem.getName() +"\n"+"Category:\t"+ menuitem.getCategory() +"\n"+"Description:\t"+ menuitem.getDescription() +
-		    		            "\n"+"Price:\t"+ menuitem.getPrice());
-		}
-		System.out.println("===========End=============");
-	}
 	
 	/**
 	 * Load menuItems data from file by interacting with IOManager

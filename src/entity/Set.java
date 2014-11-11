@@ -73,5 +73,15 @@ public class Set extends MenuItem implements Serializable{
 		}
 		System.out.println("===========End=============");
 	}
+	@Override
+	public String toString(){
+		StringBuffer ans = new StringBuffer();
+		ans.append("Include:");
+		for(AlaCarte alacarte:this.set){
+			ans.append("\t\t\t"+this.getSet().indexOf(alacarte)+"\t"+alacarte.getName()+"\n");
+		}
+		return ans.toString();
+	}
 		
 }
+

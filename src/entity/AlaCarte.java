@@ -39,5 +39,10 @@ public class AlaCarte extends MenuItem implements Serializable{
 		
 	}
 	
+	@Override
+	public String toString(){
+		return "\n";
+	}
+	
 }
 
