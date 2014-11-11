@@ -20,12 +20,15 @@ public class Order implements Serializable{
 	/**
 	 * 
 	 */
-	private int tableID;
+	private int tableID,orderID;
 	private Staff staff;
+	private static int orderCounter = 0;
 	private ArrayList<OrderItem> orderItems;
 	
 	
 	public Order(Staff staff, int tableID) {
+		orderCounter ++;
+		orderID = orderCounter;
 		this.staff = staff;
 		this.tableID = tableID;
 		orderItems = new ArrayList<OrderItem>();
@@ -39,7 +42,10 @@ public class Order implements Serializable{
 	}
 
 
-
+	public int getOrderID() {
+		return orderID;
+	}
+	
 	public int getTableID() {
 		return tableID;
 	}
