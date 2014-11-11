@@ -55,6 +55,7 @@ public class Set extends MenuItem implements Serializable{
 				try{
 				AlaCarte alacarte = this.set.get(menuitemID-1);
 				set.remove(menuitemID-1);
+				return;
 			    }catch(ArrayIndexOutOfBoundsException e){
 				System.out.println("Invalid ID please input again!");
 				return;
@@ -85,7 +86,7 @@ public class Set extends MenuItem implements Serializable{
 		System.out.println("==========="+this.getName()+"===========");
 		for (AlaCarte alacarte : this.getSet()){
 			System.out.println("***********************");
-		    System.out.println("ID"+(this.getSet().indexOf(alacarte)+1) + "\n"+"Name:\t" +alacarte.getName() +"\n"+"Category:\t"+ alacarte.getCategory() +"\n"+"Description:\t"+ alacarte.getDescription() +
+		    System.out.println("ID\t"+(this.getSet().indexOf(alacarte)+1) + "\n"+"Name:\t" +alacarte.getName() +"\n"+"Category:\t"+ alacarte.getCategory() +"\n"+"Description:\t"+ alacarte.getDescription() +
 		    		            "\n"+"Price:\t"+ alacarte.getPrice());
 		}
 		System.out.println("===========End=============\n");
@@ -95,7 +96,7 @@ public class Set extends MenuItem implements Serializable{
 		StringBuffer ans = new StringBuffer();
 		ans.append("Type:\t\t\tSet\nName:\t\t\t"+this.getName()+"\n"+"Category:\t\t"+ this.getCategory() +"\n"+"Description:\t\t"+ this.getDescription()+"\n"+"Include:\n");
 		for(AlaCarte alacarte:this.set){
-			ans.append("\t\t\t"+(this.getSet().indexOf(alacarte)+1)+"\t"+alacarte.getName()+"\n");
+			ans.append("\t\t"+(this.getSet().indexOf(alacarte)+1)+"\t"+alacarte.getName()+"\n");
 		}
 		ans.append("\nPrice:\t\t\t"+this.getPrice());
 		return ans.toString();
