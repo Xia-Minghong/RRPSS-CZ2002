@@ -41,6 +41,16 @@ public class ReservationBoundary {
 			case 4:
 				showAllReservations();
 				break;
+			/*case 6:
+				System.out.println("Table ID:");
+				int ID = sc.nextInt();
+				System.out.println(reservationManager.checkIn(ID));
+				break;
+			case 7:
+				System.out.println("Table ID:");
+				int id = sc.nextInt();
+				System.out.println(reservationManager.checkOut(id));
+				break;*/
 			default:
 				break;
 			}
@@ -66,7 +76,7 @@ public class ReservationBoundary {
 		} while (!isValid);
 		date = dateStr.split("/");
 		do {
-			System.out.print("Please enter the time(HH:MM)");
+			System.out.print("Please enter the time(HH:MM):");
 			timeStr = sc.next();
 			isValid = validateDate(timeStr, TIME_FORMAT);
 			if (!isValid)
@@ -84,10 +94,9 @@ public class ReservationBoundary {
 				System.out.println("It's not a valid pax number! Please try again.");
 		}while(!isValid);
 		
-		System.out.print("Please enter the customer name:");
-		String buffer = sc.next();
+		System.out.print("Please enter the customer name(no space):");
+		String buffer = sc.nextLine();
 		cstName = sc.nextLine();
-		//reservationManager.clearReservation();
 		Reservation reservation = new Reservation(calTime, new Integer(pax), cstName);
 		boolean isExpired = reservationManager
 				.isReservationExpired(reservation);
@@ -117,7 +126,7 @@ public class ReservationBoundary {
 		System.out.println("Reservations associated with this customer:");
 		int index;
 		for(index = 0; index < listOfIndex.size();++index){
-			System.out.print((index + 1) + ": ");
+			System.out.print((index + 1) + ". ");
 			System.out.println(reservationManager.getReservations().get(index).toString());
 		}
 		System.out.print("Choose one to remove:");
@@ -138,7 +147,7 @@ public class ReservationBoundary {
 		System.out.println("Reservations associated with this customer:");
 		int index;
 		for(index = 0; index < listOfIndex.size();++index){
-			System.out.print((index + 1) + ": ");
+			System.out.print((index + 1) + ". ");
 			System.out.println(reservationManager.getReservations().get(index).toString());
 		}
 	}
@@ -149,6 +158,8 @@ public class ReservationBoundary {
 		System.out.println("3: Check a reservation");
 		System.out.println("4. Show all reservations");
 		System.out.println("5: Go back");
+		//System.out.println("6: Check in");
+		//System.out.println("7: Check out");
 		System.out.print("Choose any options above:");
 	}
 
@@ -176,9 +187,10 @@ public class ReservationBoundary {
 	 * This method is to print all existing reservations
 	 */
 	public void showAllReservations() {
+		System.out.println("All reservations:");
 		int index;
 		for (index = 0; index < reservationManager.getReservations().size(); ++index) {
-			System.out.print((index + 1) + ": ");
+			System.out.print((index + 1) + ". ");
 			System.out.println(reservationManager.getReservations().get(index).toString());
 		}
 	}

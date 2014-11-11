@@ -179,7 +179,7 @@ public class ReservationManager extends AbstractManager {
 		for (index = 0; index < reservations.size(); ++index) {
 			int curID = reservations.get(index).getTable().getTABLE_ID();
 			if (curID == TABLE_ID) {
-				listOfIndex.add(curID);
+				listOfIndex.add(index);
 			}
 		}
 		return listOfIndex;
@@ -196,17 +196,36 @@ public class ReservationManager extends AbstractManager {
 		clearReservation();
 		ArrayList<Integer> listOfIndex = searchByTableID(TABLE_ID);
 		boolean done = false;
-		Calendar curTime = Calendar.getInstance();
-		curTime.setTime(new Date());
 		int index;
 		for (index = 0; index < listOfIndex.size() && !done; ++index) {
-			Reservation curReservation = reservations.get(index);
-			if (curTime.compareTo(curReservation.getTime()) >= 0) {
+			Reservation curReservation = reservations.get(listOfIndex
+					.get(index));
+			if (isAllowCheckIn(curReservation)) {
 				curReservation.setIsCheckIn(true);
 				done = true;
 			}
 		}
 		return done;
+	}
+
+	/**
+	 * This method is to check whether a reservation is allowed to check in. The
+	 * criterion of check-in is that current time is within 2 hours of the
+	 * reserved time
+	 * 
+	 * @param reservation
+	 *            specifies the targeted reservation
+	 * @return whether this reservation can be checked in.
+	 */
+	private boolean isAllowCheckIn(Reservation reservation) {
+		Calendar curTime = Calendar.getInstance();
+		curTime.setTime(new Date());
+		long currTime = curTime.getTimeInMillis();
+		long resTime = reservation.getTime().getTimeInMillis();
+		if (Math.abs((double) currTime - (double) resTime) <= HOURS_ALLOWED * 60 * 60 * 1000) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -220,13 +239,12 @@ public class ReservationManager extends AbstractManager {
 		clearReservation();
 		ArrayList<Integer> listOfIndex = searchByTableID(TABLE_ID);
 		boolean done = false;
-		Calendar curTime = Calendar.getInstance();
-		curTime.setTime(new Date());
 		int index;
 		for (index = 0; index < listOfIndex.size() && !done; ++index) {
-			Reservation curReservation = reservations.get(index);
-			if (curTime.compareTo(curReservation.getTime()) >= 0) {
-				reservations.remove(index);
+			Reservation curReservation = reservations.get(listOfIndex
+					.get(index));
+			if (curReservation.getIsCheckIn()) {
+				removeReservationByIndex(listOfIndex.get(index));
 				done = true;
 			}
 		}
@@ -265,8 +283,6 @@ public class ReservationManager extends AbstractManager {
 		}
 		return false;
 	}
-
-
 
 	/**
 	 * This method is to return all reservations
