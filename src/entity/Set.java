@@ -44,17 +44,8 @@ public class Set extends MenuItem implements Serializable{
 	}
 	
 	public void addAlaCartetoSet(ArrayList<MenuItem> menu,int  menuitemID){
-		while(true){
-			 try{
-			 AlaCarte alacarte = (AlaCarte) menu.get(menuitemID-1);
-			 set.add(alacarte);
-			 return;
-		}catch(ArrayIndexOutOfBoundsException e){
-			System.out.println("Invalid ID please input again!");
-			return;
-		 }
-	  
-		}
+			 set.add((AlaCarte) menu.get(menuitemID));
+		 
 	}
 	public void delFromSet(int menuitemID){
 		if(this.getSet().size() == 0){
@@ -63,10 +54,10 @@ public class Set extends MenuItem implements Serializable{
 		else{
 			while(true){
 				try{
-				AlaCarte alacarte = this.set.get(menuitemID-1);
-				set.remove(menuitemID-1);
+				AlaCarte alacarte = this.set.get(menuitemID);
+				set.remove(menuitemID);
 				return;
-			    }catch(ArrayIndexOutOfBoundsException e){
+			    }catch(IndexOutOfBoundsException e){
 				System.out.println("Invalid ID please input again!");
 				return;
 			}

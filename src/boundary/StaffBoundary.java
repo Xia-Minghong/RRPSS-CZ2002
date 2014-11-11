@@ -72,7 +72,8 @@ public class StaffBoundary implements Runnable{
 		Scanner sc = new Scanner(System.in);
 		do {
 			System.out.println("Enter the name of the Staff to delete:");
-			String  name = sc.next();
+			sc.next();
+			String  name = sc.nextLine();
 			staffManager.deleteStaff(name);
 			System.out.println("Delete one more staff?('y' to continue):");
 		}while(sc.next().equals("y"));
@@ -90,7 +91,8 @@ public class StaffBoundary implements Runnable{
 			switch(inputInteger()){
 			   case 1:
 				   System.out.println("Enter the new name");
-				   String newName = sc.next();
+				   sc.next();
+				   String newName = sc.nextLine();
 				   toUpdateStaff.setStaffName(newName);
 				   break;
 			   case 2:
@@ -110,7 +112,8 @@ public class StaffBoundary implements Runnable{
 				   break;
 			   case 3: 
 				   System.out.println("Enter the new Job Title:");
-				   String newJobTitle = sc.next();
+				   sc.next();
+				   String newJobTitle = sc.nextLine();
 				   toUpdateStaff.setJobTitle(newJobTitle);
 				   break;
 			   case 4:
