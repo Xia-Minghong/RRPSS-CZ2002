@@ -50,10 +50,17 @@ public class Invoice implements Serializable{
 }
 
 
+	public void printDay() {
+		for (Invoice invoice == Date: invoices) {
+			print();
+		}
+	}
 
-
-
-
+	public void printMonth(){
+		
+		
+		
+	}
 
 
 

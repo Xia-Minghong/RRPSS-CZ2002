@@ -33,10 +33,22 @@ public class InvoiceBoundary implements Runnable {
                 	addInvoice();
                     break;
                 case 2:
-                	addInvoice();
+                	System.out.print("Please enter the date(DD/MM/YYYY):");
+                	dateStr = sc.next();
+                	//dateStr = "11/11/2014";
+                	date = dateStr.split("/");
+	                checkDay= calTime.set(new Integer(date[2]), new Integer(date[1]) - 1,
+           				new Integer(date[0],0,0));
+                	printDay(checkDay);
                     break;
                 case 3:
-                	addInvoice();
+                	System.out.print("Please enter the date(MM/YYYY):");
+                	dateStr = sc.next();
+                	//dateStr = "11/2014";
+                	date = dateStr.split("/");
+	                checkMonth= calTime.set(0, new Integer(date[1]) - 1,
+           				new Integer(date[0]),0,0);
+                	printMonth(checkMonth);
                     break;
                 
                 
