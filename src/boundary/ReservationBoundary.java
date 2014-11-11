@@ -3,6 +3,9 @@ package boundary;
 import control.ReservationManager;
 import entity.Reservation;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Scanner;
 
@@ -51,39 +54,38 @@ public class ReservationBoundary {
 	}
 
 	private void createReservation() {
+		final String DATE_FORMAT = "dd/MM/yyyy";
+		final String TIME_FORMAT = "HH:mm";
 		Scanner sc = new Scanner(System.in);
 		Calendar calTime = Calendar.getInstance();
 		int pax;
 		String cstName;
 		String dateStr, timeStr;
 		String[] date, time;
-
-		System.out.print("Please enter the date(DD/MM/YYYY):");
-
-		 dateStr = sc.next();
-		//dateStr = "11/11/2014";
-
+		boolean isValid = false;
+		do {
+			System.out.print("Please enter the date(DD/MM/YYYY):");
+			dateStr = sc.next();
+			isValid = validate(dateStr, DATE_FORMAT);
+			if (!isValid)
+				System.out.println("It's not a valid date! Please try again.");
+		} while (!isValid);
 		date = dateStr.split("/");
-		System.out.print("Please enter the time(HH:MM)");
-
-		 timeStr = sc.next();
-		//timeStr = "08:54";
-
+		do {
+			System.out.print("Please enter the time(HH:MM)");
+			timeStr = sc.next();
+			isValid = validate(timeStr, TIME_FORMAT);
+			if (!isValid)
+				System.out.println("It's not a valid time! Please try again.");
+		} while (!isValid);
 		time = timeStr.split(":");
 		calTime.set(new Integer(date[2]), new Integer(date[1]) - 1,
 				new Integer(date[0]), new Integer(time[0]),
 				new Integer(time[1]));
 		System.out.print("Please enter the pax:");
-
-		 pax = sc.nextInt();
-		//pax = 7;
-
+		pax = sc.nextInt();
 		System.out.print("Please enter the customer name:");
-
 		cstName = sc.next();
-		//cstName = "abc";
-
-
 		reservationManager.clearReservation();
 		Reservation reservation = new Reservation(calTime, pax, cstName);
 		boolean isExpired = reservationManager
@@ -135,5 +137,16 @@ public class ReservationBoundary {
 		System.out.println("4. Show all reservations");
 		System.out.println("5: Go back");
 		System.out.print("Choose any options above:");
+	}
+
+	private boolean validate(String dateStr, final String FORMAT) {
+		try {
+			DateFormat dateFormat = new SimpleDateFormat(FORMAT);
+			dateFormat.setLenient(false);
+			dateFormat.parse(dateStr);
+			return true;
+		} catch (ParseException ex) {
+			return false;
+		}
 	}
 }
