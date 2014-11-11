@@ -3,7 +3,7 @@ package entity;
 import java.io.Serializable;
 import java.util.Calendar;
 
-public class Reservation implements Serializable{
+public class Reservation implements Serializable {
 	private Calendar time;
 	private int pax;
 	private String cstName;
@@ -60,11 +60,12 @@ public class Reservation implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Customer Name:" + this.cstName + "\nTime:"
+		return "Customer Name:" + this.cstName + " Pax:" + this.pax + "\nTime:"
 				+ this.time.get(Calendar.DATE) + "/"
 				+ (time.get(Calendar.MONTH) + 1) + "/"
 				+ time.get(Calendar.YEAR) + " "
 				+ time.get(Calendar.HOUR_OF_DAY) + ":"
-				+ time.get(Calendar.MINUTE) + "\nAssgined table: " + table.toString();
+				+ time.get(Calendar.MINUTE) + "\nAssgined table: "
+				+ table.toString();
 	}
 }
