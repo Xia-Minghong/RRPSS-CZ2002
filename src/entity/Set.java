@@ -34,16 +34,32 @@ public class Set extends MenuItem implements Serializable{
 	}
 	
 	public void addAlaCartetoSet(ArrayList<MenuItem> menu,int  menuitemID){
-		
-		set.add((AlaCarte)menu.get(menuitemID-1));
+		while(true){
+			 try{
+			 AlaCarte alacarte = (AlaCarte) menu.get(menuitemID-1);
+			 set.add(alacarte);
+		}catch(ArrayIndexOutOfBoundsException e){
+			System.out.println("Invalid ID please input again!");
+			return;
+		 }
+	  
+		}
 	}
 	public void delFromSet(int menuitemID){
 		if(this.getSet().size() == 0){
 			System.out.println("No more Ala Carte to delete!");
 		}
 		else{
-		set.remove(this.getSet().get(menuitemID-1));
-		}
+			while(true){
+				try{
+				AlaCarte alacarte = this.set.get(menuitemID-1);
+				set.remove(menuitemID-1);
+			    }catch(ArrayIndexOutOfBoundsException e){
+				System.out.println("Invalid ID please input again!");
+				return;
+			}
+		}	    
+	   }
 	}
 	
 	public double getDiscountPrice(){

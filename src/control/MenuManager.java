@@ -82,7 +82,7 @@ public class MenuManager extends AbstractManager {
 			System.out.println("This menu item does not exist!");
 		} 
 		else{
-			menu.remove(itemID);
+			menu.remove(itemID-1);
 		}
 	}
 	
@@ -150,7 +150,7 @@ public class MenuManager extends AbstractManager {
 		StringBuffer ans = new StringBuffer();
 		ans.append("===========Menu===========\n");
 		for(MenuItem menuitem: menu){
-			ans.append("***********************\n"+"ID"+(this.getMenu().indexOf(menuitem)+1) + "\n"+menuitem+"\n");
+			ans.append("***********************\n"+"ID\t"+(this.getMenu().indexOf(menuitem)+1) + "\n"+menuitem+"\n");
 		}
 		ans.append("===========End=============");
 		return ans.toString();
@@ -184,21 +184,6 @@ public class MenuManager extends AbstractManager {
     public ArrayList<MenuItem> getMenu() {
         return menu;
     }
-
-    private int inputInteger() {
-        int integer;
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-        try {
-            String input = scanner.next();
-            integer = Integer.parseInt(input);
-            break;
-        } catch (NumberFormatException ne) {    //handle invalid input
-            System.out.print("Not an integer, type again: ");
-        }
-    }
-    return integer;
-  }
 }
 	
 		

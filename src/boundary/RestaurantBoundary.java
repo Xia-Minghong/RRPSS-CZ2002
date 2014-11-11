@@ -51,7 +51,7 @@ public class RestaurantBoundary implements Runnable {
 		ReservationBoundary reservationBoundary = new ReservationBoundary(
 				reservationManager);
 
-		OrderManager orderManager = new OrderManager(menuManager,staffManager, "orders.dat");
+		OrderManager orderManager = new OrderManager(menuManager,staffManager, tableManager, "orders.dat");
 		OrderBoundary orderBoundary = new OrderBoundary(orderManager);
 
 		InvoiceManager invoiceManager = new InvoiceManager(orderManager, restaurantManager, memberManager, "invoices.dat");
@@ -130,26 +130,25 @@ public class RestaurantBoundary implements Runnable {
 		// If GST Rate is not set
 		if (restaurantManager.getGSTRate() < 0) {
 			System.out.print("GST Rate: ");
-			restaurantManager.setGSTRate(scanner.nextDouble());
+			restaurantManager.setGSTRate(inputDouble());
 		}
 
 		// If Service Charge Rate is not set
 		if (restaurantManager.getServiceChargeRate() < 0) {
 			System.out.print("Service Charge Rate: ");
 			restaurantManager.setServiceChargeRate(
-                    scanner.nextDouble());
+                    inputDouble());
 		}
 
         if (restaurantManager.getRestaurantName().equals("")) {
             System.out.print("Restaurant Name: ");
-            scanner.nextLine(); //clear the "\n" left from the previous input
             restaurantManager.setRestaurantName(
                     scanner.nextLine());
         }
 
         if (restaurantManager.getMembershipDiscountRate() < 0) {
             System.out.print("Membership Discount Rate: ");
-            restaurantManager.setMembershipDiscountRate(scanner.nextDouble());
+            restaurantManager.setMembershipDiscountRate(inputDouble());
         }
 
 		// restaurantManager.load();
@@ -176,4 +175,23 @@ public class RestaurantBoundary implements Runnable {
 		System.out.println("6. Quit");
 		System.out.print("You may wish to choose any options above:");
 	}
+
+    /**
+     * Repeatedly asking for an integer input from System.in until getting one
+     * @return the integer got from the input
+     */
+    private double inputDouble() {
+        double decimal;
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                String input = scanner.next();
+                decimal = Double.parseDouble(input);
+                break;
+            } catch (NumberFormatException ne) {    //handle invalid input
+                System.out.print("Not an valid format, type again: ");
+            }
+        }
+        return decimal;
+    }
 }
