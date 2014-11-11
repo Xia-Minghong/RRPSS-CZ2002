@@ -119,8 +119,11 @@ public class InvoiceBoundary implements Runnable {
     private void addInvoice() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter the order id:");
-        int id_order = sc.nextInt();        
-        invoiceManager.createInvoice(id_order);
+        int id_order = sc.nextInt();
+        System.out.println("Enter name of the customer (check membership)");
+        sc.nextLine();
+        String name = sc.nextLine();
+        invoiceManager.createInvoice(id_order, name);
     }
 
    
