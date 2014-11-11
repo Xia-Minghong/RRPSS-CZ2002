@@ -9,6 +9,7 @@ public class OrderManager extends AbstractManager {
 	private ArrayList<Order> orderCollection;
 	private MenuManager menuManager;
 	private StaffManager staffManager;
+	private TableManager tableManager;
 	
 	public OrderManager(MenuManager menuManager,StaffManager staffManager, String FILE_PATH) {
         super(FILE_PATH);
@@ -17,10 +18,21 @@ public class OrderManager extends AbstractManager {
 		this.staffManager = staffManager;
 	}
 	
+	public OrderManager(MenuManager menuManager, StaffManager staffManager,
+			TableManager tableManager,String FILE_PATH) {
+		super(FILE_PATH);
+		this.orderCollection = load();
+		this.menuManager = menuManager;
+		this.staffManager = staffManager;
+		this.tableManager = tableManager;
+	}
+
 	public ArrayList<Order> getOrderCollection() {
 		return orderCollection;
 	}
-	
+	public TableManager getTableManager() {
+		return tableManager;
+	}
 	public StaffManager getStaffManager() {
 		return staffManager;
 	}

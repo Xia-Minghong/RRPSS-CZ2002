@@ -25,8 +25,8 @@ public class OrderBoundary implements Runnable{
 		Scanner sc = new Scanner(System.in);
 		while (true)
 		{
-			System.out.println("\n 1. Create Order \n 2.get total price of a order ");
-			System.out.println(" 3. remove a order \n 4. view all orders \n 5. edit a order\n6. exit");
+			System.out.println("\n 1. Create Order \n 2. Get total price of a order ");
+			System.out.println(" 3. Remove a order \n 4. View all orders \n 5. Edit a order\n any other input to exit");
 			System.out.println("Choose what you want: ");			
 			switch (secureNextInt(sc)) {
 			case 1:	
@@ -34,22 +34,22 @@ public class OrderBoundary implements Runnable{
 				break;
 			case 2:
 				orderManager.showAllOrderWithID();
-				System.out.println("choose a order you want to view");
+				System.out.println("Choose a order id you want to view");
 				System.out.println(secureGetOrder(orderManager,sc).getTotal());
 				break;
 			case 3:
 				int id;
 				orderManager.showAllOrderWithID();
-				System.out.println("choose a order you want to remove");
+				System.out.println("Choose a order you want to remove");
 				orderManager.removeOrderByID(id = secureGetOrderID(orderManager, sc));
-				System.out.println("successfully removed id = "+id);
+				System.out.println("Successfully removed id = "+id);
 				break;
 			case 4:
 				orderManager.showAllOrderWithID();
 				break;
 			case 5:
 				orderManager.showAllOrderWithID();
-				System.out.println("choose a order you want to edit");
+				System.out.println("Choose a order you want to edit");
 				editOrder(secureGetOrderID(orderManager, sc));
 				break;
 			default:
@@ -102,19 +102,18 @@ public class OrderBoundary implements Runnable{
 	public static int secureRangeInt(Scanner sc,int a,int b) {
 		int ans=secureNextInt(sc);
 		while (ans>b || ans<a) {
-			ans = secureNextInt(sc);
 			System.out.println("Invalid try again!");//debug
+			ans = secureNextInt(sc);
 		} 
 		return ans;
 	}
 	
 	private void editOrder(int orderID) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("==================================");
+		
 		orderManager.getOrderbyID(orderID).showAllOrderItems();
-		System.out.println("==================================");
 		while (true) {
-			System.out.println("1. add item\n2.removed item\n3.show all item\n4.exit");
+			System.out.println(" 1.add item\n 2.removed item\n 3.show all item\n 4.exit");
 			System.out.println("choose what you want to do with the order");
 			switch (secureNextInt(sc)) {
 			case 1:	
@@ -158,7 +157,7 @@ public class OrderBoundary implements Runnable{
 		
 		
 		System.out.println("Input Table No");
-		int tableNo = secureNextInt(sc);
+		int tableNo = secureRangeInt(sc, 0, orderManager.getTableManager().getTables().size()-1);
 		
 		orderManager.getOrderCollection().add(new Order(aStaff,tableNo));
 		System.out.format("Order with ID = %d was created \n", orderManager.getTotalNumberOfOrder());
