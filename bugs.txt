@@ -3,7 +3,7 @@
 
 # table yes
 # staff sex m / f
-staff id duplicate check
+# staff id duplicate check
 
 Menu:
 	Formatting , heading, catagory
@@ -29,20 +29,20 @@ Order:
 	check all: existence
 	table number
 	Add a getById
-	view order toString
+	# view order toString
 	reuse
 	remove item show id
-	change getOrderById
-	call staffmanager check staff
+	# change getOrderById
+	# call staffmanager check staff
 
 Staff:
-	Check(id)
+	# Check(id)
 	# list staffs
 
 Invoice:
 	\t\t
 	imitate the format given in the manual
-	back
+	# back
 	check member, discount
 	need: memberManager, restaurantManager
 
