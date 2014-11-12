@@ -115,7 +115,7 @@ public class InvoiceBoundary implements Runnable {
 
         for (Invoice invoice : invoiceManager.getInvoices()) {
 
-            int invoice_d = invoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH);
+            int invoice_d = invoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH)-1;
             int invoice_m = invoice.getTIMESTAMP().get(Calendar.MONTH);
             int invoice_y = invoice.getTIMESTAMP().get(Calendar.YEAR);
 
