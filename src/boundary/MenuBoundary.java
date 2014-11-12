@@ -129,49 +129,54 @@ public class MenuBoundary implements Runnable{
 		
 		Scanner sc = new Scanner(System.in);
 		boolean bol = false;
-		System.out.print(menuManager.menuToString());
-		System.out.print("The ID of the Alacarte to update: ");
-        MenuItem item = secureGetMenuItem(menuManager);
-        do{
-        System.out.print("1.Name\n2.Description\n"
-                + "3.Category\n4.Price\n5.Back\nChoose which attribute to update:");
-        switch(inputInteger()){
-            case 1 :
+		if (secureAlacarteExist(menuManager)){
+			System.out.print(menuManager.menuToString());
+		    System.out.print("The ID of the Alacarte to update: ");
+            MenuItem item = secureGetMenuItem(menuManager);
+            do{
+                 System.out.print("1.Name\n2.Description\n"
+                  + "3.Category\n4.Price\n5.Back\nChoose which attribute to update:");
+                switch(inputInteger()){
+                case 1 :
 
-                System.out.print("The new name of the Alacarte:");
+                   System.out.print("The new name of the Alacarte:");
                 
-                String newname = sc.nextLine();
-                for(MenuItem menuitem:menu){
-                	if(menuitem.getName().equals(newname)){
-                		System.out.println("This Ala Carte exists!");
-                		return;
+                   String newname = sc.nextLine();
+                   for(MenuItem menuitem:menu){
+                	  if(menuitem.getName().equals(newname)){
+                		 System.out.println("This Ala Carte exists!");
+                		 return;
                 	}
                 }
-                item.setName(newname);
-                break;
-            case 2 :
-                System.out.print("The new description of the Alacarte: ");
-                String newdescription = sc.nextLine();
-                item.setDescription(newdescription);
-                break;
-            case 3 :
-                System.out.print("The new category of the Alacarte: ");
-                String newcategory = sc.next();
-                item.setCategory(newcategory);
-                break;
-            case 4 :
+                   item.setName(newname);
+                   break;
+                case 2 :
+                   System.out.print("The new description of the Alacarte: ");
+                   String newdescription = sc.nextLine();
+                   item.setDescription(newdescription);
+                   break;
+                case 3 :
+                  System.out.print("The new category of the Alacarte: ");
+                  String newcategory = sc.next();
+                  item.setCategory(newcategory);
+                  break;
+                case 4 :
+                  System.out.print("The new price of the Alacarte: ");
+                  double newprice = inputDouble();
+                  item.setPrice(newprice);
+                  break;
+                default:
+            	    break;
+               }
+          System.out.print("Update any other details? ('y' to continue)");
+          bol = sc.next().equals("y");
+           sc.nextLine();
+         }while(bol);
+	  }
+		else{
+			System.out.println("There is no Alacarte in the menu!");
+		}
 
-                System.out.print("The new price of the Alacarte: ");
-                double newprice = inputDouble();
-                item.setPrice(newprice);
-                break;
-            default:
-            	break;
-        }
-        System.out.print("Update any other details? ('y' to continue)");
-         bol = sc.next().equals("y");
-         sc.nextLine();
-       }while(bol);
 	} 
 	
 	/**
@@ -181,6 +186,7 @@ public class MenuBoundary implements Runnable{
 	public void updateSet(ArrayList<MenuItem> menu){
 		Scanner sc = new Scanner(System.in);       
 		boolean bol = false;
+		if (secureSetExist(menuManager)){
 		System.out.print(menuManager.menuToString());
 		System.out.print("The ID of the Set to update: ");
         int setid = menuManager.getMenu().indexOf(secureGetMenuItem(menuManager));
@@ -189,8 +195,11 @@ public class MenuBoundary implements Runnable{
             	break;
             }
             else{
-            	System.out.print("Not a Set, please choose a set ID again: ");
+            	System.out.print("Not a Set, please choose a set ID again(-1 to back): ");
             	setid = inputInteger();
+            	if (setid<=0){
+            		return;
+            	}
             }
 		}
         do{
@@ -264,6 +273,10 @@ public class MenuBoundary implements Runnable{
         bol = sc.next().equals("y");
         sc.nextLine();
         }while(bol);
+	   }
+		else {
+			System.out.println("There is no Set in the menu!");
+		}
 	}
     
 	/**
@@ -279,15 +292,13 @@ public class MenuBoundary implements Runnable{
 			else{
 				System.out.print(menuManager.menuToString());
 			    System.out.print("The ID of the menuItem to delete（－1 to go back）:\t");
-			    //int itemID;
-                menuManager.deleteMenuItembyID(menuManager.getMenu().indexOf(secureGetMenuItem(menuManager)));
+			    int itemID=menuManager.getMenu().indexOf(secureGetMenuItem(menuManager));
+			    menuManager.deleteMenuItembyID(itemID);
                 System.out.print("Delete one more menu item? ('y' to continue)");
                 bol = sc.next().equals("y");
                 sc.nextLine();
 			}
-
-		}while(bol);
-        	
+		}while(bol);        	
 	}
 	
 	/**
@@ -340,12 +351,41 @@ public class MenuBoundary implements Runnable{
 		while (true) {
 			try {
 			    int itemID = inputInteger();
-				return manager.getMenuItemByld(itemID);
+			    return manager.getMenuItemByld(itemID);		
 			} catch (IndexOutOfBoundsException e) {
 				// TODO: handle exception
 				System.out.print("Invalid ID please input again: ");
 			}
 		}
 	}
+	
+	/**
+	 * Check whether there is a, Ala Carte in the menu
+	 * @param manager instance of control class
+	 * @return true if there is an ALa Carte, flase if no Ala Carte
+	 */
+	public boolean secureAlacarteExist(MenuManager manager){
+		for(MenuItem menuitem: manager.getMenu()){
+			if (menuitem instanceof AlaCarte){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Check whether there is a set in the menu
+	 * @param manager instance of control class
+	 * @return true if there is a Set, flase if no set
+	 */
+	public boolean secureSetExist(MenuManager manager){
+		for(MenuItem menuitem: manager.getMenu()){
+			if(menuitem instanceof Set){
+				return true;
+			}
+		}
+		return false;
+	}
 }
+
 
