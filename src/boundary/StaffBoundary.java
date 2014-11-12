@@ -7,20 +7,31 @@ import java.util.Scanner;
 import entity.Staff;
 
 /**
- * The boundary class handing
+ * The boundary class handling user interactions related to staffs
  * @author Cao Gaoxu
  * @version 1.0
- *@since 2014-11-07
+ * @since 2014-11-07
  */
 public class StaffBoundary implements Runnable{
 	
+	/**
+	 * The reference to a staff control instance
+	 */
 	private StaffManager staffManager;
 	
+	/**
+	 * Constructor of the StaffBoundary class
+	 * will call init() to initialize system variable if needed
+	 * @param staffManager, pass in the control manager
+	 */
 	public StaffBoundary(StaffManager staffManager){
 		this.staffManager = staffManager;
         init();
 	}
 	
+	/**
+	 * Print the menu of the actions that to be performed 
+	 */
 	public void showMenu(){
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Choose action :\n\t 1. Add Staff\n\t2. Delete staff\n\t"
@@ -40,6 +51,9 @@ public class StaffBoundary implements Runnable{
 		}
 	}
 	
+	/**
+	 * Create staffs if there is not any staff
+	 */
 	public void init(){
 		if(staffManager.getStaffs().size()==0){
 			System.out.println("Initializing staffs for the restaurant");
@@ -47,6 +61,9 @@ public class StaffBoundary implements Runnable{
 		}
 	}
 	
+	/**
+	 * Handles the user interactions about adding staffs
+	 */
 	public void addStaffs(){
 		Scanner sc = new Scanner(System.in);
 		do{
@@ -74,6 +91,9 @@ public class StaffBoundary implements Runnable{
 		}while(sc.next().equals("y"));
 	}
 	
+	/**
+	 * handles the user interactions about deleting staffs
+	 */
 	public void delStaff(){
 		Scanner sc = new Scanner(System.in);
 		do {
@@ -86,6 +106,9 @@ public class StaffBoundary implements Runnable{
 		
 	}
 	
+    /**
+     * Handles the user interaction about updating staffs
+     */
 	public void updateStaff(){
 		Scanner sc = new Scanner(System.in);
 		do{
@@ -129,6 +152,10 @@ public class StaffBoundary implements Runnable{
 		}while(sc.next().equals("y"));
 	}
 	
+	/**
+	 * Repeatedly asking for an integer input from System.in until getting one
+	 * @return the integer get from the input
+	 */
 	private int inputInteger() {
         int integer;
         Scanner scanner = new Scanner(System.in);
@@ -144,7 +171,10 @@ public class StaffBoundary implements Runnable{
         return integer;
     }
 
-    @Override
+	/**
+	 * Entry point of this boundary
+	 */
+	@Override
 	public void run(){
 		showMenu();
 	}
