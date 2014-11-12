@@ -7,21 +7,32 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 /**
- * Created by root on 14-11-7.
+ * 
+ * @author Brian
+ *
  */
 public class InvoiceBoundary implements Runnable {
-
+/**
+ * 
+ */
     private InvoiceManager invoiceManager;
-
+/**
+ * 
+ * @param invoiceManager
+ */
     public InvoiceBoundary(InvoiceManager invoiceManager) {
         this.invoiceManager = invoiceManager;
     }
-
+/**
+ * 
+ */
     public void run() {
         showMenu();
     }
 
-
+/**
+ * 
+ */
     private void showMenu() {
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -44,7 +55,9 @@ public class InvoiceBoundary implements Runnable {
             }
         }
     }
-
+/**
+ * 
+ */
     private void printDailyReport() {
         double dailyTotal = 0;
         Scanner sc = new Scanner(System.in);
@@ -60,10 +73,10 @@ public class InvoiceBoundary implements Runnable {
             int invoice_d = invoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH);
             int invoice_m = invoice.getTIMESTAMP().get(Calendar.MONTH) + 1;
             int invoice_y = invoice.getTIMESTAMP().get(Calendar.YEAR);
-            Invoice testInvoice = invoice; 
+            
 
             if (invoice_d == day && invoice_m == month && invoice_y == year) {
-            	invoiceManager.printInvoice(testInvoice);
+            	invoiceManager.printInvoice(invoice);
             	dailyTotal += invoice.getNET_PRICE();
             }
             
@@ -72,7 +85,9 @@ public class InvoiceBoundary implements Runnable {
         
         System.out.println("Total for the day is $" + dailyTotal);
     }
-
+/**
+ * 
+ */
     private void printMonthlyReport() {
         Invoice maxRevenueInvoice = null;
         Invoice minRevenueInvoice = null;
@@ -136,7 +151,9 @@ public class InvoiceBoundary implements Runnable {
         
     }
     
-
+/**
+ * 
+ */
     private void addInvoice() {
 
         Scanner sc = new Scanner(System.in);
@@ -150,7 +167,7 @@ public class InvoiceBoundary implements Runnable {
             testOrderID = sc.nextInt();
             if(testOrderID == -1) break;
             for (Invoice invoice : invoiceManager.getInvoices()) {
-                if (invoiceManager.checkOrderByID(testOrderID) == null || testOrderID == invoice.getOrderID()) {
+                if (invoiceManager.checkOrderByID(testOrderID) != null && testOrderID == invoice.getOrderID()) {
                     success = false;
                     break;
                 }

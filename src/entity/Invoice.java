@@ -4,30 +4,66 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
+/**
+ * 
+ * @author Brian
+ *
+ */
 public class Invoice implements Serializable{
-
+	/**
+	 * 
+	 */
 	private final int INVOICE_ID;
-
+	/**
+	 * 
+	 */
     private final int ORDERID;
-    
+   /**
+    *  
+    */
 	private final Calendar TIMESTAMP;
-	
+	/**
+	 * 
+	 */
     private final String STAFF_NAME;
-    
+    /**
+     * 
+     */
     private final Order ORDER;
-    
+    /**
+     * 
+     */
     private final double GROSS_PRICE;
-	
+	/**
+	 * 
+	 */
 	private final double GST;
-	
+	/**
+	 * 
+	 */
 	private final double SERVICE_CHARGE;
-	
+	/**
+	 * 
+	 */
 	private final double NET_PRICE;
-
+	/**
+	 * 
+	 */
 	private String restaurantName;
 
-
+	/**
+	 * 
+	 * @param restaurantName
+	 * @param INVOICE_ID
+	 * @param ORDERID
+	 * @param TIMESTAMP
+	 * @param STAFF_NAME
+	 * @param ORDER
+	 * @param GROSS_PRICE
+	 * @param GST
+	 * @param SERVICE_CHARGE
+	 * @param NET_PRICE
+	 */
     public Invoice(String restaurantName, int INVOICE_ID, int ORDERID, Calendar TIMESTAMP, String STAFF_NAME, Order ORDER, double GROSS_PRICE, double GST, double SERVICE_CHARGE, double NET_PRICE) {
         this.restaurantName = restaurantName;
     	this.INVOICE_ID = INVOICE_ID;
@@ -40,7 +76,9 @@ public class Invoice implements Serializable{
         this.SERVICE_CHARGE = SERVICE_CHARGE;
         this.NET_PRICE = NET_PRICE;
     }
-
+    /**
+     * 
+     */
     @Override
     public String toString() {
     	int printDay=TIMESTAMP.get(Calendar.DATE);
@@ -68,19 +106,31 @@ public class Invoice implements Serializable{
     }
 
 
-
+    /**
+     * 
+     * @return
+     */
     public Calendar getTIMESTAMP() {
         return TIMESTAMP;
     }
-
+    /**
+     * 
+     * @return
+     */
     public double getNET_PRICE() {
         return NET_PRICE;
     }
-    
+    /**
+     * 
+     * @return
+     */
     public Order getOrder(){
     	return ORDER;
     }
-    
+    /**
+     * 
+     * @return
+     */
     public int getOrderID(){
     	
     	return ORDERID;

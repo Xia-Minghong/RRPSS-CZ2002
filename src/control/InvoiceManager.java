@@ -7,11 +7,17 @@ import entity.Staff;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
+/**
+ * 
+ * @author Brian
+ *
+ */
 public class InvoiceManager extends AbstractManager {
 	
 
-
+/**
+ * 
+ */
     private OrderManager orderManager;
 
     private MemberManager memberManager;
@@ -26,7 +32,14 @@ public class InvoiceManager extends AbstractManager {
 
     private final double SERVICE_CHARGE_RATE;
     
-    
+    /**
+     * 
+     * @param orderManager
+     * @param restaurantManager
+     * @param memberManager
+     * @param reservationManager
+     * @param FILE_PATH
+     */
     public InvoiceManager(OrderManager orderManager, RestaurantManager restaurantManager, MemberManager memberManager, ReservationManager reservationManager, String FILE_PATH) {
 
         super(FILE_PATH);
@@ -47,7 +60,11 @@ public class InvoiceManager extends AbstractManager {
         
         
     }
-
+/**
+ * 
+ * @param orderID
+ * @param name
+ */
     public void createInvoice(int orderID, String name) {
         Order order = orderManager.getOrderbyID(orderID);
         String staffName = order.getStaff().getStaffName();
@@ -71,11 +88,16 @@ public class InvoiceManager extends AbstractManager {
         printInvoice(invoice);
         reservationManager.checkOut(tableNo);
     }
-
+/**
+ * 
+ * @param invoice
+ */
     public void printInvoice(Invoice invoice) {
         System.out.println(invoice);
     }
-
+/**
+ * 
+ */
     @Override
     public ArrayList<Invoice> load() {
         ArrayList<Invoice> invoices = (ArrayList<Invoice>) read();
@@ -84,17 +106,26 @@ public class InvoiceManager extends AbstractManager {
         }
         return invoices;
     }
-
+/**
+ * 
+ */
     @Override
     public void save() {
         write(invoices);
     }
 
-
+/**
+ * 
+ * @return
+ */
     public ArrayList<Invoice> getInvoices() {
         return invoices;
     }
-    
+   /**
+    *  
+    * @param checkID
+    * @return
+    */
     public Order checkOrderByID(int checkID){
     	
     	return orderManager.getOrderbyID(checkID);
