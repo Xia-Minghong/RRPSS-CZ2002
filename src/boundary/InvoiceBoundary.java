@@ -4,6 +4,7 @@ import control.InvoiceManager;
 import entity.Invoice;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 /**
@@ -89,14 +90,11 @@ public class InvoiceBoundary implements Runnable {
  * 
  */
     private void printMonthlyReport() {
-        Invoice maxRevenueInvoice = null;
-        Invoice minRevenueInvoice = null;
+
         int maxRevenueDay=0;
-        int maxRevenueMonth=0;
-        int maxRevenueYear=0;
+
         int minRevenueDay=0;
-        int minRevenueMonth=0;
-        int minRevenueYear=0;
+
         double totalRevenue = 0;
 
         Scanner sc = new Scanner(System.in);
@@ -108,46 +106,67 @@ public class InvoiceBoundary implements Runnable {
         int month = Integer.parseInt(date[0]);
         int year = Integer.parseInt(date[1]);
 
+        Calendar cal = new GregorianCalendar(year, month - 1, 1);
+        int length = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        double[] revenues = new double[length];
+        for (int i = 0; i < length; i++) {
+            revenues[i] = 0;
+        }
+
         for (Invoice invoice : invoiceManager.getInvoices()) {
 
-            int invoice_m = invoice.getTIMESTAMP().get(Calendar.MONTH) + 1;
+            int invoice_d = invoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH);
+            int invoice_m = invoice.getTIMESTAMP().get(Calendar.MONTH);
             int invoice_y = invoice.getTIMESTAMP().get(Calendar.YEAR);
 
-            if (invoice_m == month && invoice_y == year) {
-                System.out.println("Yes");
-                if (minRevenueInvoice == null)
-                    minRevenueInvoice = invoice;
-                if (maxRevenueInvoice == null)
-                    maxRevenueInvoice = invoice;
-                if (invoice.getNET_PRICE() < minRevenueInvoice.getNET_PRICE())
-                    minRevenueInvoice = invoice;
-                if (invoice.getNET_PRICE() > maxRevenueInvoice.getNET_PRICE())
-                    maxRevenueInvoice = invoice;
+            if (invoice_m == month-1 && invoice_y == year) {
+//                if (minRevenueInvoice == null)
+//                    minRevenueInvoice = invoice;
+//                if (maxRevenueInvoice == null)
+//                    maxRevenueInvoice = invoice;
+//                if (invoice.getNET_PRICE() < minRevenueInvoice.getNET_PRICE())
+//                    minRevenueInvoice = invoice;
+//                if (invoice.getNET_PRICE() > maxRevenueInvoice.getNET_PRICE())
+//                    maxRevenueInvoice = invoice;
+                revenues[invoice_d]+=invoice.getNET_PRICE();
 
                 totalRevenue += invoice.getNET_PRICE();
             }
         }
-        if (maxRevenueInvoice== null){
-        	System.out.println("No invoices for the month.");
-        	System.out.println("Total Revenue = $0");}
-        else
-        {
-        	maxRevenueYear = maxRevenueInvoice.getTIMESTAMP().get(Calendar.YEAR);
-        	maxRevenueMonth = maxRevenueInvoice.getTIMESTAMP().get(Calendar.MONTH)+1;
-        	maxRevenueDay = maxRevenueInvoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH)+1;
-
-//        String maxRevenueDate =
-
-        	minRevenueYear = minRevenueInvoice.getTIMESTAMP().get(Calendar.YEAR);
-        	minRevenueMonth = minRevenueInvoice.getTIMESTAMP().get(Calendar.MONTH)+1;
-        	minRevenueDay = minRevenueInvoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH)+1;
+//        if (maxRevenueInvoice== null){
+//        	System.out.println("No invoices for the month.");
+//        	System.out.println("Total Revenue = $0");}
+//        else
+//        {
+//        	maxRevenueYear = maxRevenueInvoice.getTIMESTAMP().get(Calendar.YEAR);
+//        	maxRevenueMonth = maxRevenueInvoice.getTIMESTAMP().get(Calendar.MONTH)+1;
+//        	maxRevenueDay = maxRevenueInvoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH)+1;
+//
+////        String maxRevenueDate =
+//
+//        	minRevenueYear = minRevenueInvoice.getTIMESTAMP().get(Calendar.YEAR);
+//        	minRevenueMonth = minRevenueInvoice.getTIMESTAMP().get(Calendar.MONTH)+1;
+//        	minRevenueDay = minRevenueInvoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH)+1;
 
 //        String minRevenueDate = Integer.toString(minRevenueDay);
-        	System.out.println("Total Revenue for the month is " + totalRevenue);
-            System.out.println("Highest revenue is $" + maxRevenueInvoice.getNET_PRICE()+" on " + maxRevenueDay +"/" + maxRevenueMonth + "/"+ maxRevenueYear);
-            System.out.println("Lowest revenue is $" + minRevenueInvoice.getNET_PRICE()+" on " + minRevenueDay +"/" + minRevenueMonth + "/"+ minRevenueYear);
-        
+
+        double maxRevenue = 0;
+        double minRevenue = -1;
+        for (int i = 0; i < length; i++) {
+            if (revenues[i] > maxRevenue) {
+                maxRevenue = revenues[i];
+                maxRevenueDay = i+1;
+            }
+            if (revenues[i] < minRevenue || minRevenue < 0) {
+                minRevenue = revenues[i];
+                minRevenueDay = i+1;
+            }
         }
+        System.out.println("Total Revenue for the month is " + totalRevenue);
+            System.out.println("Highest revenue is $" + maxRevenue+" on " + maxRevenueDay +"/" + month + "/"+ year);
+            System.out.println("Lowest revenue is $" + minRevenue+" on " + minRevenueDay +"/" + month + "/"+ year);
+        
+//        }
     
         
     }
