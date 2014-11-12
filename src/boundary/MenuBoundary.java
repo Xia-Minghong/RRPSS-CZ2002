@@ -220,7 +220,7 @@ public class MenuBoundary implements Runnable{
                 String setnewname = sc.nextLine();
                 for(MenuItem menuitem:menu){
                 	if(menuitem.getName().equals(setnewname)){
-                		System.out.println("This Ala Carte exists!");
+                		System.out.println("This name exists!");
                 		return;
                 	}
                 }
