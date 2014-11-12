@@ -99,7 +99,8 @@ public class MenuBoundary implements Runnable{
         	return;
         }
         else{
-        	do{
+        	if(secureAlacarteExist(menuManager)){
+        		do{
 	        	System.out.println(menuManager.menuToString());
 	        	System.out.print("Enter the Ala Carte ID to add into this Set:\t");
 	        	int itemID = menuManager.getMenu().indexOf(secureGetMenuItem(menuManager));
@@ -107,18 +108,17 @@ public class MenuBoundary implements Runnable{
 	        		System.out.println("Cannot add a set into a set! ");
 	        	}
 	        	else{
-	        		 try{
-	        			 AlaCarte alacarte = (AlaCarte) (menuManager.getMenu().get(itemID));
-	        			 newSet.addAlaCartetoSet(menuManager.getMenu(), itemID);
-	        		}catch(IndexOutOfBoundsException e){
-	        			System.out.println("Invalid ID please input again!");
-	             	}
-	          }
+	        		newSet.addAlaCartetoSet(menuManager.getMenu(), itemID);	 	             	
+	             }
 	        	System.out.print("Add one more Ala Carte? ('y' to Continue)");
 	        	bol = sc.next().equals("y");
 	        	sc.nextLine();
-	        }while(bol);
-         }
+	            }while(bol);
+        	 }
+            else{
+        		System.out.println("There is no Ala Carte in the menu!");
+        	  }        		      	
+        }
     }
     
 	/**
@@ -239,7 +239,11 @@ public class MenuBoundary implements Runnable{
                 ((Set)menu.get(setid)).setDiscountRate(newdiscountrate);
                 break;
             case 6 :
-            	do{
+            	if(!secureAlacarteExist(menuManager)){
+        			System.out.println("There is no Ala Carte in the menu!");
+        		}
+            	else{
+            		do{
             		System.out.println(menuManager.menuToString());
     	        	System.out.print("Enter the Ala Carte ID to add into this Set: ");
     	        	int itemID = menuManager.getMenu().indexOf(secureGetMenuItem(menuManager));
@@ -253,10 +257,15 @@ public class MenuBoundary implements Runnable{
     	        	System.out.print("Add one more Ala Carte? ('y' to Continue)");
     	        	bol = sc.next().equals("y");
     	        	sc.nextLine();
-    	        }while(bol);
+    	            }while(bol);
+            	}
             	break;
             case 7 :
-            	do{
+            	if(((Set)menu.get(setid)).getSet().size() == 0){
+            			System.out.println("There is no Ala Carte in the Set!");
+            		}
+            	else{
+            		do{       		
             		((Set)menu.get(setid)).showAlaCarte();
             		System.out.print("Enter the Ala Carte ID in the Set to delete: ");
             		int itemID = inputInteger();
@@ -264,7 +273,8 @@ public class MenuBoundary implements Runnable{
             		System.out.print("Delete one more Ala Carte?('y' to continue)");
             		bol = sc.next().equals("y");
             		sc.nextLine();
-            	}while(bol);
+            	   }while(bol);
+            	}
             	break;
             default:
                 break;
@@ -292,7 +302,7 @@ public class MenuBoundary implements Runnable{
 			}
 			else{
 				System.out.print(menuManager.menuToString());
-			    System.out.print("The ID of the menuItem to delete（－1 to go back）:\t");
+			    System.out.print("The ID of the menuItem to delete:\t");
 			    int itemID=menuManager.getMenu().indexOf(secureGetMenuItem(menuManager));
 			    menuManager.deleteMenuItembyID(itemID);
                 System.out.print("Delete one more menu item? ('y' to continue)");
