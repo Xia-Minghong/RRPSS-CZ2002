@@ -135,11 +135,11 @@ public class MenuBoundary implements Runnable{
 		    System.out.print("The ID of the Alacarte to update: ");
 		    itemid = menuManager.getMenu().indexOf(secureGetMenuItem(menuManager));
             while(true){
-                if((menuManager.getMenu().get(itemid)) instanceof Set){
+                if((menuManager.getMenu().get(itemid)) instanceof AlaCarte){
                 	break;
                 }
                 else{
-                	System.out.print("Not a Set, please choose a set ID again(-1 to back): ");
+                	System.out.print("Not a Ala Carte, please choose a set ID again: ");
                 	itemid = menuManager.getMenu().indexOf(secureGetMenuItem(menuManager));
                 }
     		}
@@ -206,7 +206,7 @@ public class MenuBoundary implements Runnable{
             	break;
             }
             else{
-            	System.out.print("Not a Set, please choose a set ID again(-1 to back): ");
+            	System.out.print("Not a Set, please choose a set ID again: ");
             	setid = menuManager.getMenu().indexOf(secureGetMenuItem(menuManager));
             }
 		}
