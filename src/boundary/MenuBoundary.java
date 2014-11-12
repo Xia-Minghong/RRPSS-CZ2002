@@ -47,10 +47,8 @@ public class MenuBoundary implements Runnable{
             switch (choice){
                 case 1 :
                     System.out.print("The name of the new Alacarte:\t");
-                    sc.nextLine();
                     String name = sc.nextLine();
                     System.out.print("The description of the new Alacarte:\t");
-                    sc.nextLine();
                     String description = sc.nextLine();
                     System.out.print("The category of the new Alacarte:\t");
                     String category = sc.next();
@@ -88,10 +86,8 @@ public class MenuBoundary implements Runnable{
     	
     	Scanner sc = new Scanner(System.in);
         System.out.print("The name of the new Set:\t");
-        sc.nextLine();
         String setname = sc.nextLine();
         System.out.print("The description of the new Set:\t");
-        sc.nextLine();
         String setdescription = sc.nextLine();
         System.out.print("The category of the new Set:\t");
         String setcategory = sc.next();
@@ -139,7 +135,6 @@ public class MenuBoundary implements Runnable{
             case 1 :
 
                 System.out.print("The new name of the Alacarte:");
-                sc.nextLine();
                 String newname = sc.nextLine();
                 for(MenuItem menuitem:menu){
                 	if(menuitem.getName().equals(newname)){
@@ -151,7 +146,6 @@ public class MenuBoundary implements Runnable{
                 break;
             case 2 :
                 System.out.print("The new description of the Alacarte");
-                sc.nextLine();
                 String newdescription = sc.nextLine();
                 item.setDescription(newdescription);
                 break;
@@ -198,7 +192,6 @@ public class MenuBoundary implements Runnable{
 		switch(inputInteger()){
             case 1 :
                 System.out.print("The new name of the Set:");
-                sc.nextLine();
                 String setnewname = sc.nextLine();
                 for(MenuItem menuitem:menu){
                 	if(menuitem.getName().equals(setnewname)){
@@ -210,7 +203,6 @@ public class MenuBoundary implements Runnable{
                 break;
             case 2 :
                 System.out.print("The new description of the Set");
-                sc.nextLine();
                 String setnewdescription = sc.nextLine();
                 menu.get(setid).setDescription(setnewdescription);
                 break;

@@ -70,7 +70,6 @@ public class StaffBoundary implements Runnable{
 			System.out.print("Enter the new Staff ID:");
 			int employee_id = inputInteger();
 			System.out.print("Enter the name of the staff:");
-			sc.nextLine();
 			String name = sc.nextLine();
 			System.out.print("Enter the correct Gender (m for male, f for female): ");
             String gender;
@@ -84,7 +83,6 @@ public class StaffBoundary implements Runnable{
                  System.out.println("Invalid gender, try again");
                }
 			System.out.print("Enter the job Title: ");
-			sc.nextLine();
 			String jobtitle = sc.nextLine();
 			staffManager.createStaff(employee_id, name, corrGender, jobtitle);
 			System.out.print("Add another staff? ('y' to continue) :");
@@ -98,7 +96,6 @@ public class StaffBoundary implements Runnable{
 		Scanner sc = new Scanner(System.in);
 		do {
 			System.out.println("Enter the name of the Staff to delete:");
-			sc.nextLine();
 			String  name = sc.nextLine();
 			staffManager.deleteStaff(name);
 			System.out.println("Delete one more staff?('y' to continue):");
@@ -120,7 +117,6 @@ public class StaffBoundary implements Runnable{
 			switch(inputInteger()){
 			   case 1:
 				   System.out.println("Enter the new name");
-				   sc.nextLine();
 				   String newName = sc.nextLine();
 				   toUpdateStaff.setStaffName(newName);
 				   break;
@@ -141,7 +137,6 @@ public class StaffBoundary implements Runnable{
 				   break;
 			   case 3: 
 				   System.out.println("Enter the new Job Title:");
-				   sc.nextLine();
 				   String newJobTitle = sc.nextLine();
 				   toUpdateStaff.setJobTitle(newJobTitle);
 				   break;
