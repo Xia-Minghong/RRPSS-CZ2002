@@ -130,7 +130,7 @@ public class OrderBoundary implements Runnable{
 			try {
 				Order a = manager.getOrderbyID(id = secureNextInt(sc));
 				return id;
-			} catch (ArrayIndexOutOfBoundsException e) {
+			} catch (IndexOutOfBoundsException e) {
 				// TODO: handle exception
 				System.out.println("Invalid Index please input again");
 				//System.out.println(8);//debug
