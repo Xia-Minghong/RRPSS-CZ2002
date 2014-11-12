@@ -133,18 +133,18 @@ public class InvoiceBoundary implements Runnable {
         else
         {
         	maxRevenueYear = maxRevenueInvoice.getTIMESTAMP().get(Calendar.YEAR);
-        	maxRevenueMonth = maxRevenueInvoice.getTIMESTAMP().get(Calendar.MONTH);
-        	maxRevenueDay = maxRevenueInvoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH);
+        	maxRevenueMonth = maxRevenueInvoice.getTIMESTAMP().get(Calendar.MONTH)+1;
+        	maxRevenueDay = maxRevenueInvoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH)+1;
 
 //        String maxRevenueDate =
 
         	minRevenueYear = minRevenueInvoice.getTIMESTAMP().get(Calendar.YEAR);
-        	minRevenueMonth = minRevenueInvoice.getTIMESTAMP().get(Calendar.MONTH);
-        	minRevenueDay = minRevenueInvoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH);
+        	minRevenueMonth = minRevenueInvoice.getTIMESTAMP().get(Calendar.MONTH)+1;
+        	minRevenueDay = minRevenueInvoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH)+1;
 
 //        String minRevenueDate = Integer.toString(minRevenueDay);
         	System.out.println("Total Revenue for the month is " + totalRevenue);
-            System.out.println("Highest revenue is $" + maxRevenueInvoice.getNET_PRICE()+" on " + minRevenueDay +"/" + minRevenueMonth + "/"+ minRevenueYear);
+            System.out.println("Highest revenue is $" + maxRevenueInvoice.getNET_PRICE()+" on " + maxRevenueDay +"/" + maxRevenueMonth + "/"+ maxRevenueYear);
             System.out.println("Lowest revenue is $" + minRevenueInvoice.getNET_PRICE()+" on " + minRevenueDay +"/" + minRevenueMonth + "/"+ minRevenueYear);
         
         }
