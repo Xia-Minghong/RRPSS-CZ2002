@@ -91,9 +91,9 @@ public class OrderManager extends AbstractManager {
 			return orderCollection.get(id-1);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			// TODO: handle exception
-			
-		}
-		return null;
+
+            return null;
+        }
 	}
 	
 	
