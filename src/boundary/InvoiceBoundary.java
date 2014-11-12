@@ -165,16 +165,18 @@ public class InvoiceBoundary implements Runnable {
         do {
             success = true;
             System.out.println("Please enter the order id (enter -1 to exit):");
-            testOrderID = sc.nextInt();
+            testOrderID = inputInteger();
             if(testOrderID == -1) break;
-            if (invoiceManager.checkOrderByID(testOrderID) == null ) { //&& testOrderID == invoice.getOrderID()
+            try {
+                invoiceManager.checkOrderByID(testOrderID);
+            } catch (IndexOutOfBoundsException e) {
                 success = false;
                 System.out.println("Invalid Order ID");
                 continue;
             }
             for (Invoice invoice : invoiceManager.getInvoices()) {
                 if (testOrderID == invoice.getOrderID()) {
-                    System.out.println("Odrer already checked out");
+                    System.out.println("Order already checked out");
                     success = false;
                     break;
                 }
@@ -194,5 +196,23 @@ public class InvoiceBoundary implements Runnable {
         invoiceManager.createInvoice(orderID, name);
     }
 
+    /**
+     * Repeatedly asking for an integer input from System.in until getting one
+     * @return the integer got from the input
+     */
+    private int inputInteger() {
+        int integer;
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                String input = scanner.next();
+                integer = Integer.parseInt(input);
+                break;
+            } catch (NumberFormatException ne) {    //handle invalid input
+                System.out.print("Not an integer, type again: ");
+            }
+        }
+        return integer;
+    }
 
 }
