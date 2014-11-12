@@ -61,7 +61,7 @@ public class MenuBoundary implements Runnable{
                 	createSet(menuManager);
                     break;
                 case 3:
-                	deleteMenuItem();
+                	deleteMenuItem(menuManager);
                     break;
                 case 4 :
                     updateAlacarte(menu);
@@ -269,18 +269,23 @@ public class MenuBoundary implements Runnable{
 	/**
 	 * Perform the action of deleting a MenuItem
 	 */
-	public void deleteMenuItem(){
+	public void deleteMenuItem(MenuManager menuManager){
 		boolean bol = false;
 		Scanner sc = new Scanner(System.in);
 		do{
-			System.out.print(menuManager.menuToString());
-			System.out.print("The ID of the menuItem to delete:\t");
-			int itemID;
-			
-            menuManager.deleteMenuItembyID(menuManager.getMenu().indexOf(secureGetMenuItem(menuManager)));
-            System.out.print("Delete one more menu item? ('y' to continue)");
-            bol = sc.next().equals("y");
-            sc.nextLine();
+			if(menuManager.getMenu().size() == 0){
+				System.out.println("No more menu item to delete! ");
+			}
+			else{
+				System.out.print(menuManager.menuToString());
+			    System.out.print("The ID of the menuItem to delete（－1 to go back）:\t");
+			    //int itemID;
+                menuManager.deleteMenuItembyID(menuManager.getMenu().indexOf(secureGetMenuItem(menuManager)));
+                System.out.print("Delete one more menu item? ('y' to continue)");
+                bol = sc.next().equals("y");
+                sc.nextLine();
+			}
+
 		}while(bol);
         	
 	}
