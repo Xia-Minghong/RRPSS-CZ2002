@@ -89,19 +89,19 @@ public class Invoice implements Serializable{
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append(restaurantName+ "\n");
         stringBuffer.append("=========================================================\n");
-        stringBuffer.append("||Invoice ID:\t\t" + "\t\t\t"+ INVOICE_ID + "||\n");
+        stringBuffer.append("||Invoice ID:\t\t" + "\t\t\t\t"+ INVOICE_ID + "||\n");
         stringBuffer.append("||Time:\t\t\t\t"+ printDay+"/" +printMonth+ "/" + printYear+"\t"+printHour +":"+printMinute+"\t||\n");
-        stringBuffer.append("||Staff:\t\t\t" + STAFF_NAME+ "\t\t\t||\n");
+        stringBuffer.append("||Staff:\t\t\t\t\t\t" + STAFF_NAME+ "||\n");
         ArrayList<OrderItem> orderItems = ORDER.getOrderItems();
         for (OrderItem orderItem : orderItems){
-            stringBuffer.append("||" + orderItem + "||\n");
+            stringBuffer.append("||Order Item: " + orderItem + "||\n");
         }
-        stringBuffer.append("||Gross Price:\t\t"+ "\t\t\t"  + GROSS_PRICE+ "||\n");
-        stringBuffer.append("||GST:\t\t\t\t"+  + GST+ "||\n");
+        stringBuffer.append("||Gross Price:\t\t"+ "\t\t\t\t"  + GROSS_PRICE+ "||\n");
+        stringBuffer.append("||GST:\t\t\t\t\t"+  + GST+ "||\n");
         stringBuffer.append("||Service Charge:\t"+ "\t\t\t"+ SERVICE_CHARGE+ "||\n");
         stringBuffer.append("---------------------------------------------------------\n");
         stringBuffer.append("||Net Price:\t\t"+ "\t\t\t" +NET_PRICE +"||\n");
-        stringBuffer.append("=========================================================\n");
+        stringBuffer.append("==========================END============================\n");
         return stringBuffer.toString();
     }
 
