@@ -84,10 +84,16 @@ public class OrderManager extends AbstractManager {
 	/**
 	 * getter for order 
 	 * @param id the id for a particular order
-	 * @return the order
+	 * @return the order, null if the id not exist
 	 */
 	public Order getOrderbyID(int id) {
-		return orderCollection.get(id-1);
+		try {
+			return orderCollection.get(id-1);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			// TODO: handle exception
+			
+		}
+		return null;
 	}
 	
 	
@@ -113,7 +119,7 @@ public class OrderManager extends AbstractManager {
 			System.out.println("=================================================");
 			System.out.format("Order ID = %d \t staff No = %d \t table No = %d \t\n",i+1,orderCollection.get(i).getStaff().getStaffID(),orderCollection.get(i).getTableID());
 			orderCollection.get(i).showAllOrderItems();
-			System.out.println("=================================================");
+			System.out.println("=================================================\n");
 		}
 		
 	}
@@ -122,6 +128,7 @@ public class OrderManager extends AbstractManager {
 	 * @return total number of orders
 	 */
 	public int getTotalNumberOfOrder() {
+		
 		return orderCollection.size();
 	}
 	

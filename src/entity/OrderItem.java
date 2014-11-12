@@ -71,6 +71,6 @@ public class OrderItem implements Serializable{
 	 */
 	@Override
 	public String toString() {
-		return String.format("%d \t\t %s \t %.2f*%d = %.2f", quantity,item.getName(),item.Price,quantity,getTotalPrice());		
+		return String.format("%d\t\t%s\t\t%.2f*%d=%.2f", quantity,item.getName(),item.Price,quantity,getTotalPrice());		
 	}
 }
