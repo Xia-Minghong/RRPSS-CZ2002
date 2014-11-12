@@ -18,6 +18,8 @@ public class InvoiceManager extends AbstractManager {
 
     private RestaurantManager restaurantManager;
 
+    private ReservationManager reservationManager;
+    
     private ArrayList<Invoice> invoices;
 
     private final double GST_RATE;
@@ -25,7 +27,7 @@ public class InvoiceManager extends AbstractManager {
     private final double SERVICE_CHARGE_RATE;
     
     
-    public InvoiceManager(OrderManager orderManager, RestaurantManager restaurantManager, MemberManager memberManager, String FILE_PATH) {
+    public InvoiceManager(OrderManager orderManager, RestaurantManager restaurantManager, MemberManager memberManager, ReservationManager reservationManager, String FILE_PATH) {
 
         super(FILE_PATH);
 
@@ -34,6 +36,8 @@ public class InvoiceManager extends AbstractManager {
         this.restaurantManager = restaurantManager;
         
         this.memberManager = memberManager;
+        
+        this.reservationManager = reservationManager;
 
         this.invoices = load();
 
@@ -48,6 +52,7 @@ public class InvoiceManager extends AbstractManager {
         Order order = orderManager.getOrderbyID(orderID);
         String staffName = order.getStaff().getStaffName();
         String restaurantName = restaurantManager.getRestaurantName();
+        int tableNo = order.getTableID();
         Calendar TIMESTAMP = Calendar.getInstance();
         TIMESTAMP.setTime(new Date());
 //        String STAFF = order.getStaff();
@@ -64,6 +69,7 @@ public class InvoiceManager extends AbstractManager {
         
 		invoices.add(invoice);
         printInvoice(invoice);
+        reservationManager.checkOut(tableNo);
     }
 
     public void printInvoice(Invoice invoice) {
