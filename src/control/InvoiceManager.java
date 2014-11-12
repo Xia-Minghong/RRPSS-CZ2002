@@ -65,7 +65,8 @@ public class InvoiceManager extends AbstractManager {
  * @param orderID
  * @param name
  */
-    public void createInvoice(int orderID, String name) {
+    public boolean createInvoice(int orderID, String name) {
+
         Order order = orderManager.getOrderbyID(orderID);
         String staffName = order.getStaff().getStaffName();
         String restaurantName = restaurantManager.getRestaurantName();
@@ -83,10 +84,11 @@ public class InvoiceManager extends AbstractManager {
         double SERVICE_CHARGE = GROSS_PRICE * SERVICE_CHARGE_RATE;
         double NET_PRICE = GROSS_PRICE + GST + SERVICE_CHARGE;
         Invoice invoice = new Invoice(restaurantName, INVOICE_ID, orderID, TIMESTAMP, staffName, order, GROSS_PRICE, GST, SERVICE_CHARGE, NET_PRICE);
-        
-		invoices.add(invoice);
+
+        invoices.add(invoice);
         printInvoice(invoice);
         reservationManager.checkOut(tableNo);
+        return true;
     }
 /**
  * 
@@ -122,12 +124,12 @@ public class InvoiceManager extends AbstractManager {
         return invoices;
     }
    /**
-    *  
+    *
     * @param checkID
     * @return
     */
     public Order checkOrderByID(int checkID){
-    	
+
     	return orderManager.getOrderbyID(checkID);
     }
 }

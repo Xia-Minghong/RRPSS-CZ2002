@@ -65,9 +65,9 @@ public class InvoiceBoundary implements Runnable {
         String dateStr = sc.next();
         //dateStr = "11/11/2014";
         String[] date = dateStr.split("/");
-        int day = Integer.parseInt(date[2]);
+        int day = Integer.parseInt(date[0]);
         int month = Integer.parseInt(date[1]);
-        int year = Integer.parseInt(date[0]);
+        int year = Integer.parseInt(date[2]);
 
         for (Invoice invoice : invoiceManager.getInvoices()) {
             int invoice_d = invoice.getTIMESTAMP().get(Calendar.DAY_OF_MONTH);
@@ -105,8 +105,8 @@ public class InvoiceBoundary implements Runnable {
         //dateStr = "11/2014";
         String[] date = dateStr.split("/");
 
-        int month = Integer.parseInt(date[1]);
-        int year = Integer.parseInt(date[0]);
+        int month = Integer.parseInt(date[0]);
+        int year = Integer.parseInt(date[1]);
 
         for (Invoice invoice : invoiceManager.getInvoices()) {
 
@@ -114,6 +114,7 @@ public class InvoiceBoundary implements Runnable {
             int invoice_y = invoice.getTIMESTAMP().get(Calendar.YEAR);
 
             if (invoice_m == month && invoice_y == year) {
+                System.out.println("Yes");
                 if (minRevenueInvoice == null)
                     minRevenueInvoice = invoice;
                 if (maxRevenueInvoice == null)
@@ -157,17 +158,23 @@ public class InvoiceBoundary implements Runnable {
     private void addInvoice() {
 
         Scanner sc = new Scanner(System.in);
-        int orderID = 0;
+        int orderID;
         boolean success;
         int testOrderID;
-        
+
         do {
             success = true;
             System.out.println("Please enter the order id (enter -1 to exit):");
             testOrderID = sc.nextInt();
             if(testOrderID == -1) break;
+            if (invoiceManager.checkOrderByID(testOrderID) == null ) { //&& testOrderID == invoice.getOrderID()
+                success = false;
+                System.out.println("Invalid Order ID");
+                continue;
+            }
             for (Invoice invoice : invoiceManager.getInvoices()) {
-                if (invoiceManager.checkOrderByID(testOrderID) != null && testOrderID == invoice.getOrderID()) {
+                if (testOrderID == invoice.getOrderID()) {
+                    System.out.println("Odrer already checked out");
                     success = false;
                     break;
                 }
@@ -178,6 +185,7 @@ public class InvoiceBoundary implements Runnable {
             System.out.println("exit");
             return;
         }
+
 
         System.out.println("Enter name of the customer (check membership)");
         sc.nextLine();
