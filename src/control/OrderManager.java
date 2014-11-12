@@ -87,13 +87,7 @@ public class OrderManager extends AbstractManager {
 	 * @return the order, null if the id not exist
 	 */
 	public Order getOrderbyID(int id) {
-		try {
-			return orderCollection.get(id-1);
-		} catch (IndexOutOfBoundsException e) {
-			// TODO: handle exception
-
-            return null;
-        }
+		return orderCollection.get(id-1);
 	}
 	
 	
