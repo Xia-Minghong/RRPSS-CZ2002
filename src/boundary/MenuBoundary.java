@@ -55,6 +55,7 @@ public class MenuBoundary implements Runnable{
                     System.out.print("The price of the new Alacarte:\t");
                     double price = inputDouble();
                     menuManager.addAlaCartetoMenu(name, description, category, price);
+                    sc.nextLine();
                     break;
                 case 2 :
                 	createSet(menuManager);
@@ -135,6 +136,7 @@ public class MenuBoundary implements Runnable{
             case 1 :
 
                 System.out.print("The new name of the Alacarte:");
+                
                 String newname = sc.nextLine();
                 for(MenuItem menuitem:menu){
                 	if(menuitem.getName().equals(newname)){
