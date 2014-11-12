@@ -30,21 +30,7 @@ public class OrderManager extends AbstractManager {
 	 * a reference to the table manager for verification
 	 */
 	private TableManager tableManager;
-	
-	/**
-	 * constructor using fields
-	 * @param menuManager an instance of menu Manager  
-	 * @param staffManager an instance of a staff manager
-	 * @param FILE_PATH the file path to store the serialized data
-	 * @deprecated deprecated constructor
-	 */
-	public OrderManager(MenuManager menuManager,StaffManager staffManager, String FILE_PATH) {
-        super(FILE_PATH);
-		this.orderCollection = load();
-		this.menuManager = menuManager;
-		this.staffManager = staffManager;
-	}
-	
+
 	/**
 	 * constructor using fields
 	 * @param menuManager an instance of menu Manager for menu display
