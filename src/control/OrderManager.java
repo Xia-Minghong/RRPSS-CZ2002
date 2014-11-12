@@ -89,7 +89,7 @@ public class OrderManager extends AbstractManager {
 	public Order getOrderbyID(int id) {
 		try {
 			return orderCollection.get(id-1);
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} catch (IndexOutOfBoundsException e) {
 			// TODO: handle exception
 
             return null;
