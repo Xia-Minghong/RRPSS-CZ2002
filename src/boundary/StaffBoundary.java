@@ -83,6 +83,7 @@ public class StaffBoundary implements Runnable{
                  System.out.println("Invalid gender, try again");
                }
 			System.out.print("Enter the job Title: ");
+			sc.nextLine();
 			String jobtitle = sc.nextLine();
 			staffManager.createStaff(employee_id, name, corrGender, jobtitle);
 			System.out.print("Add another staff? ('y' to continue) :");
