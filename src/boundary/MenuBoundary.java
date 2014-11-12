@@ -288,6 +288,7 @@ public class MenuBoundary implements Runnable{
 		do{
 			if(menuManager.getMenu().size() == 0){
 				System.out.println("No more menu item to delete! ");
+				bol = false;
 			}
 			else{
 				System.out.print(menuManager.menuToString());
