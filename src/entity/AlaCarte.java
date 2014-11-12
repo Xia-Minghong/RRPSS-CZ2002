@@ -20,10 +20,10 @@ public class AlaCarte extends MenuItem implements Serializable{
 	
 	/**
 	 * Constructor of the Ala Carte class
-	 * @param name, the name of the Ala Carte
-	 * @param description, the description of the Ala Carte
-	 * @param category, the category of the Ala Carte
-	 * @param price, the price of the Ala Carte
+	 * @param name the name of the Ala Carte
+	 * @param description the description of the Ala Carte
+	 * @param category the category of the Ala Carte
+	 * @param price the price of the Ala Carte
 	 */
 	public AlaCarte(String name, String description, String category, double price){
 		super(name,description,category);
@@ -40,7 +40,7 @@ public class AlaCarte extends MenuItem implements Serializable{
 
 	/**
 	 * Setter method for Ala Carte price
-	 * @param price, the price to be set to the Ala Carte
+	 * @param price the price to be set to the Ala Carte
 	 */
 	public void setPrice(double price) {
 		this.Price = price;

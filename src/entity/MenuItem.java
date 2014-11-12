@@ -72,7 +72,7 @@ public abstract class MenuItem implements Serializable{
 	
 	/**
 	 * setter method for the menuItem's description
-	 * @param description, the description to set to menuItem
+	 * @param description the description to set to menuItem
 	 */
 	
 	public void setDescription(String description){
@@ -89,7 +89,7 @@ public abstract class MenuItem implements Serializable{
 	
 	/**
 	 * setter method for menuItem's category
-	 * @param category, the category to set to menuItem
+	 * @param category the category to set to menuItem
 	 */
 	public void setCategory(String category){
 		this.Category = category;

@@ -28,10 +28,10 @@ public class Set extends MenuItem implements Serializable{
 	
 	/**
 	 * Constructor for the Set
-	 * @param name, the name of the Set
-	 * @param description, the words used to describe the Set
-	 * @param category, the category of the Set
-	 * @param price, the price of the Set
+	 * @param name the name of the Set
+	 * @param description the words used to describe the Set
+	 * @param category the category of the Set
+	 * @param price the price of the Set
 	 */
 	public Set(String name, String description, String category, double price){
 		super(name,description, category);
@@ -49,7 +49,7 @@ public class Set extends MenuItem implements Serializable{
 	
 	/**
 	 * Setter method for Set discount rate
-	 * @param discountrate,the value to set to discount rate
+	 * @param discountrate the value to set to discount rate
 	 */
 	public void setDiscountRate(double discountrate){
 		this.discountRate = discountrate;
@@ -66,8 +66,8 @@ public class Set extends MenuItem implements Serializable{
 	
 	/**
 	 * Add method to add an Ala Carte into the Set
-	 * @param menu, the menu contains all Ala Carte
-	 * @param menuitemID, the ID of the Ala Carte to add into set
+	 * @param menu the menu contains all Ala Carte
+	 * @param menuitemID the ID of the Ala Carte to add into set
 	 */
 	public void addAlaCartetoSet(ArrayList<MenuItem> menu,int  menuitemID){
 			 set.add((AlaCarte) menu.get(menuitemID));
@@ -76,7 +76,7 @@ public class Set extends MenuItem implements Serializable{
 	
 	/**
 	 * delete method to delete an Ala Carte from the set
-	 * @param menuitemID, the ID of the Ala Carte to delete from the set
+	 * @param menuitemID the ID of the Ala Carte to delete from the set
 	 */
 	public void delFromSet(int menuitemID){
 		if(this.getSet().size() == 0){
@@ -118,7 +118,7 @@ public class Set extends MenuItem implements Serializable{
 	
 	/**
 	 * Setter method to set the price of the Set
-	 * @param price, the price to set to the Set
+	 * @param price the price to set to the Set
 	 */
 	@Override
 	public void setPrice(double price) {

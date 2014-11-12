@@ -21,7 +21,7 @@ public class StaffManager extends AbstractManager{
 	
 	/**
 	 * Constructor for StaffManager Class
-	 * @param FILE_PATH, the file path from/to which the serialized stream of array list of tables is read/stored
+	 * @param FILE_PATH the file path from/to which the serialized stream of array list of tables is read/stored
 	 */
 	public StaffManager(String FILE_PATH){
 		super(FILE_PATH);
@@ -30,10 +30,10 @@ public class StaffManager extends AbstractManager{
 	
 	/**
 	 * Perform the action of adding a staff
-	 * @param Employee_Id, the Staff ID of new Staff
-	 * @param name, the name of the new staff
-	 * @param gender, the correct gender of the new staff
-	 * @param jobtitle, the job title of the new staff
+	 * @param Employee_Id the Staff ID of new Staff
+	 * @param name the name of the new staff
+	 * @param gender the correct gender of the new staff
+	 * @param jobtitle the job title of the new staff
 	 */
 	public void createStaff(int Employee_Id,String name, Boolean gender, String jobtitle){
 		for(Staff staff:staffs){
@@ -49,7 +49,7 @@ public class StaffManager extends AbstractManager{
 	
 	/**
 	 * Perform the action of deleting a staff
-	 * @param name, the name of the staff to delete
+	 * @param name the name of the staff to delete
 	 */
 	public void deleteStaff(String name){
 		int index = -1;
@@ -74,7 +74,7 @@ public class StaffManager extends AbstractManager{
 	
 	/**
 	 * Getter method to get the staff according to input ID
-	 * @param staffID, the ID of the staff to get
+	 * @param staffID the ID of the staff to get
 	 * @return the staff
 	 */
 	public Staff getStaffbyID(int staffID){

@@ -26,7 +26,7 @@ public class MenuBoundary implements Runnable{
     
     /**
      * Constructor of the restaurant boundary class
-     * @param menuManager, the instance of the MenuManager
+     * @param menuManager the instance of the MenuManager
      */
     public MenuBoundary(MenuManager menuManager) {
         this.menuManager = menuManager;
@@ -47,10 +47,10 @@ public class MenuBoundary implements Runnable{
             switch (choice){
                 case 1 :
                     System.out.print("The name of the new Alacarte:\t");
-                    sc.next();
+                    sc.nextLine();
                     String name = sc.nextLine();
                     System.out.print("The description of the new Alacarte:\t");
-                    sc.next();
+                    sc.nextLine();
                     String description = sc.nextLine();
                     System.out.print("The category of the new Alacarte:\t");
                     String category = sc.next();
@@ -82,16 +82,16 @@ public class MenuBoundary implements Runnable{
     
     /**
      * Method to create the new set according to the user input
-     * @param menuManager, the instance of the MenuManager
+     * @param menuManager the instance of the MenuManager
      */
     public void createSet(MenuManager menuManager){
     	
     	Scanner sc = new Scanner(System.in);
         System.out.print("The name of the new Set:\t");
-        sc.next();
+        sc.nextLine();
         String setname = sc.nextLine();
         System.out.print("The description of the new Set:\t");
-        sc.next();
+        sc.nextLine();
         String setdescription = sc.nextLine();
         System.out.print("The category of the new Set:\t");
         String setcategory = sc.next();
@@ -124,7 +124,7 @@ public class MenuBoundary implements Runnable{
     
 	/**
 	 * Method to update the Ala Carte's details according to user input
-	 * @param menu, pass in the menu
+	 * @param menu the menu passed into
 	 */
 	public void updateAlacarte(ArrayList<MenuItem> menu){
 		
@@ -139,7 +139,7 @@ public class MenuBoundary implements Runnable{
             case 1 :
 
                 System.out.print("The new name of the Alacarte:");
-                sc.next();
+                sc.nextLine();
                 String newname = sc.nextLine();
                 for(MenuItem menuitem:menu){
                 	if(menuitem.getName().equals(newname)){
@@ -151,7 +151,7 @@ public class MenuBoundary implements Runnable{
                 break;
             case 2 :
                 System.out.print("The new description of the Alacarte");
-                sc.next();
+                sc.nextLine();
                 String newdescription = sc.nextLine();
                 item.setDescription(newdescription);
                 break;
@@ -175,7 +175,7 @@ public class MenuBoundary implements Runnable{
 	
 	/**
 	 * Method to update the set details according to user input
-	 * @param menu, pass in the menu
+	 * @param menu the menu passed in
 	 */
 	public void updateSet(ArrayList<MenuItem> menu){
 		Scanner sc = new Scanner(System.in);        
@@ -198,7 +198,7 @@ public class MenuBoundary implements Runnable{
 		switch(inputInteger()){
             case 1 :
                 System.out.print("The new name of the Set:");
-                sc.next();
+                sc.nextLine();
                 String setnewname = sc.nextLine();
                 for(MenuItem menuitem:menu){
                 	if(menuitem.getName().equals(setnewname)){
@@ -210,7 +210,7 @@ public class MenuBoundary implements Runnable{
                 break;
             case 2 :
                 System.out.print("The new description of the Set");
-                sc.next();
+                sc.nextLine();
                 String setnewdescription = sc.nextLine();
                 menu.get(setid).setDescription(setnewdescription);
                 break;
@@ -314,8 +314,8 @@ public class MenuBoundary implements Runnable{
     
     /**
      * Repeatedly asking for a valid MenuItem ID input from user until getting one
-     * @param manager, pass in the instance of MenuManager
-     * @param itemID, the ID of the menuItem
+     * @param manager pass in the instance of MenuManager
+     * @param itemID the ID of the menuItem
      * @return the menuItem get from the input
      */
 	public MenuItem secureGetMenuItem(MenuManager manager) {

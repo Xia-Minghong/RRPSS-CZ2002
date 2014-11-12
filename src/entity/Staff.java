@@ -33,10 +33,10 @@ public class Staff implements Serializable{
 	
 	/**
 	 * Constructor for the staff
-	 * @param EMPLOYEE_ID, the staff ID to be used in constructor
-	 * @param name, the name of staff to be used in constructor
-	 * @param gender, the gender of the staff to be used in constructor
-	 * @param jobTitle, the job title of the staff to be used in constructor
+	 * @param EMPLOYEE_ID the staff ID to be used in constructor
+	 * @param name the name of staff to be used in constructor
+	 * @param gender the gender of the staff to be used in constructor
+	 * @param jobTitle the job title of the staff to be used in constructor
 	 */
 	public Staff(int EMPLOYEE_ID, String name, Boolean gender, String jobTitle){
 		this.EMPLOYEE_ID = EMPLOYEE_ID;
@@ -56,7 +56,7 @@ public class Staff implements Serializable{
 	
 	/**
 	 * Setter method to set the staff's name
-	 * @param name,the new name to set to the staff
+	 * @param name the new name to set to the staff
 	 */
 	public void setStaffName(String name){
 		this.name = name;
@@ -80,7 +80,7 @@ public class Staff implements Serializable{
 	
 	/**
 	 * Setter method to set staff's gender
-	 * @param gender, the correct gender to set to the staff
+	 * @param gender the correct gender to set to the staff
 	 */
 	public void setGender(boolean gender){
 		this.gender =gender;

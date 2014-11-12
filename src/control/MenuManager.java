@@ -30,7 +30,7 @@ public class MenuManager extends AbstractManager {
 	 * constructor of MenuMananger
 	 * during the construction, MenuManager are read from file and 
 	 * the menuItem list in initialized
-	 * @param FILE_PATH, the file path from which the menuItem list is readand 
+	 * @param FILE_PATH the file path from which the menuItem list is read and 
 	 * to which the list is written
 	 */
 	
@@ -41,10 +41,10 @@ public class MenuManager extends AbstractManager {
 	
 	  /**
 	   * Create a new Ala Carte and add it into the menuItem list
-	   * @param name, the name of new Ala Carte
-	   * @param description, the words used to describe the new Ala Carte
-	   * @param category, the category of the new Ala Carte
-	   * @param price, the price of the new Ala Carte
+	   * @param name the name of new Ala Carte
+	   * @param description the words used to describe the new Ala Carte
+	   * @param category the category of the new Ala Carte
+	   * @param price the price of the new Ala Carte
 	   */
 	public void addAlaCartetoMenu(String name,String description, String category, double price){
 		for(MenuItem item: menu){
@@ -60,10 +60,10 @@ public class MenuManager extends AbstractManager {
 	
 	/**
 	 * Create a new set and add it to the menuItem list
-	 * @param name, the name of the new Set
-	 * @param description, the words used to describe the new set.
-	 * @param category, the category or the new set.
-	 * @param price, the price of the new set.
+	 * @param name the name of the new Set
+	 * @param description the words used to describe the new set.
+	 * @param category the category or the new set.
+	 * @param price the price of the new set.
 	 * @return the the new set itself.
 	 */
 
@@ -83,7 +83,7 @@ public class MenuManager extends AbstractManager {
 	
 	/**
 	 * Delete the MenuItem from the menuItem list by its ID
-	 * @param itemID, the ID of the menuItem to delete
+	 * @param itemID the ID of the menuItem to delete
 	 */
 	public void deleteMenuItembyID(int itemID){
 		
@@ -100,7 +100,7 @@ public class MenuManager extends AbstractManager {
 	
 	/**
 	 * Get the menuItemId with the given name
-	 * @param name, the name of the menuItem
+	 * @param name the name of the menuItem
 	 * @return the menuIten id which is an integer
 	 */
 
@@ -115,7 +115,7 @@ public class MenuManager extends AbstractManager {
 	
 	/**
 	 * Get the menuItem with menuItemID given
-	 * @param itemid, the id of the menuItem
+	 * @param itemid the id of the menuItem
 	 * @return the menuItem with the id given
 	 */
 	public MenuItem getMenuItemByld(int itemid){
