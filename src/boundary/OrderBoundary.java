@@ -1,7 +1,6 @@
 package boundary;
 
 import control.OrderManager;
-import entity.MenuItem;
 import entity.Order;
 import entity.OrderItem;
 import entity.Staff;
@@ -9,26 +8,44 @@ import entity.Staff;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import sun.print.resources.serviceui;
-
+/**
+ * Boundary class for Order
+ * Responsible for input handling
+ * @author Zhou Jingyuan
+ * @since 2014-11-11
+ */
 public class OrderBoundary implements Runnable{
 	
+	
+	/**
+	 * holds an reference to the order manager class 
+	 */
 	public OrderManager orderManager;
 	
+	
+	/**
+	 * constructor using fields
+	 * @param orderManager an instance of order manager
+	 */
 	public OrderBoundary(OrderManager orderManager) {
 		// TODO Auto-generated constructor stub
 		this.orderManager = orderManager;
 	}
 	
+	
+	/**
+	 * starting point of the Order boundary
+	 * handling all order-realted stuff 
+	 */
 	@Override
 	public void run() {
 		Scanner sc = new Scanner(System.in);
 		while (true)
 		{
 			System.out.println("\n 1. Create Order \n 2. Get total price of a order ");
-			System.out.println(" 3. Remove a order \n 4. View all orders \n 5. Edit a order\n any other input to exit");
+			System.out.println(" 3. View all orders \n 4. Edit a order\n Any other input to exit");
 			System.out.println("Choose what you want: ");			
-			switch (secureNextInt(sc)) {
+			switch (secureNextInt(sc)) { 
 			case 1:	
 				editOrder(createOrder());
 				break;
@@ -37,17 +54,20 @@ public class OrderBoundary implements Runnable{
 				System.out.println("Choose a order id you want to view");
 				System.out.println(secureGetOrder(orderManager,sc).getTotal());
 				break;
-			case 3:
+			/*case 3:
+				System.out.println("This functionality is deprecated");
+				break;
 				int id;
 				orderManager.showAllOrderWithID();
 				System.out.println("Choose a order you want to remove");
 				orderManager.removeOrderByID(id = secureGetOrderID(orderManager, sc));
 				System.out.println("Successfully removed id = "+id);
 				break;
-			case 4:
-				orderManager.showAllOrderWithID();
+				*/
+			case 3:
+				orderManager.showAllOrderWithIDAndContent();
 				break;
-			case 5:
+			case 4:
 				orderManager.showAllOrderWithID();
 				System.out.println("Choose a order you want to edit");
 				editOrder(secureGetOrderID(orderManager, sc));
@@ -58,8 +78,14 @@ public class OrderBoundary implements Runnable{
 		}
 	}
 	
+	/**
+	 * Obtain an integer from a scanner
+	 * if an integer is not available search the next line and prompt to sysout
+	 * asking user to input a valid integer
+	 * @param sc scanner to be used to get next int, perferably Scanner(system.in)
+	 * @return the integer
+	 */
 	public static int secureNextInt(Scanner sc) {
-		int ans;
 		while (true) {
 			try {
 				return sc.nextInt();
@@ -72,7 +98,13 @@ public class OrderBoundary implements Runnable{
 		}
 	}
 	
-	
+	/**
+	 * verify input and return an order instance by ID
+	 * prompt user to enter another ID if it is not in the range
+	 * @param manager an order manager instance
+	 * @param sc the scanner to be used
+	 * @return an order instance per user request 
+	 */
 	public static Order secureGetOrder(OrderManager manager,Scanner sc) {
 		while (true) {
 			try {
@@ -85,6 +117,13 @@ public class OrderBoundary implements Runnable{
 		}
 	}
 	
+	/**
+	 * get input and return an valid order ID
+	 * prompt user to enter another ID if it is not in the range
+	 * @param manager an order manager instance
+	 * @param sc the scanner to be used
+	 * @return an valid order ID input by user 
+	 */
 	public static int secureGetOrderID(OrderManager manager,Scanner sc) {
 		int id;
 		while (true) {
@@ -99,15 +138,26 @@ public class OrderBoundary implements Runnable{
 		}
 	}
 	
-	public static int secureRangeInt(Scanner sc,int a,int b) {
+	/**
+	 * get an input integer that is within the range 
+	 * @param sc scanner to be use
+	 * @param lowerbound lowerbound of the integer, inclusive
+	 * @param upperbound upperbound of the integer, inclusive
+	 * @return the integer
+	 */
+	public static int secureRangeInt(Scanner sc,int lowerbound,int upperbound) {
 		int ans=secureNextInt(sc);
-		while (ans>b || ans<a) {
+		while (ans>upperbound || ans<lowerbound) {
 			System.out.println("Invalid try again!");//debug
 			ans = secureNextInt(sc);
 		} 
 		return ans;
 	}
 	
+	/**
+	 * prompt user to edit an order 
+	 * @param orderID the order to be edited
+	 */
 	private void editOrder(int orderID) {
 		Scanner sc = new Scanner(System.in);
 		
@@ -123,7 +173,7 @@ public class OrderBoundary implements Runnable{
 				int item = secureRangeInt(sc, 1, orderManager.getMenuManager().getMenu().size());
 
 				System.out.println("How many "+ orderManager.getMenuManager().getMenuItemByld(item).getName() + " do you want?");
-				int quantity = secureNextInt(sc);
+				int quantity = secureRangeInt(sc, 1, Integer.MAX_VALUE);
 				orderManager.getOrderbyID(orderID).addOrderItem(new
                         OrderItem(quantity, orderManager.getMenuManager().getMenuItemByld(item)));
 				System.out.println("successfully ordered!");
@@ -143,6 +193,10 @@ public class OrderBoundary implements Runnable{
 		}
 	}
 	
+	/**
+	 * prompt user to create an order 
+	 * @return the order id that just created
+	 */
 	public int createOrder() {
 		Scanner sc = new Scanner(System.in);
 		Staff aStaff;
