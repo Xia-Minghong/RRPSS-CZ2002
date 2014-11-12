@@ -66,6 +66,7 @@ public class StaffBoundary implements Runnable{
 	 */
 	public void addStaffs(){
 		Scanner sc = new Scanner(System.in);
+		boolean bol = false;
 		do{
 			System.out.print("Enter the new Staff ID:");
 			int employee_id = inputInteger();
@@ -87,7 +88,9 @@ public class StaffBoundary implements Runnable{
 			String jobtitle = sc.nextLine();
 			staffManager.createStaff(employee_id, name, corrGender, jobtitle);
 			System.out.print("Add another staff? ('y' to continue) :");
-		}while(sc.next().equals("y"));
+			bol = sc.next().equals("y");
+			sc.nextLine();
+		}while(bol);
 	}
 	
 	/**
@@ -95,12 +98,15 @@ public class StaffBoundary implements Runnable{
 	 */
 	public void delStaff(){
 		Scanner sc = new Scanner(System.in);
+		boolean bol = false;
 		do {
 			System.out.println("Enter the name of the Staff to delete:");
 			String  name = sc.nextLine();
 			staffManager.deleteStaff(name);
 			System.out.println("Delete one more staff?('y' to continue):");
-		}while(sc.next().equals("y"));
+			bol = sc.next().equals("y");
+			sc.nextLine();
+		}while(bol);
 		
 	}
 	
@@ -109,6 +115,7 @@ public class StaffBoundary implements Runnable{
      */
 	public void updateStaff(){
 		Scanner sc = new Scanner(System.in);
+		boolean bol = false;
 		do{
 			System.out.println("Enter the ID of the staff who need to be update:");
 			int employee_id = inputInteger();
@@ -145,7 +152,9 @@ public class StaffBoundary implements Runnable{
 				   break;
 			}
 			System.out.println("Update one more staff?('y' to continue)");
-		}while(sc.next().equals("y"));
+			bol =sc.next().equals("y");
+			sc.nextLine();
+		}while(bol);
 	}
 	
 	/**

@@ -91,7 +91,7 @@ public class MenuManager extends AbstractManager {
 			System.out.println("This menu item does not exist!");
 		} 
 		else{
-			menu.remove(itemID-1);
+			menu.remove(itemID);
 		}
 	}
 	
