@@ -88,20 +88,20 @@ public class Invoice implements Serializable{
     	int printMinute=TIMESTAMP.get(Calendar.MINUTE);
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append(restaurantName+ "\n");
-        stringBuffer.append("===========================================================\n");
-        stringBuffer.append("||Invoice ID:\t\t\t\t\t\t"+ INVOICE_ID + "||\n");
+        stringBuffer.append("==========================================================\n");
+        stringBuffer.append("||Invoice ID:\t\t\t\t\t"+ INVOICE_ID + "\t||\n");
         stringBuffer.append("||Time:\t\t\t\t"+ String.format("%02d",printDay)+"/" +String.format("%02d",printMonth)+ "/" + String.format("%4d",printYear)+"\t"+String.format("%02d",printHour) +":"+String.format("%02d",printMinute)+"\t||\n");
-        stringBuffer.append("||Staff:\t\t\t\t\t\t" + STAFF_NAME+ "||\n");
+        stringBuffer.append("||Staff:\t\t\t\t\t" + STAFF_NAME+ "\t||\n");
         ArrayList<OrderItem> orderItems = ORDER.getOrderItems();
         for (OrderItem orderItem : orderItems){
             stringBuffer.append("||Order Item: " + orderItem + "\t||\n");
         }
-        stringBuffer.append("||Gross Price:\t\t\t\t\t"  + String.format("%.2f", GROSS_PRICE)+ "||\n");
-        stringBuffer.append("||GST:\t\t\t\t\t\t"  + String.format("%.2f",GST)+ "||\n");
-        stringBuffer.append("||Service Charge:\t\t\t\t"+ String.format("%.2f",SERVICE_CHARGE)+ "||\n");
-        stringBuffer.append("-----------------------------------------------------------\n");
-        stringBuffer.append("||Net Price:\t\t\t\t\t" +String.format("%.2f",NET_PRICE) +"||\n");
-        stringBuffer.append("===========================END=============================\n");
+        stringBuffer.append("||Gross Price:\t\t\t\t\t"  + String.format("%.2f", GROSS_PRICE)+ "\t||\n");
+        stringBuffer.append("||GST:\t\t\t\t\t\t"  + String.format("%.2f",GST)+ "\t||\n");
+        stringBuffer.append("||Service Charge:\t\t\t\t"+ String.format("%.2f",SERVICE_CHARGE)+ "\t||\n");
+        stringBuffer.append("----------------------------------------------------------\n");
+        stringBuffer.append("||Net Price:\t\t\t\t\t" +String.format("%.2f",NET_PRICE) +"\t||\n");
+        stringBuffer.append("===========================END============================\n");
         return stringBuffer.toString();
     }
 
