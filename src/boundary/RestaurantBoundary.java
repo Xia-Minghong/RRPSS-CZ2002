@@ -177,8 +177,8 @@ public class RestaurantBoundary implements Runnable {
 	}
 
     /**
-     * Repeatedly asking for an integer input from System.in until getting one
-     * @return the integer got from the input
+     * Repeatedly asking for an decimal input from System.in until getting one
+     * @return the decimal got from the input
      */
     private double inputDouble() {
         double decimal;
