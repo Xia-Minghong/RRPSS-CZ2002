@@ -129,10 +129,20 @@ public class MenuBoundary implements Runnable{
 		
 		Scanner sc = new Scanner(System.in);
 		boolean bol = false;
+		int itemid;
 		if (secureAlacarteExist(menuManager)){
 			System.out.print(menuManager.menuToString());
 		    System.out.print("The ID of the Alacarte to update: ");
-            MenuItem item = secureGetMenuItem(menuManager);
+		    itemid = menuManager.getMenu().indexOf(secureGetMenuItem(menuManager));
+            while(true){
+                if((menuManager.getMenu().get(itemid)) instanceof AlaCarte){
+                	break;
+                }
+                else{
+                	System.out.print("Not a Ala Carte, please choose a set ID again: ");
+                	itemid = menuManager.getMenu().indexOf(secureGetMenuItem(menuManager));
+                }
+    		}
             do{
                  System.out.print("1.Name\n2.Description\n"
                   + "3.Category\n4.Price\n5.Back\nChoose which attribute to update:");
@@ -148,22 +158,22 @@ public class MenuBoundary implements Runnable{
                 		 return;
                 	}
                 }
-                   item.setName(newname);
+                   menu.get(itemid).setName(newname);
                    break;
                 case 2 :
                    System.out.print("The new description of the Alacarte: ");
                    String newdescription = sc.nextLine();
-                   item.setDescription(newdescription);
+                   menu.get(itemid).setDescription(newdescription);
                    break;
                 case 3 :
                   System.out.print("The new category of the Alacarte: ");
                   String newcategory = sc.next();
-                  item.setCategory(newcategory);
+                  menu.get(itemid).setCategory(newcategory);
                   break;
                 case 4 :
                   System.out.print("The new price of the Alacarte: ");
                   double newprice = inputDouble();
-                  item.setPrice(newprice);
+                  menu.get(itemid).setPrice(newprice);
                   break;
                 default:
             	    break;
@@ -186,20 +196,18 @@ public class MenuBoundary implements Runnable{
 	public void updateSet(ArrayList<MenuItem> menu){
 		Scanner sc = new Scanner(System.in);       
 		boolean bol = false;
+		int setid;
 		if (secureSetExist(menuManager)){
 		System.out.print(menuManager.menuToString());
 		System.out.print("The ID of the Set to update: ");
-        int setid = menuManager.getMenu().indexOf(secureGetMenuItem(menuManager));
+        setid = menuManager.getMenu().indexOf(secureGetMenuItem(menuManager));
         while(true){
             if((menuManager.getMenu().get(setid)) instanceof Set){
             	break;
             }
             else{
-            	System.out.print("Not a Set, please choose a set ID again(-1 to back): ");
-            	setid = inputInteger();
-            	if (setid<=0){
-            		return;
-            	}
+            	System.out.print("Not a Set, please choose a set ID again: ");
+            	setid = menuManager.getMenu().indexOf(secureGetMenuItem(menuManager));
             }
 		}
         do{
@@ -212,7 +220,7 @@ public class MenuBoundary implements Runnable{
                 String setnewname = sc.nextLine();
                 for(MenuItem menuitem:menu){
                 	if(menuitem.getName().equals(setnewname)){
-                		System.out.println("This Ala Carte exists!");
+                		System.out.println("This name exists!");
                 		return;
                 	}
                 }
