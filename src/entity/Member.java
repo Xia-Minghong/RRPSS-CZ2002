@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * entity.Member is a model class which holds the relevant attributes
- * of a member and provides the mutators/setters and accessors/getters accordingly.
+ * of a member and provides the setters and getters accordingly.
  * @author Xia Minghong
  * @version 1.0
  * @since 2014-10-24.

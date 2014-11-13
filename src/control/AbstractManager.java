@@ -88,7 +88,7 @@ public abstract class AbstractManager {
             objectOutputStream.close();
             fileOutputStream.close();
 
-            //used for debug purpose
+            //used for debugging purpose
 //            System.out.println("Serialized data is stored in \""+FILE_PATH+"\"");
             return true;
         }catch(IOException i) { //handle the IO exception
@@ -112,7 +112,7 @@ public abstract class AbstractManager {
 
 
 
-    //test
+    //test program
 //    public static void main(String[] args) {
 ////        entity.Table table = new entity.Table(1, 2);
 //        IOManager ioManager = new IOManager();

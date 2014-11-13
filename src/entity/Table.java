@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * entity.Table is a model class which holds the relevant attributes
- * of a table and provides the mutators and accessors accordingly.
+ * of a table and provides the getters and setters accordingly.
  * @author Xia Minghong
  * @version 1.0
  * @since 2014-10-24.
@@ -59,19 +59,5 @@ public class Table implements Serializable{
     public String toString() {
         return "ID: " + TABLE_ID + "\tCapacity: " + CAPACITY;
     }
-    //    /**
-//     * Getter method for presence
-//     * @return the occupation state of the table
-//     */
-//    public boolean isPresence() {
-//        return presence;
-//    }
-//
-//    /**
-//     * Setter method for the occupation state of the table
-//     * @param presence the state of presence to set
-//     */
-//    public void setPresence(boolean presence) {
-//        this.presence = presence;
-//    }
+
 }
