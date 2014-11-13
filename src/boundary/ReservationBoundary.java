@@ -154,7 +154,7 @@ public class ReservationBoundary {
 		int index;
 		for (index = 0; index < listOfIndex.size(); ++index) {
 			System.out.print((index + 1) + ". ");
-			System.out.println(reservationManager.getReservations().get(index)
+			System.out.println(reservationManager.getReservations().get(listOfIndex.get(index))
 					.toString());
 		}
 		System.out.print("Choose one to remove:");
@@ -186,7 +186,7 @@ public class ReservationBoundary {
 		int index;
 		for (index = 0; index < listOfIndex.size(); ++index) {
 			System.out.print((index + 1) + ". ");
-			System.out.println(reservationManager.getReservations().get(index)
+			System.out.println(reservationManager.getReservations().get(listOfIndex.get(index))
 					.toString());
 		}
 	}
