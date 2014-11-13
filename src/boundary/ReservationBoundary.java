@@ -111,7 +111,7 @@ public class ReservationBoundary {
 				System.out
 						.println("It's not a valid pax number! Please try again.");
 		} while (!isValid);
-		System.out.print("Please enter the customer name(no space):");
+		System.out.print("Please enter the customer name:");
 		String buffer = sc.nextLine();
 		cstName = sc.nextLine();
 		Reservation reservation = new Reservation(calTime, new Integer(pax),
@@ -126,7 +126,6 @@ public class ReservationBoundary {
 				System.out
 						.println("Reservation has been successfully created!");
 				reservationManager.getReservations().add(reservation);
-
 				System.out.println("Your reservation:");
 				System.out.println(reservation.toString());
 			} else {
@@ -253,10 +252,14 @@ public class ReservationBoundary {
  * This method is to check in for a certain reservation.
  * @return whether check-in is successful.
  */
-	public boolean checkInReservation() {
+	public void checkInReservation() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Please enter the table ID:");
+		System.out.print("Please enter the table ID:");
 		int tableID = sc.nextInt();
-		return reservationManager.checkIn(tableID);
+		boolean isCheckIn = reservationManager.checkIn(tableID);
+		if(isCheckIn){
+			System.out.println("The reservation is successfully checked in!");
+		}else
+			System.out.println("Please check! The reservation is not checked in!");
 	}
 }
