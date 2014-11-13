@@ -9,36 +9,48 @@ import java.util.Calendar;
 import java.util.Date;
 /**
  * 
- * @author Brian
+ * @author Wong Chun Keet
  *
  */
 public class InvoiceManager extends AbstractManager {
 	
 
 /**
- * 
+ * provides access to order to get details of order 
  */
     private OrderManager orderManager;
-
+/**
+ * provides access to member to check membership
+ */
     private MemberManager memberManager;
-
+/**
+ * provides access to restaurant to get member discount rate and gst and service charge
+ */
     private RestaurantManager restaurantManager;
-
+/**
+ * provides access to reservation to delete reservation when customer pays the bill
+ */
     private ReservationManager reservationManager;
-    
+/**
+ * holds all the invoices created
+ */
     private ArrayList<Invoice> invoices;
-
+/**
+ * the gst rate applied on the gross price
+ */
     private final double GST_RATE;
-
+/**
+ * the service charge applied on the gross price
+ */
     private final double SERVICE_CHARGE_RATE;
     
     /**
      * 
-     * @param orderManager
-     * @param restaurantManager
-     * @param memberManager
-     * @param reservationManager
-     * @param FILE_PATH
+     * @param orderManager instance of OrderManager
+     * @param restaurantManager instance of RestaurantManager
+     * @param memberManager instance of MemberManager
+     * @param reservationManager instance of ReservationManager
+     * @param FILE_PATH for file input and output
      */
     public InvoiceManager(OrderManager orderManager, RestaurantManager restaurantManager, MemberManager memberManager, ReservationManager reservationManager, String FILE_PATH) {
 
@@ -61,9 +73,11 @@ public class InvoiceManager extends AbstractManager {
         
     }
 /**
- * 
- * @param orderID
- * @param name
+ * receives input of orderID and customer name
+ * check if customer is member
+ * calculate the gross price of the bill less discount if customer is member, and the gst, service charge and net price
+ * @param orderID is the serial number of the order being paid for
+ * @param name is the name of the customer paying the bill to check for membership
  */
     public boolean createInvoice(int orderID, String name) {
 
@@ -94,14 +108,14 @@ public class InvoiceManager extends AbstractManager {
         return true;
     }
 /**
- * 
- * @param invoice
+ * prints invoice by passing in created invoice instance
+ * @param invoice is the instance of invoice
  */
     public void printInvoice(Invoice invoice) {
         System.out.println(invoice);
     }
 /**
- * 
+ * append the invoice to the arraylist of invoices for future reference
  */
     @Override
     public ArrayList<Invoice> load() {
@@ -112,7 +126,7 @@ public class InvoiceManager extends AbstractManager {
         return invoices;
     }
 /**
- * 
+ * write the created invoices into external file
  */
     @Override
     public void save() {
@@ -120,16 +134,16 @@ public class InvoiceManager extends AbstractManager {
     }
 
 /**
- * 
- * @return
+ * access tHe list of invoices created so far
+ * @return tHe invoices saved
  */
     public ArrayList<Invoice> getInvoices() {
         return invoices;
     }
    /**
-    *
+    *access order by its serial number
     * @param checkID
-    * @return
+    * @return tHe order accordinG to tHe serial number of order
     */
     public Order checkOrderByID(int checkID){
 

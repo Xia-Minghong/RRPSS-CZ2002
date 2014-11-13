@@ -6,63 +6,63 @@ import java.util.Calendar;
 import java.util.Date;
 /**
  * 
- * @author Brian
+ * @author Wong Chun Keet
  *
  */
 public class Invoice implements Serializable{
 	/**
-	 * 
+	 * serial number of the invoice
 	 */
 	private final int INVOICE_ID;
 	/**
-	 * 
+	 * serial number of the order
 	 */
     private final int ORDERID;
    /**
-    *  
+    *  time of the order
     */
 	private final Calendar TIMESTAMP;
 	/**
-	 * 
+	 * is the name of staff that processed the order
 	 */
     private final String STAFF_NAME;
     /**
-     * 
+     * the order that is being paid for, which includes all the items ordered, with their quantities and prices.
      */
     private final Order ORDER;
     /**
-     * 
+     * the gross price of the order less member discount if member
      */
     private final double GROSS_PRICE;
 	/**
-	 * 
+	 * tHe gst applied on tHe bill
 	 */
 	private final double GST;
 	/**
-	 * 
+	 * the service charge applied on the bill
 	 */
 	private final double SERVICE_CHARGE;
 	/**
-	 * 
+	 * the total amount payable by bustomer
 	 */
 	private final double NET_PRICE;
 	/**
-	 * 
+	 * name of restaurant
 	 */
 	private String restaurantName;
 
 	/**
-	 * 
-	 * @param restaurantName
-	 * @param INVOICE_ID
-	 * @param ORDERID
-	 * @param TIMESTAMP
-	 * @param STAFF_NAME
-	 * @param ORDER
-	 * @param GROSS_PRICE
-	 * @param GST
-	 * @param SERVICE_CHARGE
-	 * @param NET_PRICE
+	 * constructor
+	 * @param restaurantName is the name of the name of the restaurant
+	 * @param INVOICE_ID is the serial number of the invoice to be created
+	 * @param ORDERID is the serial number of the order that is being printed into an invoice
+	 * @param TIMESTAMP is the time of placing the order
+	 * @param STAFF_NAME is the name of the staff who took the order
+	 * @param ORDER is the entire order of the customer, ie, all the items ordered and their quantity and price
+	 * @param GROSS_PRICE is the gross total price of the order, less member discount if any
+	 * @param GST is the gst charged on the order
+	 * @param SERVICE_CHARGE is the service charge charged on the order
+	 * @param NET_PRICE is the total amount that the customer must pay
 	 */
     public Invoice(String restaurantName, int INVOICE_ID, int ORDERID, Calendar TIMESTAMP, String STAFF_NAME, Order ORDER, double GROSS_PRICE, double GST, double SERVICE_CHARGE, double NET_PRICE) {
         this.restaurantName = restaurantName;
@@ -77,7 +77,8 @@ public class Invoice implements Serializable{
         this.NET_PRICE = NET_PRICE;
     }
     /**
-     * 
+     * this method formats the date and time of the invoice for printing
+     * prints out the invoice
      */
     @Override
     public String toString() {
@@ -107,29 +108,29 @@ public class Invoice implements Serializable{
 
 
     /**
-     * 
-     * @return
+     * get the time of the invoice
+     * @return time of invoice
      */
     public Calendar getTIMESTAMP() {
         return TIMESTAMP;
     }
     /**
-     * 
-     * @return
+     * get the net price of the invoice
+     * @return net price of the invoice
      */
     public double getNET_PRICE() {
         return NET_PRICE;
     }
     /**
-     * 
-     * @return
+     * get the order which includes the items ordered and their quantities and prices
+     * @return the order
      */
     public Order getOrder(){
     	return ORDER;
     }
     /**
-     * 
-     * @return
+     * get the serial number of the order
+     * @return the serial number of the order
      */
     public int getOrderID(){
     	
