@@ -57,11 +57,9 @@ public class ReservationManager extends AbstractManager {
 		for (index = 0; index < reservations.size(); ++index) {
 			int curTableID = table.getTABLE_ID();
 			int resTableID = reservations.get(index).getTable().getTABLE_ID();
-			if (curTableID == resTableID) {
-				if (!isReservationConflict(curReservation,
-						reservations.get(index))) {
-					return true;
-				}
+			if (curTableID == resTableID
+					&& isReservationConflict(curReservation,
+							reservations.get(index))) {
 				return false;
 			}
 		}
@@ -109,7 +107,7 @@ public class ReservationManager extends AbstractManager {
 			int capacity = curTable.getCAPACITY();
 			if (capacity >= reservation.getPax()
 					&& isTableAvailable(curTable, reservation)) {
-				if (capacity < minCap) {
+				if (capacity <= minCap) {
 					minCap = capacity;
 					minCapTable = curTable;
 				}
@@ -120,6 +118,7 @@ public class ReservationManager extends AbstractManager {
 		reservation.setTable(minCapTable);
 		return true;
 	}
+
 	/**
 	 * This method is to remove a reservation by its index.
 	 * 

@@ -1,7 +1,9 @@
 package boundary;
 
 import control.ReservationManager;
+import control.TableManager;
 import entity.Reservation;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -60,10 +62,6 @@ public class ReservationBoundary {
 			case 5:
 				checkInReservation();
 				break;
-			/*
-			 * case 7: System.out.println("Table ID:"); int id = sc.nextInt();
-			 * System.out.println(reservationManager.checkOut(id)); break;
-			 */
 			default:
 				break;
 			}
@@ -200,8 +198,6 @@ public class ReservationBoundary {
 		System.out.println("4. Show all reservations");
 		System.out.println("5: Check in reservations");
 		System.out.println("6: Go back");
-
-		// System.out.println("7: Check out");
 		System.out.print("Choose any options above:");
 	}
 /**
