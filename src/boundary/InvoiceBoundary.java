@@ -8,8 +8,9 @@ import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 /**
- * 
- * @author Brian
+ *
+ * Boundary class for Invoice
+ * @author Wong Chun Keet
  *
  */
 public class InvoiceBoundary implements Runnable {
@@ -32,7 +33,8 @@ public class InvoiceBoundary implements Runnable {
     }
 
 /**
- * 
+ * print out the options
+ * call the functions according to input
  */
     private void showMenu() {
         Scanner sc = new Scanner(System.in);
@@ -57,7 +59,8 @@ public class InvoiceBoundary implements Runnable {
         }
     }
 /**
- * 
+ * receive an input of date
+ * iterate through all invoices and print out all invoices, and print out a total revenue for the day
  */
     private void printDailyReport() {
         double dailyTotal = 0;
@@ -87,7 +90,8 @@ public class InvoiceBoundary implements Runnable {
         System.out.println("Total for the day is $" + dailyTotal);
     }
 /**
- * 
+ * receive an input of the month
+ * iterate through all orders to find the total revenue, max revenue and min revenue, and then print out those information
  */
     private void printMonthlyReport() {
 
@@ -172,7 +176,9 @@ public class InvoiceBoundary implements Runnable {
     }
     
 /**
- * 
+ * receive input of orderID
+ * if orderID is invalid,  print out error message
+ * else proceed to create and print invoice
  */
     private void addInvoice() {
 

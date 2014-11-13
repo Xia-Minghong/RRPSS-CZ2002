@@ -57,7 +57,7 @@ public class RestaurantBoundary implements Runnable {
 		InvoiceManager invoiceManager = new InvoiceManager(orderManager, restaurantManager, memberManager, reservationManager, "invoices.dat");
 		InvoiceBoundary invoiceBoundary = new InvoiceBoundary(invoiceManager);
 
-		// print main menu
+        // print main menu
 
 		// while true
 //		tableBoundary.run();
