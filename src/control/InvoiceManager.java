@@ -77,7 +77,10 @@ public class InvoiceManager extends AbstractManager {
         int INVOICE_ID = invoices.size();
         double GROSS_PRICE = order.getTotal();
         if (memberManager.getMember(name) != null) {
+            System.out.println(name + " is a member.");
             GROSS_PRICE *= restaurantManager.getMembershipDiscountRate();
+        } else {
+            System.out.println(name + " not a member.");
         }
 
         double GST = GROSS_PRICE * GST_RATE;

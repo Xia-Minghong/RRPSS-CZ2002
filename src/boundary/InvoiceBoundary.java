@@ -39,7 +39,7 @@ public class InvoiceBoundary implements Runnable {
         while (true) {
             System.out.println("choose what you want \n 1. Create Invoice \n 2. Print Daily Report \n 3. Print Monthly Report \n 4. Back  ");
 
-            switch (sc.nextInt()) {
+            switch (inputInteger()){
                 case 1:
                     addInvoice();
                     break;
@@ -163,8 +163,8 @@ public class InvoiceBoundary implements Runnable {
             }
         }
         System.out.println("Total Revenue for the month is " + totalRevenue);
-            System.out.println("Highest revenue is $" + maxRevenue+" on " + maxRevenueDay +"/" + month + "/"+ year);
-            System.out.println("Lowest revenue is $" + minRevenue+" on " + minRevenueDay +"/" + month + "/"+ year);
+            System.out.println("Highest revenue is $" + String.format("%.2f",maxRevenue) +" on " + maxRevenueDay +"/" + month + "/"+ year);
+            System.out.println("Lowest revenue is $" + String.format("%.2f", minRevenue)+" on " + minRevenueDay +"/" + month + "/"+ year);
         
 //        }
     

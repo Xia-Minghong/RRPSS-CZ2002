@@ -7,6 +7,7 @@ import boundary.RestaurantBoundary;
  */
 public class RRPSSApp {
     public static void main(String[] args) {
+
         RestaurantBoundary RestaurantBoundary = new RestaurantBoundary();
         RestaurantBoundary.run();
     }
