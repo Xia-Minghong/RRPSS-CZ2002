@@ -157,7 +157,7 @@ public class ReservationBoundary {
 		System.out.print("Choose one to remove:");
 		int choice = sc.nextInt();
 		boolean isRemoved = reservationManager
-				.removeReservationByIndex(choice - 1);
+				.removeReservationByIndex(listOfIndex.get(choice - 1));
 		if (isRemoved) {
 			System.out.println("Reservation is successfully removed!");
 		} else {
