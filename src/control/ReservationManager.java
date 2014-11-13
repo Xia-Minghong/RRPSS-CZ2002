@@ -165,6 +165,7 @@ public class ReservationManager extends AbstractManager {
 	 * @return a list of possible indices
 	 */
 	private ArrayList<Integer> searchByTableID(final int TABLE_ID) {
+		clearReservation();
 		ArrayList<Integer> listOfIndex = new ArrayList<Integer>();
 		int index;
 		for (index = 0; index < reservations.size(); ++index) {
@@ -281,6 +282,7 @@ public class ReservationManager extends AbstractManager {
 	 * @return all reservations
 	 */
 	public ArrayList<Reservation> getReservations() {
+		clearReservation();
 		return reservations;
 	}
 
