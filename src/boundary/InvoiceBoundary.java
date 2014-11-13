@@ -166,7 +166,7 @@ public class InvoiceBoundary implements Runnable {
                 minRevenueDay = i+1;
             }
         }
-        System.out.println("Total Revenue for the month is " + totalRevenue);
+        System.out.println("Total Revenue for the month is " + String.format("%.2f",totalRevenue));
             System.out.println("Highest revenue is $" + String.format("%.2f",maxRevenue) +" on " + maxRevenueDay +"/" + month + "/"+ year);
             System.out.println("Lowest revenue is $" + String.format("%.2f", minRevenue)+" on " + minRevenueDay +"/" + month + "/"+ year);
         
