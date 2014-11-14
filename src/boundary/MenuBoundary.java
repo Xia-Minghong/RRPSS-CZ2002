@@ -363,7 +363,6 @@ public class MenuBoundary implements Runnable{
     /**
      * Repeatedly asking for a valid MenuItem ID input from user until getting one
      * @param manager pass in the instance of MenuManager
-     * @param itemID the ID of the menuItem
      * @return the menuItem get from the input
      */
 	public MenuItem secureGetMenuItem(MenuManager manager) {
