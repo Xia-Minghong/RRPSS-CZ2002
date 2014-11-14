@@ -14,7 +14,7 @@ import java.util.Scanner;
  * The boundary class handing user interaction related to Menu
  * 
  * @author Cao Gaoxu
- * @version1.0
+ * @version 1.0
  * Created by root on 14-11-8.
  */
 public class MenuBoundary implements Runnable{

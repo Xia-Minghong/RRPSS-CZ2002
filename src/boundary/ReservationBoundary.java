@@ -246,7 +246,6 @@ public class ReservationBoundary {
 	}
 /**
  * This method is to check in for a certain reservation.
- * @return whether check-in is successful.
  */
 	public void checkInReservation() {
 		Scanner sc = new Scanner(System.in);

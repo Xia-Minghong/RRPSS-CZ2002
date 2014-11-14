@@ -7,7 +7,7 @@ import java.io.Serializable;
  * AlaCarte is a model class which holds the relevant attributes
  * of a AlaCarte and provides the mutators and accessors accordingly
  * @author Cao Gaoxu
- *@version1.0
+ *@version 1.0
  *@since 2014-11-06
  */
 

@@ -124,7 +124,7 @@ public class Reservation implements Serializable {
 	/**
 	 * This is the accessor method of isCheckIn.
 	 * 
-	 * @return
+	 * @return whether checked in
 	 */
 	public boolean getIsCheckIn() {
 		return this.isCheckIn;
